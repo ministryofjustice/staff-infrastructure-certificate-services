@@ -5,7 +5,6 @@ env:
     TF_IN_AUTOMATION: true
     TF_INPUT: 0
     TF_VAR_owner_email: pttp@justice.gov.uk
-    # TODO - David C - where does this var come from?
     TF_VAR_env: ${ENV}
   parameter-store:
     # TODO: create our own parameter store parameter here
@@ -22,15 +21,7 @@ phases:
     commands:
       - export AWS_DEFAULT_REGION=eu-west-2
       # terraform deploy
-      # TODO - David C
       - terraform init -no-color --backend-config="key=terraform.$ENV.state"
-      # TODO - David C - what is the pipe to `true` for?
       - terraform workspace new $ENV || true
       - terraform workspace select $ENV
       - terraform apply --auto-approve -no-color
-      # create temporary role
-      - TEMP_ROLE=`aws sts assume-role --role-arn $ROLE_ARN --role-session-name ci-build-$CODEBUILD_BUILD_NUMBER`
-      - echo $TEMP_ROLE
-      - export AWS_ACCESS_KEY_ID=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.AccessKeyId')
-      - export AWS_SECRET_ACCESS_KEY=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.SecretAccessKey')
-      - export AWS_SESSION_TOKEN=$(echo "${TEMP_ROLE}" | jq -r '.Credentials.SessionToken')
