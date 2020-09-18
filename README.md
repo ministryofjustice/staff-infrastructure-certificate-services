@@ -4,18 +4,10 @@
 
 This project contains the Terraform code to build the Ministry of Justice's infrastructure to host PKI certificates servers.
 
-The Terraform in this repository serves 2 purposes:
+The Terraform in this repository can be run in 2 different contexts:
 
-`TODO: this may be incorrect`
-
-- Bootstrapping of the Development, Pre-production and Production environments on AWS.
-- Creating the infrastructure for the log-shipping platform.
-
-The Terraform in this repository can be run in 3 different contexts:
-
-- Your own machine for bootstrapping AWS. `TODO: may need to remove this line`
-- By releasing features through the CodePipeline in the Shared Services Account (by pushing your changes to the `main` branch).
-- Your own Terraform Workspace in the AWS Dev account for testing changes in an isolated workspace (further instructions below).
+1. By releasing features through the CodePipeline in the Shared Services Account (by pushing your changes to the `main` branch).
+1. Your own Terraform Workspace in the AWS Dev account for testing changes in an isolated workspace (further instructions below).
 
 If you would like to understand how the pipeline that runs the Terraform in this repository works, you can find the code used to build the pipeline [here](https://github.com/ministryofjustice/pttp-shared-services-infrastructure).
 
@@ -54,11 +46,20 @@ The steps to set this up are as follows:
 
 ### Running the code
 
-`TODO: this section will be filled in shortly`
+Run the following commands to get the code running on your machine:
+
+- Run `aws-vault exec moj-pttp-shared-services -- make init` (if you are prompted to bring across workspaces, say yes).
+- Run `aws-vault exec moj-pttp-shared-services -- terraform workspace new <myname>` (replace `<myname>` with your own name).
+- Run `aws-vault exec moj-pttp-shared-services -- terraform workspace list` and make sure that your new workspace with your name is selected.
+- If you don't see your new workspace selected, run `aws-vault exec moj-pttp-shared-services -- terraform workspace select <myname>`.
+  `TODO: we need to create a new vault for PKI`
+- Create a file named `terraform.tfvars` in the root of the project and populate it with the default developer Terraform settings. You can find a completed example of this in 1password7, in a vault named "PTTP". Update the field `owner_email` to your own email address.
+- Edit your aws config file (usually found in `~/.aws/config`) to include the key value pair of `region=eu-west-2` for both the `profile moj-pttp-dev` and the `profile moj-pttp-shared-services` workspaces.
+- Run `aws-vault exec moj-pttp-shared-services -- terraform plan` and check that for an output. If it appears as correct terraform output, run `aws-vault exec moj-pttp-shared-services -- terraform apply`.
 
 ### Tearing down infrastructure
 
-To minimise costs and keep the environment clean, regularly run teardown in your workspace. E.g:  
+To minimise costs and keep the environment clean, regularly run teardown in your personal workspace e.g. after you are done working for the day, or over the weekend.
 `aws-vault exec moj-pttp-shared-services -- terraform destroy`
 
 ### Useful commands
