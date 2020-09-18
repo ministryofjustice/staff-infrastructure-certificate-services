@@ -24,19 +24,17 @@ module "label" {
   namespace = "pttp"
   stage     = terraform.workspace
   # TODO: change this?
-  name      = "infra"
+  name      = "pki-infra"
   delimiter = "-"
 
-  # TODO: update these?
   tags = {
     "business-unit" = "MoJO"
-    "application"   = "infrastructure"
-    "owner" = var.owner_email
+    "application"   = "public-key-infrastructure"
+    "owner"         = var.owner_email
 
-    # TODO: do we need this?
+    # TODO: do we need this field?
     "environment-name" = "global"
-    # TODO: do we need this?
-    "source-code" = "https://github.com/ministryofjustice/pttp-infrastructure"
+    "source-code"      = "https://github.com/ministryofjustice/staff-infrastructure-certificate-services"
   }
 }
 
@@ -44,7 +42,7 @@ module "prometheus" {
   source = "./modules/test"
 
   prefix = module.label.id
-  # tags                       = module.label.tags
+  tags   = module.label.tags
 
   providers = {
     aws = aws.env
