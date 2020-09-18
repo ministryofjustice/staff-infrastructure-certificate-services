@@ -49,6 +49,7 @@ The steps to set this up are as follows:
 Run the following commands to get the code running on your machine:
 
 - Run `aws-vault exec moj-pttp-shared-services -- terraform init` (if you are prompted to bring across workspaces, say yes).
+- If it asks you to enter a value for "The path to the state file inside the bucket", enter the value `terraform.development.state`
 - Run `aws-vault exec moj-pttp-shared-services -- terraform workspace new <myname>` (replace `<myname>` with your own name).
 - Run `aws-vault exec moj-pttp-shared-services -- terraform workspace list` and make sure that your new workspace with your name is selected.
 - If you don't see your new workspace selected, run `aws-vault exec moj-pttp-shared-services -- terraform workspace select <myname>`.
