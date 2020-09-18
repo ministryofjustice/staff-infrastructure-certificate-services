@@ -38,7 +38,7 @@ module "label" {
   }
 }
 
-module "prometheus" {
+module "s3_bucket_test" {
   source = "./modules/test"
 
   prefix = module.label.id
