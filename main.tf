@@ -29,7 +29,7 @@ module "label" {
 
   tags = {
     "business-unit" = "MoJO"
-    "application"   = "public-key-infrastructure"
+    "application"   = "certificate-services"
     "owner"         = var.owner_email
 
     # TODO: do we need this field?
