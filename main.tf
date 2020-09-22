@@ -52,14 +52,14 @@ module "s3_bucket_test" {
 }
 
 
-# TODO: add a test VPC that uses the label module
-
 module "test_vpc" {
-  source     = "./modules/vpc"
-  prefix     = module.label.id
-  region     = data.aws_region.current_region.id
-  cidr_block = var.pki_vpc_cidr_block
-
+  source                    = "./modules/vpc"
+  prefix                    = module.label.id
+  region                    = data.aws_region.current_region.id
+  cidr_block                = "10.180.84.0/22"
+  private_subnet_cidr_blocks = ["10.180.84.0/24", "10.180.85.0/24"]
+  public_subnet_cidr_block = "10.180.86.0/24"
+  
   providers = {
     aws = aws.env
   }
