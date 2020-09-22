@@ -16,6 +16,8 @@ provider "aws" {
   }
 }
 
+data "aws_region" "current_region" {}
+
 module "label" {
   source  = "cloudposse/label/null"
   version = "0.16.0"
@@ -51,3 +53,14 @@ module "s3_bucket_test" {
 
 
 # TODO: add a test VPC that uses the label module
+
+module "test_vpc" {
+  source     = "./modules/vpc"
+  prefix     = module.label.id
+  region     = data.aws_region.current_region.id
+  cidr_block = var.pki_vpc_cidr_block
+
+  providers = {
+    aws = aws.env
+  }
+}
