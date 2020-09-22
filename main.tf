@@ -58,7 +58,7 @@ module "test_vpc" {
   source     = "./modules/vpc"
   prefix     = module.label.id
   region     = data.aws_region.current_region.id
-  cidr_block = var.logging_cidr_block
+  cidr_block = var.pki_vpc_cidr_block
 
   providers = {
     aws = aws.env
