@@ -85,7 +85,7 @@ module "ec2_test" {
   ami            = "ami-016765c2bcb958f9b"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.public_subnet_ids[0]
-  key_name       = module.test_key_pair.key_pair_name
+  key_name       = module.test_key_pair.key_name
 
   providers = {
     aws = aws.env

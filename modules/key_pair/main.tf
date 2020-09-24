@@ -1,5 +1,5 @@
 locals {
-  ec2_key_pair_name = "${var.prefix}-${var.key_name_suffix}"
+  key_name = "${var.prefix}-${var.key_name_suffix}"
 }
 
 resource "tls_private_key" "this" {
@@ -9,6 +9,6 @@ resource "tls_private_key" "this" {
 module "key_pair" {
   source = "terraform-aws-modules/key-pair/aws"
 
-  key_name   = local.ec2_key_pair_name
+  key_name   = local.key_name
   public_key = tls_private_key.this.public_key_openssh
 }
