@@ -3,5 +3,5 @@ output "public_key" {
 }
 
 output "public_ip" {
-  value = module.ec2_test.public_ip
+  value = module.ec2_alpine_public.public_ip
 }
