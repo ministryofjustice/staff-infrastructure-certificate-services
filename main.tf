@@ -74,8 +74,9 @@ module "ec2_test" {
   instance_count = 1
   ami            = "ami-016765c2bcb958f9b"
   instance_type  = "t2.micro"
-  subnet_id      = "subnet-0039c3b543ef64a07"
-  key_name       = "toby-test"
+  subnet_id      = module.test_vpc.public_subnet_ids[0]
+  # subnet_id      = "subnet-0039c3b543ef64a07"
+  key_name = "toby-test"
 
 
   providers = {
