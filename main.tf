@@ -66,15 +66,24 @@ module "test_vpc" {
   }
 }
 
+module "test_key_pair" {
+  source          = "./modules/key_pair"
+  prefix          = module.label.id
+  key_name_suffix = "pki-team-key-pair"
+
+  providers = {
+    aws = aws.env
+  }
+}
 
 module "test_ssh_sg" {
-  name = "toby-test-sg"
-  source = "./modules/sg"
-  vpc_id = module.test_vpc.vpc_id
+  name                = "toby-test-sg"
+  source              = "./modules/sg"
+  vpc_id              = module.test_vpc.vpc_id
   ingress_cidr_blocks = ["10.180.84.0/22"]
-  tags = module.label.tags
+  tags                = module.label.tags
 
-   providers = {
+  providers = {
     aws = aws.env
   }
 }
@@ -85,11 +94,11 @@ module "ec2_alpine_public" {
   prefix = module.label.id
   tags   = module.label.tags
 
-  instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.public_subnets[0]
-  key_name       = "toby-test"
+  instance_count         = 1
+  ami                    = "ami-016765c2bcb958f9b"
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = "toby-test"
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
