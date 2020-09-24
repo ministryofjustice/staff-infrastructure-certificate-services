@@ -16,6 +16,10 @@ provider "aws" {
   }
 }
 
+locals {
+  ec2_key_pair_name = "${module.label.id}-pki-team-key-pair"
+}
+
 data "aws_region" "current_region" {}
 
 module "label" {
@@ -59,6 +63,15 @@ module "test_vpc" {
   cidr_block                 = "10.180.84.0/22"
   private_subnet_cidr_blocks = ["10.180.84.0/24", "10.180.85.0/24"]
   public_subnet_cidr_block   = "10.180.86.0/24"
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+module "test_key_pair" {
+  source        = "./modules/key_pair"
+  key_pair_name = local.ec2_key_pair_name
 
   providers = {
     aws = aws.env
