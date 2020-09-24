@@ -53,13 +53,31 @@ module "s3_bucket_test" {
 
 
 module "test_vpc" {
-  source                    = "./modules/vpc"
-  prefix                    = module.label.id
-  region                    = data.aws_region.current_region.id
-  cidr_block                = "10.180.84.0/22"
+  source                     = "./modules/vpc"
+  prefix                     = module.label.id
+  region                     = data.aws_region.current_region.id
+  cidr_block                 = "10.180.84.0/22"
   private_subnet_cidr_blocks = ["10.180.84.0/24", "10.180.85.0/24"]
-  public_subnet_cidr_block = "10.180.86.0/24"
-  
+  public_subnet_cidr_block   = "10.180.86.0/24"
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+module "ec2_test" {
+  source = "./modules/ec2"
+
+  prefix = module.label.id
+  tags   = module.label.tags
+
+  instance_count = 1
+  ami            = "ami-016765c2bcb958f9b"
+  instance_type  = "t2.micro"
+  subnet_id      = "subnet-0039c3b543ef64a07"
+  key_name       = "toby-test"
+
+
   providers = {
     aws = aws.env
   }

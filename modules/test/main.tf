@@ -3,3 +3,4 @@ resource "aws_s3_bucket" "test_bucket" {
   acl    = "private"
   tags   = var.tags
 }
+
