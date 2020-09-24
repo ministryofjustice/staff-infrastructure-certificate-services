@@ -55,6 +55,7 @@ module "s3_bucket_test" {
 module "test_vpc" {
   source                     = "./modules/vpc"
   prefix                     = module.label.id
+  tags                       = module.label.tags
   region                     = data.aws_region.current_region.id
   cidr_block                 = "10.180.84.0/22"
   private_subnet_cidr_blocks = ["10.180.84.0/24", "10.180.85.0/24"]
@@ -75,7 +76,39 @@ module "test_key_pair" {
   }
 }
 
-module "ec2_test" {
+module "test_ssh_sg" {
+  name                = "toby-test-sg"
+  source              = "./modules/sg"
+  vpc_id              = module.test_vpc.vpc_id
+  ingress_cidr_blocks = ["10.180.84.0/22"]
+  tags                = module.label.tags
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+module "ec2_alpine_public" {
+  source = "./modules/ec2"
+
+  prefix = module.label.id
+  tags   = module.label.tags
+
+  instance_count         = 1
+  ami                    = "ami-016765c2bcb958f9b"
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = "toby-test"
+  vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
+
+
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+module "ec2_alpine_private" {
   source = "./modules/ec2"
 
   prefix = module.label.id
@@ -84,10 +117,12 @@ module "ec2_test" {
   instance_count = 1
   ami            = "ami-016765c2bcb958f9b"
   instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.public_subnet_ids[0]
-  key_name       = module.test_key_pair.key_name
+  subnet_id      = module.test_vpc.private_subnets[0]
+  key_name       = "toby-test"
+
 
   providers = {
     aws = aws.env
   }
 }
+
