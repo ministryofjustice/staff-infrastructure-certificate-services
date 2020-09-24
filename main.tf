@@ -80,7 +80,7 @@ module "test_ssh_sg" {
   name                = "toby-test-sg"
   source              = "./modules/sg"
   vpc_id              = module.test_vpc.vpc_id
-  ingress_cidr_blocks = ["10.180.84.0/22"]
+  ingress_cidr_blocks = ["0.0.0.0/0"]
   tags                = module.label.tags
 
   providers = {
