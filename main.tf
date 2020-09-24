@@ -16,10 +16,6 @@ provider "aws" {
   }
 }
 
-locals {
-  ec2_key_pair_name = "${module.label.id}-pki-team-key-pair"
-}
-
 data "aws_region" "current_region" {}
 
 module "label" {
@@ -70,8 +66,9 @@ module "test_vpc" {
 }
 
 module "test_key_pair" {
-  source        = "./modules/key_pair"
-  key_pair_name = local.ec2_key_pair_name
+  source          = "./modules/key_pair"
+  prefix          = module.label.id
+  key_name_suffix = "pki-team-key-pair"
 
   providers = {
     aws = aws.env
@@ -88,9 +85,7 @@ module "ec2_test" {
   ami            = "ami-016765c2bcb958f9b"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.public_subnet_ids[0]
-  # subnet_id      = "subnet-0039c3b543ef64a07"
-  key_name = "toby-test"
-
+  key_name       = module.test_key_pair.key_pair_name
 
   providers = {
     aws = aws.env
