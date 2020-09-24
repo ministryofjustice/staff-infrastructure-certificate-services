@@ -98,7 +98,7 @@ module "ec2_alpine_public" {
   ami                    = "ami-016765c2bcb958f9b"
   instance_type          = "t2.micro"
   subnet_id              = module.test_vpc.public_subnets[0]
-  key_name               = "toby-test"
+  key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
@@ -118,7 +118,7 @@ module "ec2_alpine_private" {
   ami            = "ami-016765c2bcb958f9b"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.private_subnets[0]
-  key_name       = "toby-test"
+  key_name       = module.test_key_pair.key_name
 
 
   providers = {
