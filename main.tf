@@ -40,7 +40,6 @@ module "label" {
   }
 }
 
-
 module "s3_bucket_test" {
   source = "./modules/test"
 
@@ -52,7 +51,6 @@ module "s3_bucket_test" {
   }
 }
 
-/*
 module "test_vpc" {
   source                     = "./modules/vpc"
   prefix                     = module.label.id
@@ -95,11 +93,11 @@ module "public_certificate_authority_gateway" {
   prefix = module.label.id
   tags   = module.label.tags
 
-  instance_count = 1
-  ami            = "ami-06fe0c124aedcef5f"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.public_subnets[0]
-  key_name       = module.test_key_pair.key_name
+  instance_count         = 1
+  ami                    = "ami-06fe0c124aedcef5f"
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
@@ -114,11 +112,11 @@ module "public_registration_authority_front_end" {
   prefix = module.label.id
   tags   = module.label.tags
 
-  instance_count = 1
-  ami            = "ami-06fe0c124aedcef5f"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.public_subnets[0]
-  key_name       = module.test_key_pair.key_name
+  instance_count         = 1
+  ami                    = "ami-06fe0c124aedcef5f"
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
@@ -133,11 +131,11 @@ module "public_bastion_host_windows" {
   prefix = module.label.id
   tags   = module.label.tags
 
-  instance_count = 1
-  ami            = "ami-0aac9d7fa83beb6d2"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.public_subnets[0]
-  key_name       = module.test_key_pair.key_name
+  instance_count         = 1
+  ami                    = "ami-0aac9d7fa83beb6d2"
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
@@ -199,4 +197,3 @@ module "private_directory_server" {
     aws = aws.env
   }
 }
-*/
