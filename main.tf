@@ -95,7 +95,7 @@ module "public_certificate_authority_gateway" {
   tags   = module.label.tags
 
   instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
+  ami            = "ami-06fe0c124aedcef5f"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.public_subnets[0]
   key_name       = module.test_key_pair.key_name
@@ -114,10 +114,11 @@ module "public_registration_authority_front_end" {
   tags   = module.label.tags
 
   instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
+  ami            = "ami-06fe0c124aedcef5f"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.public_subnets[0]
   key_name       = module.test_key_pair.key_name
+  vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
   providers = {
@@ -132,10 +133,11 @@ module "public_bastion_host_windows" {
   tags   = module.label.tags
 
   instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
+  ami            = "ami-0aac9d7fa83beb6d2"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.public_subnets[0]
   key_name       = module.test_key_pair.key_name
+  vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
   providers = {
@@ -150,7 +152,7 @@ module "private_issuing_certificate_authority" {
   tags   = module.label.tags
 
   instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
+  ami            = "ami-06fe0c124aedcef5f"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.private_subnets[0]
   key_name       = module.test_key_pair.key_name
@@ -168,7 +170,7 @@ module "private_registration_authority_back_end" {
   tags   = module.label.tags
 
   instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
+  ami            = "ami-06fe0c124aedcef5f"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.private_subnets[0]
   key_name       = module.test_key_pair.key_name
@@ -186,7 +188,7 @@ module "private_directory_server" {
   tags   = module.label.tags
 
   instance_count = 1
-  ami            = "ami-016765c2bcb958f9b"
+  ami            = "ami-06fe0c124aedcef5f"
   instance_type  = "t2.micro"
   subnet_id      = module.test_vpc.private_subnets[0]
   key_name       = module.test_key_pair.key_name
