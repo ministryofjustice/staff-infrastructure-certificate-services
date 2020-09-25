@@ -40,6 +40,7 @@ module "label" {
   }
 }
 
+/*
 module "s3_bucket_test" {
   source = "./modules/test"
 
@@ -198,3 +199,4 @@ module "private_directory_server" {
     aws = aws.env
   }
 }
+*/
