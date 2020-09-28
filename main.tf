@@ -39,8 +39,7 @@ module "label" {
     "source-code"      = "https://github.com/ministryofjustice/staff-infrastructure-certificate-services"
   }
 }
-
-
+/*
 module "s3_bucket_test" {
   source = "./modules/test"
 
@@ -51,7 +50,7 @@ module "s3_bucket_test" {
     aws = aws.env
   }
 }
-/*
+
 module "test_vpc" {
   source                     = "./modules/vpc"
   prefix                     = module.label.id
