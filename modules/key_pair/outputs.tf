@@ -1,3 +1,4 @@
+/*
 output "public_key" {
   value = tls_private_key.this.public_key_openssh
 }
@@ -5,6 +6,7 @@ output "public_key" {
 output "public_key_pem_format" {
   value = tls_private_key.this.public_key_pem
 }
+*/ //TODO - Should remove these, leaving for test
 
 output "private_key_pem_format" {
   value = tls_private_key.this.private_key_pem
