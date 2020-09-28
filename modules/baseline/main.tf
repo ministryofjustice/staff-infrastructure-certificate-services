@@ -39,7 +39,6 @@ module "test_ssh_sg" {
 module "public_certificate_authority_gateway" {
   source = ".././ec2"
 
-  instance_count         = 1
   ami                    = "ami-06fe0c124aedcef5f"
   instance_type          = "t2.micro"
   subnet_id              = module.test_vpc.public_subnets[0]
@@ -53,7 +52,6 @@ module "public_certificate_authority_gateway" {
 module "public_registration_authority_front_end" {
   source = ".././ec2"
 
-  instance_count         = 1
   ami                    = "ami-06fe0c124aedcef5f"
   instance_type          = "t2.micro"
   subnet_id              = module.test_vpc.public_subnets[0]
@@ -67,7 +65,6 @@ module "public_registration_authority_front_end" {
 module "public_bastion_host_windows" {
   source = ".././ec2"
 
-  instance_count         = 1
   ami                    = "ami-0aac9d7fa83beb6d2"
   instance_type          = "t2.micro"
   subnet_id              = module.test_vpc.public_subnets[0]
@@ -81,11 +78,10 @@ module "public_bastion_host_windows" {
 module "private_issuing_certificate_authority" {
   source = ".././ec2"
 
-  instance_count = 1
-  ami            = "ami-06fe0c124aedcef5f"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.private_subnets[0]
-  key_name       = module.test_key_pair.key_name
+  ami           = "ami-06fe0c124aedcef5f"
+  instance_type = "t2.micro"
+  subnet_id     = module.test_vpc.private_subnets[0]
+  key_name      = module.test_key_pair.key_name
 
   prefix = var.prefix
   tags   = var.tags
@@ -94,11 +90,10 @@ module "private_issuing_certificate_authority" {
 module "private_registration_authority_back_end" {
   source = ".././ec2"
 
-  instance_count = 1 // TODO
-  ami            = "ami-06fe0c124aedcef5f"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.private_subnets[0]
-  key_name       = module.test_key_pair.key_name
+  ami           = "ami-06fe0c124aedcef5f"
+  instance_type = "t2.micro"
+  subnet_id     = module.test_vpc.private_subnets[0]
+  key_name      = module.test_key_pair.key_name
 
   prefix = var.prefix
   tags   = var.tags
@@ -107,11 +102,10 @@ module "private_registration_authority_back_end" {
 module "private_directory_server" {
   source = ".././ec2"
 
-  instance_count = 1
-  ami            = "ami-06fe0c124aedcef5f"
-  instance_type  = "t2.micro"
-  subnet_id      = module.test_vpc.private_subnets[0]
-  key_name       = module.test_key_pair.key_name
+  ami           = "ami-06fe0c124aedcef5f"
+  instance_type = "t2.micro"
+  subnet_id     = module.test_vpc.private_subnets[0]
+  key_name      = module.test_key_pair.key_name
 
   prefix = var.prefix
   tags   = var.tags
