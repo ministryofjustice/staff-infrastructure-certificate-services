@@ -188,8 +188,43 @@ module "private_registration_authority_back_end_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 3389
-      to_port     = 3389
+      from_port   = 9009
+      to_port     = 9009
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 9039
+      to_port     = 9039
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8010
+      to_port     = 8010
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8012
+      to_port     = 8012
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8013
+      to_port     = 8013
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8080
+      to_port     = 8080
       protocol    = "tcp"
       description = ""
       cidr_blocks = "0.0.0.0/0"
@@ -207,11 +242,11 @@ module "private_directory_server_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 3389
-      to_port     = 3389
+      from_port   = 389
+      to_port     = 389
       protocol    = "tcp"
       description = ""
-      cidr_blocks = "0.0.0.0/0"
+      cidr_blocks = "0.0.0.0/0" // TODO: We should limit this to CA GW and Issuing CA only
     },
   ]
 
@@ -226,7 +261,7 @@ module "public_certificate_authority_gateway" {
   instance_type          = "t2.micro"
   subnet_id              = module.test_vpc.public_subnets[0]
   key_name               = module.test_key_pair.key_name
-  vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
+  vpc_security_group_ids = [module.public_certificate_authority_gateway_sg.this_security_group_id]
 
   name = "${var.prefix}-ca-gateway"
   tags = var.tags
@@ -235,10 +270,11 @@ module "public_certificate_authority_gateway" {
 module "public_registration_authority_front_end" {
   source = ".././ec2"
 
-  ami           = local.rhel_7_6_x64
-  instance_type = "t2.micro"
-  subnet_id     = module.test_vpc.public_subnets[0]
-  key_name      = module.test_key_pair.key_name
+  ami                    = local.rhel_7_6_x64
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = module.test_key_pair.key_name
+  vpc_security_group_ids = [module.public_registration_authority_front_end_sg.this_security_group_id]
 
   name = "${var.prefix}-ra-front-end"
   tags = var.tags
