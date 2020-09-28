@@ -86,25 +86,25 @@ module "test_ssh_sg" {
     aws = aws.env
   }
 }
+/*
+module "public_certificate_authority_gateway" {
+  source = "./modules/ec2"
 
-# module "public_certificate_authority_gateway" {
-#   source = "./modules/ec2"
+  prefix = module.label.id
+  tags   = module.label.tags
 
-#   prefix = module.label.id
-#   tags   = module.label.tags
-
-#   instance_count         = 1
-#   ami                    = "ami-06fe0c124aedcef5f"
-#   instance_type          = "t2.micro"
-#   subnet_id              = module.test_vpc.public_subnets[0]
-#   key_name               = module.test_key_pair.key_name
-#   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
+  instance_count         = 1
+  ami                    = "ami-06fe0c124aedcef5f"
+  instance_type          = "t2.micro"
+  subnet_id              = module.test_vpc.public_subnets[0]
+  key_name               = module.test_key_pair.key_name
+  vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
 
-#   providers = {
-#     aws = aws.env
-#   }
-# }
+  providers = {
+    aws = aws.env
+  }
+}
 
 module "public_registration_authority_front_end" {
   source = "./modules/ec2"
@@ -124,7 +124,7 @@ module "public_registration_authority_front_end" {
     aws = aws.env
   }
 }
-
+*/
 module "public_bastion_host_windows" {
   source = "./modules/ec2"
 
