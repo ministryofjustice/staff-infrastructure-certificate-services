@@ -1,5 +1,11 @@
 terraform {
   required_version = "> 0.12.0"
+  backend "s3" {
+    bucket         = "moj-pttp-pki-aws-infrastructure-terraform-state"
+    key            = "global/s3/terraform.tfstate"
+    dynamodb_table = "moj-pttp-pki-aws-infrastructure-terraform-state-locks"
+    encrypt        = true
+  }
 }
 
 provider "aws" {

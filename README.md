@@ -8,7 +8,11 @@ This project is being used to create the baseline infrastructure for the PKI wor
 
 The Terraform in this repository is a "once off" to create the baseline infrastructure as a tactical solution, which will then be manually managed going forward.
 
-The Terraform in this repository can be run in 2 different contexts:
+## Terraform State Management
+
+The Terraform state for this project is created by running the Terraform files in the folder `create-terraform-state-infrastructure`.
+
+This has already been done, and you should **not** run these files again.
 
 ## Architecture
 
