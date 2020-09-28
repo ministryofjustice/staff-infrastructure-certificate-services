@@ -36,11 +36,24 @@ module "label" {
   }
 }
 
-module "s3_bucket_test" {
-  source = "./modules/test"
+module "baseline_test_pre_production" {
+  source = "./modules/baseline"
 
-  prefix = module.label.id
-  tags   = module.label.tags
+  prefix      = module.label.id
+  environment = "pre-production"
+  tags        = module.label.tags
+
+  providers = {
+    aws = aws.env
+  }
+}
+
+module "baseline_test_production" {
+  source = "./modules/baseline"
+
+  prefix      = module.label.id
+  environment = "production"
+  tags        = module.label.tags
 
   providers = {
     aws = aws.env
