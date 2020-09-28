@@ -3,6 +3,12 @@ variable "prefix" {
   type        = string
 }
 
+variable "tags" {
+  description = "A mapping of tags to assign to the resource"
+  type        = map(string)
+  default     = {}
+}
+
 variable "instance_count" {
   description = "Number of instances to launch"
   type        = number
@@ -24,12 +30,6 @@ variable "subnet_id" {
   description = "The VPC Subnet ID to launch in"
   type        = string
   default     = ""
-}
-
-variable "tags" {
-  description = "A mapping of tags to assign to the resource"
-  type        = map(string)
-  default     = {}
 }
 
 variable "user_data" {
