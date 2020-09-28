@@ -50,8 +50,8 @@ module "public_certificate_authority_gateway" {
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
-  prefix = var.prefix
-  tags   = var.tags
+  name = "${var.prefix}-ca-gateway"
+  tags = var.tags
 }
 
 module "public_registration_authority_front_end" {
@@ -63,8 +63,8 @@ module "public_registration_authority_front_end" {
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
-  prefix = var.prefix
-  tags   = var.tags
+  name = "${var.prefix}-ra-front-end"
+  tags = var.tags
 }
 
 module "public_bastion_host_windows" {
@@ -76,8 +76,8 @@ module "public_bastion_host_windows" {
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.test_ssh_sg.this_security_group_id]
 
-  prefix = var.prefix
-  tags   = var.tags
+  name = "${var.prefix}-bastion-host"
+  tags = var.tags
 }
 
 module "private_issuing_certificate_authority" {
@@ -88,8 +88,8 @@ module "private_issuing_certificate_authority" {
   subnet_id     = module.test_vpc.private_subnets[0]
   key_name      = module.test_key_pair.key_name
 
-  prefix = var.prefix
-  tags   = var.tags
+  name = "${var.prefix}-issuing-ca"
+  tags = var.tags
 }
 
 module "private_registration_authority_back_end" {
@@ -100,8 +100,8 @@ module "private_registration_authority_back_end" {
   subnet_id     = module.test_vpc.private_subnets[0]
   key_name      = module.test_key_pair.key_name
 
-  prefix = var.prefix
-  tags   = var.tags
+  name = "${var.prefix}-ra-back-end"
+  tags = var.tags
 }
 
 module "private_directory_server" {
@@ -112,6 +112,6 @@ module "private_directory_server" {
   subnet_id     = module.test_vpc.private_subnets[0]
   key_name      = module.test_key_pair.key_name
 
-  prefix = var.prefix
-  tags   = var.tags
+  name = "${var.prefix}-directory-server"
+  tags = var.tags
 }
