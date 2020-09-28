@@ -39,7 +39,7 @@ module "label" {
     "source-code"      = "https://github.com/ministryofjustice/staff-infrastructure-certificate-services"
   }
 }
-
+/*
 module "s3_bucket_test" {
   source = "./modules/test"
 
@@ -86,7 +86,7 @@ module "test_ssh_sg" {
     aws = aws.env
   }
 }
-/*
+
 module "public_certificate_authority_gateway" {
   source = "./modules/ec2"
 
@@ -124,7 +124,7 @@ module "public_registration_authority_front_end" {
     aws = aws.env
   }
 }
-*/
+
 module "public_bastion_host_windows" {
   source = "./modules/ec2"
 
@@ -197,3 +197,4 @@ module "private_directory_server" {
     aws = aws.env
   }
 }
+*/
