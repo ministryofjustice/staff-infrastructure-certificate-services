@@ -6,4 +6,5 @@ module "security_group" {
   tags    = var.tags
 
   ingress_with_cidr_blocks = var.ingress_with_cidr_blocks
+  egress_with_cidr_blocks  = var.egress_with_cidr_blocks
 }

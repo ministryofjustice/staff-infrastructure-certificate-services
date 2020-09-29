@@ -44,6 +44,7 @@ module "test_ssh_sg" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
@@ -63,6 +64,7 @@ module "public_certificate_authority_gateway_sg" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
@@ -110,6 +112,7 @@ module "public_registration_authority_front_end_sg" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
@@ -129,6 +132,7 @@ module "public_bastion_host_windows_sg" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
@@ -176,6 +180,7 @@ module "private_issuing_certificate_authority_sg" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
@@ -230,6 +235,7 @@ module "private_registration_authority_back_end_sg" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
@@ -249,6 +255,7 @@ module "private_directory_server_sg" {
       cidr_blocks = "0.0.0.0/0" // TODO: We should limit this to CA GW and Issuing CA only
     },
   ]
+  egress_with_cidr_blocks = []
 
   prefix = var.prefix
   tags   = var.tags
