@@ -17,13 +17,6 @@ locals {
   ip_directory   = ""
 }
 
-module "s3_bucket_test" {
-  source = ".././s3"
-
-  prefix = var.prefix
-  tags   = var.tags
-}
-
 module "test_vpc" {
   source = ".././vpc"
 
