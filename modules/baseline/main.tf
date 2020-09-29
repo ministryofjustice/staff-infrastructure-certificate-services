@@ -334,6 +334,11 @@ module "ec2_bastion_host" {
   tags = var.tags
 }
 
+resource "aws_eip" "ec2_bastion_eip" {
+  instance = module.ec2_bastion_host.instance_id[0]
+  vpc      = true
+}
+
 module "ec2_ca_gw" {
   source = ".././ec2"
 
