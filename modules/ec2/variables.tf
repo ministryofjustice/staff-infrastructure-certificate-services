@@ -55,3 +55,9 @@ variable "vpc_security_group_ids" {
   type        = list(string)
   default     = null
 }
+
+variable "get_password_data" {
+  description = "Whether or not to fetch password data from the instance"
+  type        = bool
+  default     = false
+}

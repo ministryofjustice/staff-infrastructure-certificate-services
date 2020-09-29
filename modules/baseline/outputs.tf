@@ -9,3 +9,7 @@ output "private_key_pem_format" {
 output "ec2_bastion_eip" {
   value = aws_eip.ec2_bastion_eip.public_ip
 }
+
+output "ec2_bastion_password_data" {
+  value = module.ec2_bastion_host.password_data
+}

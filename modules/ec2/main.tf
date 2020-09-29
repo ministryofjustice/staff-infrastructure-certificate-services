@@ -13,5 +13,7 @@ module "ec2" {
 
   subnet_id = var.subnet_id
 
+  get_password_data = var.get_password_data
+
   tags = var.tags
 }

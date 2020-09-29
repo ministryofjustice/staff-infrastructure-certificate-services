@@ -9,3 +9,7 @@ output "private_ip" {
 output "instance_id" {
   value = module.ec2.id
 }
+
+output "password_data" {
+  value = module.ec2.password_data
+}

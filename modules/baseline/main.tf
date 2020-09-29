@@ -38,6 +38,7 @@ module "test_key_pair" {
   tags   = var.tags
 }
 
+# TODO: remove this
 module "test_ssh_sg" {
   source = ".././sg"
 
@@ -67,7 +68,7 @@ module "sg_bastion_host" {
       from_port   = 3389
       to_port     = 3389
       protocol    = "tcp"
-      description = ""
+      description = "Remote desktop from the public Internet"
       cidr_blocks = "0.0.0.0/0"
     },
   ]
@@ -322,6 +323,7 @@ module "ec2_bastion_host" {
   # private_ip             = local.ip_bastion_host
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.sg_bastion_host.this_security_group_id]
+  get_password_data      = true
 
   name = "${var.prefix}-bastion-host"
   tags = var.tags
