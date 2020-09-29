@@ -325,7 +325,7 @@ module "ec2_bastion_host" {
 
   ami           = local.ami_windows_2019_x64
   instance_type = "t2.micro"
-  subnet_id     = module.test_vpc.private_subnets[0]
+  subnet_id     = module.test_vpc.public_subnets[0]
   # private_ip             = local.ip_bastion_host
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.sg_bastion_host.this_security_group_id]
