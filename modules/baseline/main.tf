@@ -98,7 +98,36 @@ module "sg_ca_gw" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
-  egress_with_cidr_blocks = []
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "https"
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 1443
+      to_port     = 1443
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 709
+      to_port     = 710
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
 
   prefix = var.prefix
   tags   = var.tags
@@ -146,7 +175,36 @@ module "sg_ra_front_end" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
-  egress_with_cidr_blocks = []
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 9009
+      to_port     = 9009
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 9039
+      to_port     = 9039
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8010
+      to_port     = 8013
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+    {
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
 
   prefix = var.prefix
   tags   = var.tags
@@ -187,7 +245,15 @@ module "sg_issuing_ca" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
-  egress_with_cidr_blocks = []
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 389
+      to_port     = 389
+      protocol    = "tcp"
+      description = ""
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
 
   prefix = var.prefix
   tags   = var.tags
