@@ -1,5 +1,5 @@
-output "public_certificate_authority_gateway_ip" {
-  value = module.public_certificate_authority_gateway.public_ip
+output "ec2_ca_gw_ip" {
+  value = module.ec2_ca_gw.private_ip
 }
 
 output "private_key_pem_format" {
