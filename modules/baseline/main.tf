@@ -38,55 +38,6 @@ module "test_key_pair" {
   tags   = var.tags
 }
 
-module "sg_ca_gw" {
-  source = ".././sg"
-
-  vpc_id = module.test_vpc.vpc_id
-
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 8080
-      to_port     = 8080
-      protocol    = "tcp"
-      description = "http"
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-  egress_with_cidr_blocks = [
-    {
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      description = "https"
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 1443
-      to_port     = 1443
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 709
-      to_port     = 710
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 829
-      to_port     = 829
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-
-  prefix = var.prefix
-  tags   = var.tags
-}
-
 module "sg_ra_front_end" {
   source = ".././sg"
 
@@ -164,55 +115,6 @@ module "sg_ra_front_end" {
   tags   = var.tags
 }
 
-module "sg_issuing_ca" {
-  source = ".././sg"
-
-  vpc_id = module.test_vpc.vpc_id
-
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      description = "https"
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 1443
-      to_port     = 1443
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 709
-      to_port     = 710
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 829
-      to_port     = 829
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-  egress_with_cidr_blocks = [
-    {
-      from_port   = 389
-      to_port     = 389
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-
-  prefix = var.prefix
-  tags   = var.tags
-}
-
 module "sg_ra_back_end" {
   source = ".././sg"
 
@@ -274,20 +176,6 @@ module "sg_directory" {
   tags   = var.tags
 }
 
-module "ec2_ca_gw" {
-  source = ".././ec2"
-
-  ami           = local.ami_rhel_7_6_x64
-  instance_type = "t2.micro"
-  subnet_id     = module.test_vpc.private_subnets[0]
-  # public_ip              = local.ip_ca_gw
-  key_name               = module.test_key_pair.key_name
-  vpc_security_group_ids = [module.sg_ca_gw.this_security_group_id]
-
-  name = "${var.prefix}-ca-gw"
-  tags = var.tags
-}
-
 module "ec2_ra_front_end" {
   source = ".././ec2"
 
@@ -299,20 +187,6 @@ module "ec2_ra_front_end" {
   vpc_security_group_ids = [module.sg_ra_front_end.this_security_group_id]
 
   name = "${var.prefix}-ra-front-end"
-  tags = var.tags
-}
-
-module "ec2_issuing_ca" {
-  source = ".././ec2"
-
-  ami           = local.ami_rhel_7_6_x64
-  instance_type = "t2.micro"
-  subnet_id     = module.test_vpc.private_subnets[1]
-  # private_ip             = local.ip_issuing_ca
-  key_name               = module.test_key_pair.key_name
-  vpc_security_group_ids = [module.sg_issuing_ca.this_security_group_id]
-
-  name = "${var.prefix}-issuing-ca"
   tags = var.tags
 }
 
