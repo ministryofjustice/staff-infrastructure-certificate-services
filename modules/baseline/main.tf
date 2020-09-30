@@ -38,26 +38,6 @@ module "test_key_pair" {
   tags   = var.tags
 }
 
-# TODO: remove this
-module "test_ssh_sg" {
-  source = ".././sg"
-
-  vpc_id = module.test_vpc.vpc_id
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      description = "ssh"
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-  egress_with_cidr_blocks = []
-
-  prefix = var.prefix
-  tags   = var.tags
-}
-
 module "sg_ca_gw" {
   source = ".././sg"
 
