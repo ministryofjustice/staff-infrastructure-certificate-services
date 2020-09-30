@@ -11,5 +11,5 @@ output "ec2_bastion_eip" {
 }
 
 output "ec2_bastion_password_data" {
-  value = module.ec2_bastion_host.password_data
+  value = module.ec2_bastion_host.password_data[0]
 }
