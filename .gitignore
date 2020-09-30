@@ -45,3 +45,12 @@ VpnCerts
 .terraform.back
 *.code-workspace
 credentials.sh
+
+# Bastion password decryption outputs
+pre_prod_password_encrypted.txt
+prep_password_decrypted.txt
+prep_password_encrypted.bin
+prep_password_encrypted.txt
+prod_password_decrypted.txt
+prod_password_encrypted.bin
+prod_password_encrypted.txt
