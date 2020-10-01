@@ -1,4 +1,4 @@
-module "sg_directory" {
+module "sg_ldap" {
   source = ".././sg"
 
   vpc_id = module.pki_vpc.vpc_id
@@ -18,17 +18,17 @@ module "sg_directory" {
   tags   = var.tags
 }
 
-module "ec2_directory" {
+module "ec2_ldap" {
   source = ".././ec2"
 
   ami           = local.ami_rhel_7_6_x64
   instance_type = "t2.micro"
   subnet_id     = module.pki_vpc.private_subnets[1]
-  # private_ip             = local.ip_directory
-  key_name                    = module.test_key_pair.key_name
-  vpc_security_group_ids      = [module.sg_directory.this_security_group_id]
+  # private_ip             = local.ip_ldap
+  key_name                    = module.pki_key_pair.key_name
+  vpc_security_group_ids      = [module.sg_ldap.this_security_group_id]
   associate_public_ip_address = false
 
-  name = "${var.prefix}-directory"
+  name = "${var.prefix}-ldap"
   tags = var.tags
 }

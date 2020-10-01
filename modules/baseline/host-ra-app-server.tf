@@ -1,4 +1,4 @@
-module "sg_ra_back_end" {
+module "sg_ra_app_server" {
   source = ".././sg"
 
   vpc_id = module.pki_vpc.vpc_id
@@ -39,15 +39,15 @@ module "sg_ra_back_end" {
   tags   = var.tags
 }
 
-module "ec2_ra_back_end" {
+module "ec2_ra_app_server" {
   source = ".././ec2"
 
   ami           = local.ami_rhel_7_6_x64
   instance_type = "t2.micro"
   subnet_id     = module.pki_vpc.private_subnets[1]
-  # private_ip             = local.ip_ra_back_end
-  key_name                    = module.test_key_pair.key_name
-  vpc_security_group_ids      = [module.sg_ra_back_end.this_security_group_id]
+  # private_ip             = local.ip_ra_app_server
+  key_name                    = module.pki_key_pair.key_name
+  vpc_security_group_ids      = [module.sg_ra_app_server.this_security_group_id]
   associate_public_ip_address = false
 
   name = "${var.prefix}-ra-back-end"

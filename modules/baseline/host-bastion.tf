@@ -5,7 +5,7 @@ module "ec2_bastion_host" {
   instance_type = "t2.micro"
   subnet_id     = module.pki_vpc.public_subnets[0]
   # private_ip             = local.ip_bastion_host
-  key_name                    = module.test_key_pair.key_name
+  key_name                    = module.pki_key_pair.key_name
   vpc_security_group_ids      = [module.sg_bastion_host.this_security_group_id]
   associate_public_ip_address = true
   get_password_data           = true

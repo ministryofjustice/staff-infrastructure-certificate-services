@@ -9,12 +9,12 @@ locals {
 
   ip_bastion_host = ""
 
-  ip_ca_gw        = ""
-  ip_ra_front_end = ""
+  ip_ca_gateway    = ""
+  ip_ra_web_server = ""
 
-  ip_issuing_ca  = ""
-  ip_ra_back_end = ""
-  ip_directory   = ""
+  ip_issuing_ca    = ""
+  ip_ra_app_server = ""
+  ip_ldap          = ""
 }
 
 module "pki_vpc" {
@@ -29,7 +29,7 @@ module "pki_vpc" {
   tags   = var.tags
 }
 
-module "test_key_pair" {
+module "pki_key_pair" {
   source = ".././key_pair"
 
   key_name_suffix = "pki-team-key-pair"
