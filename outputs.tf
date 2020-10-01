@@ -7,8 +7,8 @@ output "pre_prod_ec2_ca_gw_ip" {
   value = module.baseline_test_pre_production.ec2_ca_gw_ip
 }
 
-output "pre_prod_ec2_bastion_eip" {
-  value = module.baseline_test_pre_production.ec2_bastion_eip
+output "pre_prod_ec2_bastion_public_ip" {
+  value = module.baseline_test_pre_production.ec2_bastion_public_ip
 }
 
 output "pre_prod_ec2_bastion_password_data" {
@@ -24,8 +24,8 @@ output "prod_ec2_ca_gw_ip" {
   value = module.baseline_test_production.ec2_ca_gw_ip
 }
 
-output "prod_ec2_bastion_eip" {
-  value = module.baseline_test_production.ec2_bastion_eip
+output "prod_ec2_bastion_public_ip" {
+  value = module.baseline_test_production.ec2_bastion_public_ip
 }
 
 output "prod_ec2_bastion_password_data" {

@@ -5,17 +5,13 @@ module "ec2_bastion_host" {
   instance_type = "t2.micro"
   subnet_id     = module.pki_vpc.public_subnets[0]
   # private_ip             = local.ip_bastion_host
-  key_name               = module.test_key_pair.key_name
-  vpc_security_group_ids = [module.sg_bastion_host.this_security_group_id]
-  get_password_data      = true
+  key_name                    = module.test_key_pair.key_name
+  vpc_security_group_ids      = [module.sg_bastion_host.this_security_group_id]
+  associate_public_ip_address = true
+  get_password_data           = true
 
   name = "${var.prefix}-bastion-host"
   tags = var.tags
-}
-
-resource "aws_eip" "ec2_bastion_eip" {
-  instance = module.ec2_bastion_host.instance_id[0]
-  vpc      = true
 }
 
 module "sg_bastion_host" {

@@ -28,12 +28,12 @@ openssl rsautl -decrypt -in ./pre_prod_password_encrypted.bin -out ./prep_passwo
 openssl rsautl -decrypt -in ./prod_password_encrypted.bin -out ./prod_password_decrypted.txt -inkey ./prod_key_pair.pem
 
 printf "\nPREP IP:\n"
-aws-vault exec moj-pttp-pki -- terraform output pre_prod_ec2_bastion_eip
+aws-vault exec moj-pttp-pki -- terraform output pre_prod_ec2_bastion_public_ip
 printf "PREP password:\n"
 cat prep_password_decrypted.txt
 
 printf "\n\nPROD IP:\n"
-aws-vault exec moj-pttp-pki -- terraform output prod_ec2_bastion_eip
+aws-vault exec moj-pttp-pki -- terraform output prod_ec2_bastion_public_ip
 printf "PROD password:\n"
 cat prod_password_decrypted.txt
 

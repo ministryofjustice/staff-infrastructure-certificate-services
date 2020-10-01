@@ -61,3 +61,8 @@ variable "get_password_data" {
   type        = bool
   default     = false
 }
+
+variable "associate_public_ip_address" {
+  description = "If true, the EC2 instance will have associated public IP address"
+  type        = bool
+}

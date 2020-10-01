@@ -82,8 +82,9 @@ module "ec2_ra_front_end" {
   instance_type = "t2.micro"
   subnet_id     = module.pki_vpc.private_subnets[0]
   # private_ip             = local.ip_ra_front_end
-  key_name               = module.test_key_pair.key_name
-  vpc_security_group_ids = [module.sg_ra_front_end.this_security_group_id]
+  key_name                    = module.test_key_pair.key_name
+  vpc_security_group_ids      = [module.sg_ra_front_end.this_security_group_id]
+  associate_public_ip_address = false
 
   name = "${var.prefix}-ra-front-end"
   tags = var.tags
