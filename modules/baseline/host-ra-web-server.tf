@@ -85,6 +85,7 @@ module "ec2_ra_web_server" {
   key_name                    = module.pki_key_pair.key_name
   vpc_security_group_ids      = [module.sg_ra_web_server.this_security_group_id]
   associate_public_ip_address = false
+  get_password_data           = false
 
   name = "${var.prefix}-ra-front-end"
   tags = var.tags

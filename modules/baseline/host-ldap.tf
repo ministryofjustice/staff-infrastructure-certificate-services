@@ -28,6 +28,7 @@ module "ec2_ldap" {
   key_name                    = module.pki_key_pair.key_name
   vpc_security_group_ids      = [module.sg_ldap.this_security_group_id]
   associate_public_ip_address = false
+  get_password_data           = false
 
   name = "${var.prefix}-ldap"
   tags = var.tags
