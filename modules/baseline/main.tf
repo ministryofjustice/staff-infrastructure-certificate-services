@@ -7,7 +7,8 @@ locals {
   cidr_private_b         = "10.180.85.0/24"
   cidr_public_a          = "10.180.86.0/24"
 
-  ip_bastion_host = ""
+  ip_bastion_host  = ""
+  ip_reverse_proxy = ""
 
   ip_ca_gateway    = ""
   ip_ra_web_server = ""
