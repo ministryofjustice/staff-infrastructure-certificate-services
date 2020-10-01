@@ -19,11 +19,7 @@ module "label" {
   source  = "cloudposse/label/null"
   version = "0.16.0"
 
-  #  TODO: change this to MoJ-Official?
-  namespace = "pttp"
-  stage     = terraform.workspace
-  # TODO: change this?
-  name      = "pki-infra"
+  name      = "pki"
   delimiter = "-"
 
   tags = {
@@ -39,7 +35,7 @@ module "label" {
 module "baseline_test_pre_production" {
   source = "./modules/baseline"
 
-  prefix = "${module.label.id}-pre-production"
+  prefix = "pre-production-${module.label.id}"
   tags   = module.label.tags
 
   region_id = data.aws_region.current_region.id
@@ -52,7 +48,7 @@ module "baseline_test_pre_production" {
 module "baseline_test_production" {
   source = "./modules/baseline"
 
-  prefix = "${module.label.id}-production"
+  prefix = "production-${module.label.id}"
   tags   = module.label.tags
 
   region_id = data.aws_region.current_region.id

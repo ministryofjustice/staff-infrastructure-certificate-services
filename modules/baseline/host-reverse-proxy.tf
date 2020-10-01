@@ -1,3 +1,16 @@
+module "sg_reverse_proxy" {
+  source = ".././sg"
+
+  vpc_id                     = module.pki_vpc.vpc_id
+  security_group_description = "${var.prefix}-reverse-proxy-security-group"
+
+  ingress_with_cidr_blocks = []
+
+  egress_with_cidr_blocks = []
+
+  tags = var.tags
+}
+
 module "ec2_reverse_proxy" {
   source = ".././ec2"
 
@@ -12,16 +25,4 @@ module "ec2_reverse_proxy" {
   server_description          = "${var.prefix}-reverse-proxy"
 
   tags = var.tags
-}
-
-module "sg_reverse_proxy" {
-  source = ".././sg"
-
-  vpc_id = module.pki_vpc.vpc_id
-
-  ingress_with_cidr_blocks = []
-  egress_with_cidr_blocks  = []
-
-  prefix = var.prefix
-  tags   = var.tags
 }

@@ -1,7 +1,8 @@
 module "sg_ca_gateway" {
   source = ".././sg"
 
-  vpc_id = module.pki_vpc.vpc_id
+  vpc_id                     = module.pki_vpc.vpc_id
+  security_group_description = "${var.prefix}-ca-gateway-security-group"
 
   ingress_with_cidr_blocks = [
     {
@@ -12,6 +13,7 @@ module "sg_ca_gateway" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+
   egress_with_cidr_blocks = [
     {
       from_port   = 443
@@ -43,8 +45,7 @@ module "sg_ca_gateway" {
     },
   ]
 
-  prefix = var.prefix
-  tags   = var.tags
+  tags = var.tags
 }
 
 module "ec2_ca_gateway" {
@@ -58,7 +59,7 @@ module "ec2_ca_gateway" {
   vpc_security_group_ids      = [module.sg_ca_gateway.this_security_group_id]
   associate_public_ip_address = false
   get_password_data           = false
-  server_description          = "${var.prefix}-ca-gw"
+  server_description          = "${var.prefix}-ca-gateway"
 
   tags = var.tags
 }

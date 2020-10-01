@@ -1,7 +1,8 @@
 module "sg_ra_app_server" {
   source = ".././sg"
 
-  vpc_id = module.pki_vpc.vpc_id
+  vpc_id                     = module.pki_vpc.vpc_id
+  security_group_description = "${var.prefix}-ra-app-server-security-group"
 
   ingress_with_cidr_blocks = [
     {
@@ -33,10 +34,10 @@ module "sg_ra_app_server" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+
   egress_with_cidr_blocks = []
 
-  prefix = var.prefix
-  tags   = var.tags
+  tags = var.tags
 }
 
 module "ec2_ra_app_server" {
@@ -50,7 +51,7 @@ module "ec2_ra_app_server" {
   vpc_security_group_ids      = [module.sg_ra_app_server.this_security_group_id]
   associate_public_ip_address = false
   get_password_data           = false
-  server_description          = "${var.prefix}-ra-back-end"
+  server_description          = "${var.prefix}-ra-app-server"
 
   tags = var.tags
 }

@@ -1,7 +1,8 @@
 module "sg_ldap" {
   source = ".././sg"
 
-  vpc_id = module.pki_vpc.vpc_id
+  vpc_id                     = module.pki_vpc.vpc_id
+  security_group_description = "${var.prefix}-ldap-security-group"
 
   ingress_with_cidr_blocks = [
     {
@@ -12,10 +13,10 @@ module "sg_ldap" {
       cidr_blocks = "0.0.0.0/0" // TODO: We should limit this to CA GW and Issuing CA only
     },
   ]
+
   egress_with_cidr_blocks = []
 
-  prefix = var.prefix
-  tags   = var.tags
+  tags = var.tags
 }
 
 module "ec2_ldap" {

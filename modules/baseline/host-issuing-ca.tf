@@ -1,7 +1,8 @@
 module "sg_issuing_ca" {
   source = ".././sg"
 
-  vpc_id = module.pki_vpc.vpc_id
+  vpc_id                     = module.pki_vpc.vpc_id
+  security_group_description = "${var.prefix}-issuing-ca-security-group"
 
   ingress_with_cidr_blocks = [
     {
@@ -33,6 +34,7 @@ module "sg_issuing_ca" {
       cidr_blocks = "0.0.0.0/0"
     },
   ]
+
   egress_with_cidr_blocks = [
     {
       from_port   = 389
@@ -43,8 +45,7 @@ module "sg_issuing_ca" {
     },
   ]
 
-  prefix = var.prefix
-  tags   = var.tags
+  tags = var.tags
 }
 
 module "ec2_issuing_ca" {

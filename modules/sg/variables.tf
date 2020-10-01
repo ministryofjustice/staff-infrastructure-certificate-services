@@ -15,7 +15,7 @@ variable "egress_with_cidr_blocks" {
   default     = []
 }
 
-variable "prefix" {
+variable "security_group_description" {
   type = string
 }
 

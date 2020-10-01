@@ -1,3 +1,24 @@
+module "sg_bastion_host" {
+  source = ".././sg"
+
+  vpc_id                     = module.pki_vpc.vpc_id
+  security_group_description = "${var.prefix}-bastion-host-security-group"
+
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 3389
+      to_port     = 3389
+      protocol    = "tcp"
+      description = "Remote desktop from the public Internet"
+      cidr_blocks = "0.0.0.0/0"
+    },
+  ]
+
+  egress_with_cidr_blocks = []
+
+  tags = var.tags
+}
+
 module "ec2_bastion_host" {
   source = ".././ec2"
 
@@ -12,24 +33,4 @@ module "ec2_bastion_host" {
   server_description          = "${var.prefix}-bastion-host"
 
   tags = var.tags
-}
-
-module "sg_bastion_host" {
-  source = ".././sg"
-
-  vpc_id = module.pki_vpc.vpc_id
-
-  ingress_with_cidr_blocks = [
-    {
-      from_port   = 3389
-      to_port     = 3389
-      protocol    = "tcp"
-      description = "Remote desktop from the public Internet"
-      cidr_blocks = "0.0.0.0/0"
-    },
-  ]
-  egress_with_cidr_blocks = []
-
-  prefix = var.prefix
-  tags   = var.tags
 }
