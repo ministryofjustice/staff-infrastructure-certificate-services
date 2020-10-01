@@ -1,7 +1,7 @@
 module "sg_issuing_ca" {
   source = ".././sg"
 
-  vpc_id = module.test_vpc.vpc_id
+  vpc_id = module.pki_vpc.vpc_id
 
   ingress_with_cidr_blocks = [
     {
@@ -52,7 +52,7 @@ module "ec2_issuing_ca" {
 
   ami           = local.ami_rhel_7_6_x64
   instance_type = "t2.micro"
-  subnet_id     = module.test_vpc.private_subnets[1]
+  subnet_id     = module.pki_vpc.private_subnets[1]
   # private_ip             = local.ip_issuing_ca
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.sg_issuing_ca.this_security_group_id]
@@ -64,7 +64,7 @@ module "ec2_issuing_ca" {
 module "sg_ca_gw" {
   source = ".././sg"
 
-  vpc_id = module.test_vpc.vpc_id
+  vpc_id = module.pki_vpc.vpc_id
 
   ingress_with_cidr_blocks = [
     {
@@ -115,7 +115,7 @@ module "ec2_ca_gw" {
 
   ami           = local.ami_rhel_7_6_x64
   instance_type = "t2.micro"
-  subnet_id     = module.test_vpc.private_subnets[0]
+  subnet_id     = module.pki_vpc.private_subnets[0]
   # public_ip              = local.ip_ca_gw
   key_name               = module.test_key_pair.key_name
   vpc_security_group_ids = [module.sg_ca_gw.this_security_group_id]
