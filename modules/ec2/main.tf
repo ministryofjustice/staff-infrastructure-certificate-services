@@ -2,7 +2,7 @@ module "ec2" {
   source  = "terraform-aws-modules/ec2-instance/aws"
   version = "~> 2.0"
 
-  name                   = var.name
+  name                   = var.server_description
   user_data              = var.user_data
   key_name               = var.key_name
   vpc_security_group_ids = var.vpc_security_group_ids
@@ -17,5 +17,10 @@ module "ec2" {
 
   get_password_data = var.get_password_data
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Name = var.server_description
+    },
+  )
 }

@@ -1,5 +1,5 @@
-variable "name" {
-  description = "Name to be used on all resources as prefix"
+variable "server_description" {
+  description = "The name for the server that will appear in the EC2 console"
   type        = string
 }
 
@@ -24,7 +24,6 @@ variable "instance_type" {
   description = "The type of instance to start"
   type        = string
 }
-
 
 variable "subnet_id" {
   description = "The VPC Subnet ID to launch in"

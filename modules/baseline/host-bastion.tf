@@ -9,8 +9,8 @@ module "ec2_bastion_host" {
   vpc_security_group_ids      = [module.sg_bastion_host.this_security_group_id]
   associate_public_ip_address = true
   get_password_data           = true
+  server_description          = "${var.prefix}-bastion-host"
 
-  name = "${var.prefix}-bastion-host"
   tags = var.tags
 }
 

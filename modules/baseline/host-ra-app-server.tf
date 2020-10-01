@@ -50,7 +50,7 @@ module "ec2_ra_app_server" {
   vpc_security_group_ids      = [module.sg_ra_app_server.this_security_group_id]
   associate_public_ip_address = false
   get_password_data           = false
+  server_description          = "${var.prefix}-ra-back-end"
 
-  name = "${var.prefix}-ra-back-end"
   tags = var.tags
 }

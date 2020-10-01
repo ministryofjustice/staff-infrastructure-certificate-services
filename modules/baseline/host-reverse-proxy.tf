@@ -9,8 +9,8 @@ module "ec2_reverse_proxy" {
   vpc_security_group_ids      = [module.sg_reverse_proxy.this_security_group_id]
   associate_public_ip_address = true
   get_password_data           = false
+  server_description          = "${var.prefix}-reverse-proxy"
 
-  name = "${var.prefix}-reverse-proxy"
   tags = var.tags
 }
 

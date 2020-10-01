@@ -58,7 +58,7 @@ module "ec2_ca_gateway" {
   vpc_security_group_ids      = [module.sg_ca_gateway.this_security_group_id]
   associate_public_ip_address = false
   get_password_data           = false
+  server_description          = "${var.prefix}-ca-gw"
 
-  name = "${var.prefix}-ca-gw"
   tags = var.tags
 }

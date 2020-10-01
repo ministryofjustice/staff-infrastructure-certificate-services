@@ -58,7 +58,7 @@ module "ec2_issuing_ca" {
   vpc_security_group_ids      = [module.sg_issuing_ca.this_security_group_id]
   associate_public_ip_address = false
   get_password_data           = false
+  server_description          = "${var.prefix}-issuing-ca"
 
-  name = "${var.prefix}-issuing-ca"
   tags = var.tags
 }

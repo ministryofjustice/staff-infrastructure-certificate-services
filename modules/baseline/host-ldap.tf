@@ -29,7 +29,7 @@ module "ec2_ldap" {
   vpc_security_group_ids      = [module.sg_ldap.this_security_group_id]
   associate_public_ip_address = false
   get_password_data           = false
+  server_description          = "${var.prefix}-ldap"
 
-  name = "${var.prefix}-ldap"
   tags = var.tags
 }
