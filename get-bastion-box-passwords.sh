@@ -3,7 +3,7 @@ clear
 rm pre_prod_key_pair.pem -f
 rm prod_key_pair.pem -f
 
-printf "\nIf you are using AWS Vault, note that it is normal to be asked for your vault-unlock passphrase multiple times during the execution of this script\n\n"
+printf "\nNote that it is normal for AWS Vault to ask for your vault-unlock passphrase multiple times during the execution of this script\n\n"
 
 printf "Fetching private keys...\n\n"
 aws-vault exec moj-pttp-pki -- terraform output pre_prod_private_key_pem_format > pre_prod_key_pair.pem
