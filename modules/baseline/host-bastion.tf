@@ -9,12 +9,55 @@ module "sg_bastion_host" {
       from_port   = 3389
       to_port     = 3389
       protocol    = "tcp"
-      description = "Remote desktop from the public Internet"
+      description = "Remote desktop connections from the public Internet"
       cidr_blocks = "0.0.0.0/0"
     },
   ]
 
-  egress_with_cidr_blocks = []
+  egress_with_cidr_blocks = [
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow the bastion server to SSH into the reverse proxy"
+      cidr_blocks = local.cidr_reverse_proxy
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow the bastion server to SSH into the issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow the bastion server to SSH into the LDAP server"
+      cidr_blocks = local.cidr_ldap
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow the bastion server to SSH into the RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow the bastion server to SSH into the CA gateway"
+      cidr_blocks = local.cidr_ca_gateway
+    },
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow the bastion server to SSH into the RA web server"
+      cidr_blocks = local.cidr_ra_web_server
+    },
+  ]
 
   tags = var.tags
 }

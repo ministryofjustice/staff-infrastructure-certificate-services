@@ -6,71 +6,82 @@ module "sg_ra_web_server" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 443
-      to_port     = 443
+      from_port   = 22
+      to_port     = 22
       protocol    = "tcp"
-      description = "https"
-      cidr_blocks = "0.0.0.0/0"
+      description = "Allow SSH from the bastion host"
+      cidr_blocks = local.cidr_bastion_host
     },
-    {
-      from_port   = 20443
-      to_port     = 20443
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 21443
-      to_port     = 21443
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 22443
-      to_port     = 22443
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 8030
-      to_port     = 8030
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
+
+
+
+
+    # {
+    #   from_port   = 443
+    #   to_port     = 443
+    #   protocol    = "tcp"
+    #   description = "https"
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 20443
+    #   to_port     = 20443
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 21443
+    #   to_port     = 21443
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 22443
+    #   to_port     = 22443
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 8030
+    #   to_port     = 8030
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
   ]
 
   egress_with_cidr_blocks = [
-    {
-      from_port   = 9009
-      to_port     = 9009
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 9039
-      to_port     = 9039
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 8010
-      to_port     = 8013
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 8080
-      to_port     = 8080
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
+    # {
+    #   from_port   = 9009
+    #   to_port     = 9009
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 9039
+    #   to_port     = 9039
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 8010
+    #   to_port     = 8013
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 8080
+    #   to_port     = 8080
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
   ]
 
   tags = var.tags

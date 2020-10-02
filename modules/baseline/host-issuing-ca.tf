@@ -6,43 +6,55 @@ module "sg_issuing_ca" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 443
-      to_port     = 443
+      from_port   = 22
+      to_port     = 22
       protocol    = "tcp"
-      description = "https"
-      cidr_blocks = "0.0.0.0/0"
+      description = "Allow SSH from the bastion host"
+      cidr_blocks = local.cidr_bastion_host
     },
-    {
-      from_port   = 1443
-      to_port     = 1443
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 709
-      to_port     = 710
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
-    {
-      from_port   = 829
-      to_port     = 829
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
+
+
+
+
+
+    # {
+    #   from_port   = 443
+    #   to_port     = 443
+    #   protocol    = "tcp"
+    #   description = "https"
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 1443
+    #   to_port     = 1443
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 709
+    #   to_port     = 710
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
+    # {
+    #   from_port   = 829
+    #   to_port     = 829
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
   ]
 
   egress_with_cidr_blocks = [
-    {
-      from_port   = 389
-      to_port     = 389
-      protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0"
-    },
+    # {
+    #   from_port   = 389
+    #   to_port     = 389
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
   ]
 
   tags = var.tags

@@ -6,12 +6,24 @@ module "sg_ldap" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 389
-      to_port     = 389
+      from_port   = 22
+      to_port     = 22
       protocol    = "tcp"
-      description = ""
-      cidr_blocks = "0.0.0.0/0" // TODO: We should limit this to CA GW and Issuing CA only
+      description = "Allow SSH from the bastion host"
+      cidr_blocks = local.cidr_bastion_host
     },
+
+
+
+
+
+    # {
+    #   from_port   = 389
+    #   to_port     = 389
+    #   protocol    = "tcp"
+    #   description = ""
+    #   cidr_blocks = "0.0.0.0/0" // TODO: We should limit this to CA GW and Issuing CA only
+    # },
   ]
 
   egress_with_cidr_blocks = []

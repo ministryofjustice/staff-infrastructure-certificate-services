@@ -4,7 +4,15 @@ module "sg_reverse_proxy" {
   vpc_id                     = module.pki_vpc.vpc_id
   security_group_description = "${var.prefix}-reverse-proxy-security-group"
 
-  ingress_with_cidr_blocks = []
+  ingress_with_cidr_blocks = [
+    {
+      from_port   = 22
+      to_port     = 22
+      protocol    = "tcp"
+      description = "Allow SSH from the bastion host"
+      cidr_blocks = local.cidr_bastion_host
+    },
+  ]
 
   egress_with_cidr_blocks = []
 
