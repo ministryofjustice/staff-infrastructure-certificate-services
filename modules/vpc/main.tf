@@ -21,7 +21,12 @@ resource "aws_subnet" "public_subnet" {
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = true
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.prefix}-public-subnet"
+    },
+  )
 }
 
 resource "aws_subnet" "private_subnet_backend_zone" {
@@ -30,7 +35,12 @@ resource "aws_subnet" "private_subnet_backend_zone" {
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = false
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.prefix}-private-backend-zone-subnet"
+    },
+  )
 }
 
 resource "aws_subnet" "private_subnet_private_ra_zone" {
@@ -39,5 +49,10 @@ resource "aws_subnet" "private_subnet_private_ra_zone" {
   availability_zone       = "${var.region}a"
   map_public_ip_on_launch = false
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.prefix}-private-ra-zone-subnet"
+    },
+  )
 }
