@@ -51,10 +51,10 @@ module "sg_issuing_ca" {
 module "ec2_issuing_ca" {
   source = ".././ec2"
 
-  ami           = local.ami_rhel_7_6_x64
-  instance_type = "t2.micro"
-  subnet_id     = module.pki_vpc.private_subnet_backend_zone_id
-  # private_ip             = local.ip_issuing_ca
+  ami                         = local.ami_rhel_7_6_x64
+  instance_type               = "t2.micro"
+  subnet_id                   = module.pki_vpc.private_subnet_backend_zone_id
+  private_ip                  = local.ip_issuing_ca
   key_name                    = module.pki_key_pair.key_name
   vpc_security_group_ids      = [module.sg_issuing_ca.this_security_group_id]
   associate_public_ip_address = false
