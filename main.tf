@@ -32,7 +32,7 @@ module "label" {
   }
 }
 
-module "baseline_test_pre_production" {
+module "baseline_pre_production" {
   source = "./modules/baseline"
 
   prefix = "pre-production-${module.label.id}"
@@ -45,7 +45,7 @@ module "baseline_test_pre_production" {
   }
 }
 
-module "baseline_test_production" {
+module "baseline_production" {
   source = "./modules/baseline"
 
   prefix = "production-${module.label.id}"

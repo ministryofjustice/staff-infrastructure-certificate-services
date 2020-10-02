@@ -12,7 +12,32 @@ module "vpc" {
     "${var.region}c"
   ]
 
-  private_subnets = var.private_subnet_cidr_blocks
+  tags = var.tags
+}
 
-  public_subnets = [var.public_subnet_cidr_block]
+resource "aws_subnet" "public_subnet" {
+  vpc_id                  = module.vpc.vpc_id
+  cidr_block              = var.public_subnet_cidr_block
+  availability_zone       = "${var.region}a"
+  map_public_ip_on_launch = true
+
+  tags = var.tags
+}
+
+resource "aws_subnet" "private_subnet_backend_zone" {
+  vpc_id                  = module.vpc.vpc_id
+  cidr_block              = var.private_subnet_backend_zone_cidr_block
+  availability_zone       = "${var.region}a"
+  map_public_ip_on_launch = false
+
+  tags = var.tags
+}
+
+resource "aws_subnet" "private_subnet_private_ra_zone" {
+  vpc_id                  = module.vpc.vpc_id
+  cidr_block              = var.private_subnet_private_ra_zone_cidr_block
+  availability_zone       = "${var.region}a"
+  map_public_ip_on_launch = false
+
+  tags = var.tags
 }

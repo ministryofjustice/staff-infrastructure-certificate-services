@@ -3,28 +3,45 @@ locals {
   ami_windows_2019_x64 = "ami-0aac9d7fa83beb6d2"
 
   cidr_usage_route_table = "10.180.84.0/22"
-  cidr_private_a         = "10.180.84.0/24"
-  cidr_private_b         = "10.180.85.0/24"
-  cidr_public_a          = "10.180.86.0/24"
 
-  ip_bastion_host  = ""
-  ip_reverse_proxy = ""
+  # Public subnet
+  cidr_public_subnet = "10.180.86.0/24"
 
-  ip_ca_gateway    = ""
-  ip_ra_web_server = ""
+  ip_bastion_host  = "10.180.86.0"
+  ip_reverse_proxy = "10.180.86.1"
 
-  ip_issuing_ca    = ""
-  ip_ra_app_server = ""
-  ip_ldap          = ""
+  cidr_bastion_host  = "10.180.86.0/32"
+  cidr_reverse_proxy = "10.180.86.1/32"
+
+  # Backend zone
+  cidr_private_backend_zone = "10.180.85.0/24"
+
+  ip_issuing_ca    = "10.180.85.0"
+  ip_ldap          = "10.180.85.1"
+  ip_ra_app_server = "10.180.85.2"
+  ip_ca_gateway    = "10.180.85.3"
+
+  cidr_issuing_ca    = "10.180.85.0/32"
+  cidr_ldap          = "10.180.85.1/32"
+  cidr_ra_app_server = "10.180.85.2/32"
+  cidr_ca_gateway    = "10.180.85.3/32"
+
+  # RA zone
+  cidr_private_ra_zone = "10.180.84.0/24"
+
+  ip_ra_web_server = "10.180.84.0"
+
+  cidr_ra_web_server = "10.180.84.0/32"
 }
 
 module "pki_vpc" {
   source = ".././vpc"
 
-  region                     = var.region_id
-  cidr_block                 = local.cidr_usage_route_table
-  private_subnet_cidr_blocks = [local.cidr_private_a, local.cidr_private_b]
-  public_subnet_cidr_block   = local.cidr_public_a
+  region                                    = var.region_id
+  cidr_block                                = local.cidr_usage_route_table
+  public_subnet_cidr_block                  = local.cidr_public_subnet
+  private_subnet_backend_zone_cidr_block    = local.cidr_private_backend_zone
+  private_subnet_private_ra_zone_cidr_block = local.cidr_private_ra_zone
 
   prefix = var.prefix
   tags   = var.tags
