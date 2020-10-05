@@ -16,8 +16,6 @@ resource "aws_network_acl" "public_subnet_nacl" {
   vpc_id     = aws_vpc.pki_vpc.id
   subnet_ids = [aws_subnet.public_subnet.id]
 
-
-
   # Allow inbound RDP traffic from the public Internet
   ingress {
     protocol   = "tcp"
@@ -47,8 +45,6 @@ resource "aws_network_acl" "public_subnet_nacl" {
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
   }
-
-
 
   # Allow all outbound traffic to the public Internet
   egress {
