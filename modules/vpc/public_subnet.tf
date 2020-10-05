@@ -20,7 +20,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   ingress {
     protocol   = var.tcp_protocol
     rule_no    = 100
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.rdp_port
     to_port    = var.rdp_port
@@ -30,7 +30,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   ingress {
     protocol   = var.tcp_protocol
     rule_no    = 101
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_backend_zone_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
@@ -40,7 +40,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   ingress {
     protocol   = var.tcp_protocol
     rule_no    = 102
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_private_ra_zone_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
@@ -50,7 +50,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   egress {
     protocol   = var.tcp_protocol
     rule_no    = 100
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
@@ -60,7 +60,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   egress {
     protocol   = var.tcp_protocol
     rule_no    = 101
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_backend_zone_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
@@ -70,7 +70,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   egress {
     protocol   = var.tcp_protocol
     rule_no    = 102
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_private_ra_zone_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end

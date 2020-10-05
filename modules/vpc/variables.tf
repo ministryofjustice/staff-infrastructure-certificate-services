@@ -46,6 +46,10 @@ variable "tcp_protocol" {
   type = string
 }
 
+variable "allow_subnet_traffic" {
+  type = string
+}
+
 variable "tags" {
   type = map(string)
 }

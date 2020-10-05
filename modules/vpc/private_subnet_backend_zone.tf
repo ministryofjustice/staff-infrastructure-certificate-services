@@ -20,7 +20,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
   ingress {
     protocol   = var.tcp_protocol
     rule_no    = 100
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.public_subnet_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
@@ -30,7 +30,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
   egress {
     protocol   = var.tcp_protocol
     rule_no    = 100
-    action     = "allow"
+    action     = var.allow_subnet_traffic
     cidr_block = var.public_subnet_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end

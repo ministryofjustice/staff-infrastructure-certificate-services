@@ -9,6 +9,7 @@ locals {
   tcp_port_range_end         = 65535
   ldap_port                  = 389
   tcp_protocol               = "tcp"
+  allow_subnet_traffic       = "allow"
 
   # VPC
   cidr_block_vpc = "10.180.84.0/22"

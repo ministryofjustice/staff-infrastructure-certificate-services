@@ -12,6 +12,7 @@ module "pki_vpc" {
   tcp_port_range_start                      = local.tcp_port_range_start
   tcp_port_range_end                        = local.tcp_port_range_end
   tcp_protocol                              = local.tcp_protocol
+  allow_subnet_traffic                      = local.allow_subnet_traffic
 
   prefix = var.prefix
   tags   = var.tags
