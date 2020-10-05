@@ -16,6 +16,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   vpc_id     = aws_vpc.pki_vpc.id
   subnet_ids = [aws_subnet.public_subnet.id]
 
+  # Allow inbound RDP traffic from the public Internet
   ingress {
     protocol   = "tcp"
     rule_no    = 100
@@ -25,6 +26,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.rdp_port
   }
 
+  # Allow all outbound traffic to the public Internet
   egress {
     protocol   = "tcp"
     rule_no    = 100
@@ -32,6 +34,26 @@ resource "aws_network_acl" "public_subnet_nacl" {
     cidr_block = var.public_internet_cidr_block
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
+  }
+
+  # Allow outbound SSH traffic to the backend zone subnet
+  egress {
+    protocol   = "tcp"
+    rule_no    = 101
+    action     = "allow"
+    cidr_block = var.private_subnet_backend_zone_cidr_block
+    from_port  = var.ssh_port
+    to_port    = var.ssh_port
+  }
+
+  # Allow outbound SSH traffic to the RA zone subnet
+  egress {
+    protocol   = "tcp"
+    rule_no    = 102
+    action     = "allow"
+    cidr_block = var.private_subnet_private_ra_zone_cidr_block
+    from_port  = var.ssh_port
+    to_port    = var.ssh_port
   }
 
   tags = merge(
