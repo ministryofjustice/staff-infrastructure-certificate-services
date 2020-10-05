@@ -80,3 +80,8 @@ This assumes that you have followed the steps above to remote desktop into the B
 - Copy the file `prod_key_pair.pem` to the Bastion host
 - Get the IP address of the Linux host you want to SSH into e.g. `10.180.85.4`
 - From the folder containing the file `prod_key_pair.pem`, run the command `ssh ec2-user@10.180.85.4 -i prod_key_pair.pem -v`
+
+### Things to do once this project has moved from Terraform to manual management
+
+- Delete the Terraform S3 state bucket and DynamoDB lock table
+  - The S3 state bucket contains the output variables from running the Terraform, which means that it contains passwords, key pairs etc.
