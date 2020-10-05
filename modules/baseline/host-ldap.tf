@@ -7,8 +7,8 @@ module "sg_ldap" {
   ingress_with_cidr_blocks = [
     # Bastion
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow SSH from the bastion host"
       cidr_blocks = local.cidr_bastion_host
