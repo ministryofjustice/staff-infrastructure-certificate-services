@@ -9,7 +9,7 @@ module "sg_issuing_ca" {
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow SSH from the bastion host"
       cidr_blocks = local.cidr_bastion_host
     },
@@ -18,28 +18,28 @@ module "sg_issuing_ca" {
     {
       from_port   = 829
       to_port     = 829
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = 443
       to_port     = 443
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = 709
       to_port     = 709
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = 710
       to_port     = 710
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
@@ -48,28 +48,28 @@ module "sg_issuing_ca" {
     {
       from_port   = 829
       to_port     = 829
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = 443
       to_port     = 443
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = 709
       to_port     = 709
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = 710
       to_port     = 710
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
@@ -78,7 +78,7 @@ module "sg_issuing_ca" {
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for issuing CA"
       cidr_blocks = local.cidr_ldap
     },
@@ -89,28 +89,28 @@ module "sg_issuing_ca" {
     {
       from_port   = 829
       to_port     = 829
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = 443
       to_port     = 443
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = 709
       to_port     = 709
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = 710
       to_port     = 710
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
@@ -119,28 +119,28 @@ module "sg_issuing_ca" {
     {
       from_port   = 829
       to_port     = 829
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = 443
       to_port     = 443
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = 709
       to_port     = 709
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = 710
       to_port     = 710
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow issuing CA to talk to CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
@@ -149,7 +149,7 @@ module "sg_issuing_ca" {
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for issuing CA"
       cidr_blocks = local.cidr_ldap
     },

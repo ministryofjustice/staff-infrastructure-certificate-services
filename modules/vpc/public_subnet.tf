@@ -18,7 +18,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
 
   # Allow inbound RDP traffic from the public Internet
   ingress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 100
     action     = "allow"
     cidr_block = var.public_internet_cidr_block
@@ -28,7 +28,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
 
   # Allow inbound traffic from the backend zone subnet
   ingress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 101
     action     = "allow"
     cidr_block = var.private_subnet_backend_zone_cidr_block
@@ -38,7 +38,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
 
   # Allow inbound traffic from the RA zone subnet
   ingress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 102
     action     = "allow"
     cidr_block = var.private_subnet_private_ra_zone_cidr_block
@@ -48,7 +48,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
 
   # Allow all outbound traffic to the public Internet
   egress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 100
     action     = "allow"
     cidr_block = var.public_internet_cidr_block
@@ -58,7 +58,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
 
   # Allow outbound traffic to the backend zone subnet
   egress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 101
     action     = "allow"
     cidr_block = var.private_subnet_backend_zone_cidr_block
@@ -68,7 +68,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
 
   # Allow outbound traffic to the RA zone subnet
   egress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 102
     action     = "allow"
     cidr_block = var.private_subnet_private_ra_zone_cidr_block

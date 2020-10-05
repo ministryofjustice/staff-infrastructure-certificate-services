@@ -42,6 +42,10 @@ variable "tcp_port_range_end" {
   type = number
 }
 
+variable "tcp_protocol" {
+  type = string
+}
+
 variable "tags" {
   type = map(string)
 }

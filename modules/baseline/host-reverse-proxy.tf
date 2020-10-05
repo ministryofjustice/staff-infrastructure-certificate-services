@@ -8,7 +8,7 @@ module "sg_reverse_proxy" {
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow SSH from the bastion host"
       cidr_blocks = local.cidr_bastion_host
     },

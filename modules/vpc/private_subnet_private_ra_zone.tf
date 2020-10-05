@@ -18,7 +18,7 @@ resource "aws_network_acl" "private_subnet_private_ra_zone_nacl" {
 
   # Allow all inbound traffic from public subnet
   ingress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 100
     action     = "allow"
     cidr_block = var.public_subnet_cidr_block
@@ -28,7 +28,7 @@ resource "aws_network_acl" "private_subnet_private_ra_zone_nacl" {
 
   # Allow all outbound traffic to the public subnet
   egress {
-    protocol   = "tcp"
+    protocol   = var.tcp_protocol
     rule_no    = 100
     action     = "allow"
     cidr_block = var.public_subnet_cidr_block

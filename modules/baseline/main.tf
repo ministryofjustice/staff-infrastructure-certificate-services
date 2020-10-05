@@ -11,6 +11,7 @@ module "pki_vpc" {
   rdp_port                                  = local.rdp_port
   tcp_port_range_start                      = local.tcp_port_range_start
   tcp_port_range_end                        = local.tcp_port_range_end
+  tcp_protocol                              = local.tcp_protocol
 
   prefix = var.prefix
   tags   = var.tags

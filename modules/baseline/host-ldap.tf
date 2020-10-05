@@ -9,7 +9,7 @@ module "sg_ldap" {
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow SSH from the bastion host"
       cidr_blocks = local.cidr_bastion_host
     },
@@ -18,21 +18,21 @@ module "sg_ldap" {
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
@@ -43,21 +43,21 @@ module "sg_ldap" {
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },

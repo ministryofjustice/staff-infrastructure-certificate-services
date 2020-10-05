@@ -8,7 +8,7 @@ module "sg_bastion_host" {
     {
       from_port   = local.rdp_port
       to_port     = local.rdp_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Remote desktop connections from the public Internet"
       cidr_blocks = local.public_internet_cidr_block
     },
@@ -18,42 +18,42 @@ module "sg_bastion_host" {
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the reverse proxy"
       cidr_blocks = local.cidr_reverse_proxy
     },
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the LDAP server"
       cidr_blocks = local.cidr_ldap
     },
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
       from_port   = local.ssh_port
       to_port     = local.ssh_port
-      protocol    = "tcp"
+      protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the RA web server"
       cidr_blocks = local.cidr_ra_web_server
     },
