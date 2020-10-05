@@ -40,8 +40,6 @@ printf "\nPROD password:\n"
 cat prod_password_decrypted.txt
 
 printf "\n\nRemoving temporary files...\n"
-rm pre_prod_key_pair.pem -f
-rm prod_key_pair.pem -f
 
 rm pre_prod_password_encrypted.txt -f
 rm prod_password_encrypted.txt -f
