@@ -36,6 +36,15 @@ module "sg_ra_web_server" {
       description = "Allow RA web server to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
+
+    # Reverse proxy
+    {
+      from_port   = 8030
+      to_port     = 8030
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to reverse proxy"
+      cidr_blocks = local.cidr_reverse_proxy
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -60,6 +69,15 @@ module "sg_ra_web_server" {
       protocol    = local.tcp_protocol
       description = "Allow RA web server to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
+    },
+
+    # Reverse proxy
+    {
+      from_port   = 8030
+      to_port     = 8030
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to reverse proxy"
+      cidr_blocks = local.cidr_reverse_proxy
     },
   ]
 
