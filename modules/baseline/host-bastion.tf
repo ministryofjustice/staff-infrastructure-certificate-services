@@ -6,53 +6,53 @@ module "sg_bastion_host" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 3389
-      to_port     = 3389
+      from_port   = local.rdp_port
+      to_port     = local.rdp_port
       protocol    = "tcp"
       description = "Remote desktop connections from the public Internet"
-      cidr_blocks = "0.0.0.0/0"
+      cidr_blocks = local.public_internet_cidr_block
     },
   ]
 
   egress_with_cidr_blocks = [
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow the bastion server to SSH into the reverse proxy"
       cidr_blocks = local.cidr_reverse_proxy
     },
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow the bastion server to SSH into the issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow the bastion server to SSH into the LDAP server"
       cidr_blocks = local.cidr_ldap
     },
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow the bastion server to SSH into the RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow the bastion server to SSH into the CA gateway"
       cidr_blocks = local.cidr_ca_gateway
     },
     {
-      from_port   = 22
-      to_port     = 22
+      from_port   = local.ssh_port
+      to_port     = local.ssh_port
       protocol    = "tcp"
       description = "Allow the bastion server to SSH into the RA web server"
       cidr_blocks = local.cidr_ra_web_server
