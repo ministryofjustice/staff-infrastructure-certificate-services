@@ -13,10 +13,54 @@ module "sg_ra_web_server" {
       description = "Allow SSH from the bastion host"
       cidr_blocks = local.cidr_bastion_host
     },
+
+    # RA app server
+    {
+      from_port   = 8010
+      to_port     = 8010
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 8013
+      to_port     = 8013
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 9030
+      to_port     = 9030
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
   ]
 
   egress_with_cidr_blocks = [
-
+    # RA app server
+    {
+      from_port   = 8010
+      to_port     = 8010
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 8013
+      to_port     = 8013
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 9030
+      to_port     = 9030
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
   ]
 
   tags = var.tags
