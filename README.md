@@ -64,3 +64,19 @@ The infrastructure for this project should **not** be torn down at the end of ea
 
 - To log in to the browser-based AWS console using `aws-vault`, run either of the following commands:
   - `aws-vault login moj-pttp-pki` to log in to the Shared Services account.
+
+### Remote desktop access to the Bastion host (PROD example)
+
+- Apply the Terraform in this repository
+- Run the script `get-bastion-box-passwords.sh`
+- Remote desktop into the IP address shown in the file `prod_ip_address.txt`
+  - Username= `Administrator`
+  - Password = the value in the file `prod_password_decrypted.txt`
+
+#### SSH-ing into Linux machines (PROD example)
+
+This assumes that you have followed the steps above to remote desktop into the Bastion host
+
+- Copy the file `prod_key_pair.pem` to the Bastion host
+- Get the IP address of the Linux host you want to SSH into e.g. `10.180.85.4`
+- From the folder containing the file `prod_key_pair.pem`, run the command `ssh ec2-user@10.180.85.4 -i prod_key_pair.pem -v`
