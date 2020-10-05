@@ -13,47 +13,67 @@ module "sg_ca_gateway" {
       cidr_blocks = local.cidr_bastion_host
     },
 
-
-
-
-    # {
-    #   from_port   = 8080
-    #   to_port     = 8080
-    #   protocol    = "tcp"
-    #   description = "http"
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
+    # Issuing CA
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
   ]
 
   egress_with_cidr_blocks = [
-    # {
-    #   from_port   = 443
-    #   to_port     = 443
-    #   protocol    = "tcp"
-    #   description = "https"
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
-    # {
-    #   from_port   = 1443
-    #   to_port     = 1443
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
-    # {
-    #   from_port   = 709
-    #   to_port     = 710
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
-    # {
-    #   from_port   = 829
-    #   to_port     = 829
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
+    # Issuing CA
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = "tcp"
+      description = "Allow CA gateway to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
   ]
 
   tags = var.tags
