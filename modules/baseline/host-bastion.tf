@@ -5,6 +5,7 @@ module "sg_bastion_host" {
   security_group_description = "${var.prefix}-bastion-host-security-group"
 
   ingress_with_cidr_blocks = [
+    # RDP
     {
       from_port   = local.rdp_port
       to_port     = local.rdp_port
@@ -16,6 +17,7 @@ module "sg_bastion_host" {
 
   egress_with_cidr_blocks = [
     {
+      # SSH into all Linux instances
       from_port   = local.ssh_port
       to_port     = local.ssh_port
       protocol    = local.tcp_protocol
@@ -56,6 +58,15 @@ module "sg_bastion_host" {
       protocol    = local.tcp_protocol
       description = "Allow the bastion server to SSH into the RA web server"
       cidr_blocks = local.cidr_ra_web_server
+    },
+
+    # Egress to any public IP
+    {
+      from_port   = local.tcp_port_range_start
+      to_port     = local.tcp_port_range_end
+      protocol    = local.tcp_protocol
+      description = "Allow all outbound connections from bastion to the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
     },
   ]
 
