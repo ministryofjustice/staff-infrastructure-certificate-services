@@ -42,6 +42,22 @@ variable "tcp_port_range_end" {
   type = number
 }
 
+variable "http_port" {
+  type = number
+}
+
+variable "https_port" {
+  type = number
+}
+
+variable "ephemeral_port_start" {
+  type = number
+}
+
+variable "ephemeral_port_end" {
+  type = number
+}
+
 variable "tcp_protocol" {
   type = string
 }

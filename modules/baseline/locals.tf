@@ -8,6 +8,10 @@ locals {
   tcp_port_range_start       = 0
   tcp_port_range_end         = 65535
   ldap_port                  = 389
+  http_port                  = 80
+  https_port                 = 443
+  ephemeral_port_start       = 1024
+  ephemeral_port_end         = 65535
   tcp_protocol               = "tcp"
   allow_subnet_traffic       = "allow"
 

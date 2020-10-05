@@ -11,6 +11,10 @@ module "pki_vpc" {
   rdp_port                                  = local.rdp_port
   tcp_port_range_start                      = local.tcp_port_range_start
   tcp_port_range_end                        = local.tcp_port_range_end
+  http_port                                 = local.http_port
+  https_port                                = local.https_port
+  ephemeral_port_start                      = local.ephemeral_port_start
+  ephemeral_port_end                        = local.ephemeral_port_end
   tcp_protocol                              = local.tcp_protocol
   allow_subnet_traffic                      = local.allow_subnet_traffic
 
