@@ -52,6 +52,15 @@ module "sg_ca_gateway" {
       description = "Allow LDAP for CA gateway"
       cidr_blocks = local.cidr_ldap
     },
+
+    # Reverse proxy
+    {
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = local.tcp_protocol
+      description = "Allow CA gateway to talk to reverse proxy"
+      cidr_blocks = local.cidr_reverse_proxy
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -92,6 +101,15 @@ module "sg_ca_gateway" {
       protocol    = local.tcp_protocol
       description = "Allow LDAP for CA gateway"
       cidr_blocks = local.cidr_ldap
+    },
+
+    # Reverse proxy
+    {
+      from_port   = 8080
+      to_port     = 8080
+      protocol    = local.tcp_protocol
+      description = "Allow CA gateway to talk to reverse proxy"
+      cidr_blocks = local.cidr_reverse_proxy
     },
   ]
 
