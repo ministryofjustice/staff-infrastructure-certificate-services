@@ -65,6 +65,11 @@ The infrastructure for this project should **not** be torn down at the end of ea
 - To log in to the browser-based AWS console using `aws-vault`, run either of the following commands:
   - `aws-vault login moj-pttp-pki` to log in to the Shared Services account.
 
+### Securing Subnets and Security Groups
+
+- All subnets in this layout can talk to each other on all ports
+- Locking down of ports is done on a per-security group level
+
 ### Remote desktop access to the Bastion host (PROD example)
 
 - Apply the Terraform in this repository
