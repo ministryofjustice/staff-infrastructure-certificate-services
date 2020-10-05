@@ -29,7 +29,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
   # Allow all inbound traffic from private RA zone subnet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 100
+    rule_no    = 101
     action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_private_ra_zone_cidr_block
     from_port  = var.tcp_port_range_start
@@ -49,7 +49,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
   # Allow all outbound traffic to the private RA zone subnet
   egress {
     protocol   = var.tcp_protocol
-    rule_no    = 100
+    rule_no    = 101
     action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_private_ra_zone_cidr_block
     from_port  = var.tcp_port_range_start
