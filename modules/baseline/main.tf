@@ -2,7 +2,7 @@ module "pki_vpc" {
   source = ".././vpc"
 
   region                                    = var.region_id
-  cidr_block                                = local.cidr_usage_route_table
+  cidr_block                                = local.cidr_block_vpc
   public_subnet_cidr_block                  = local.cidr_public_subnet
   private_subnet_backend_zone_cidr_block    = local.cidr_private_backend_zone
   private_subnet_private_ra_zone_cidr_block = local.cidr_private_ra_zone

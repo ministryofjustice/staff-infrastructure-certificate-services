@@ -9,7 +9,7 @@ locals {
   tcp_port_range_end         = 65535
 
   # VPC
-  cidr_usage_route_table = "10.180.84.0/22"
+  cidr_block_vpc = "10.180.84.0/22"
 
   # Public subnet
   cidr_public_subnet = "10.180.86.0/24"
