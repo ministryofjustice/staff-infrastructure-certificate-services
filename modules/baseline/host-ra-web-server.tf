@@ -4,6 +4,7 @@ module "sg_ra_web_server" {
   vpc_id                     = module.pki_vpc.vpc_id
   security_group_description = "${var.prefix}-ra-web-server-security-group"
 
+  # Bastion
   ingress_with_cidr_blocks = [
     {
       from_port   = local.ssh_port
