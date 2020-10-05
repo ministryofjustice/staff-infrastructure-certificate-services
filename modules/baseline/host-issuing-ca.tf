@@ -5,6 +5,7 @@ module "sg_issuing_ca" {
   security_group_description = "${var.prefix}-issuing-ca-security-group"
 
   ingress_with_cidr_blocks = [
+    # Bastion
     {
       from_port   = 22
       to_port     = 22
@@ -13,48 +14,67 @@ module "sg_issuing_ca" {
       cidr_blocks = local.cidr_bastion_host
     },
 
-
-
-
-
-    # {
-    #   from_port   = 443
-    #   to_port     = 443
-    #   protocol    = "tcp"
-    #   description = "https"
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
-    # {
-    #   from_port   = 1443
-    #   to_port     = 1443
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
-    # {
-    #   from_port   = 709
-    #   to_port     = 710
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
-    # {
-    #   from_port   = 829
-    #   to_port     = 829
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
+    # RA app server
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
   ]
 
   egress_with_cidr_blocks = [
-    # {
-    #   from_port   = 389
-    #   to_port     = 389
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0"
-    # },
+    # RA app server
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = "tcp"
+      description = "Allow issuing CA to talk to RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
   ]
 
   tags = var.tags
