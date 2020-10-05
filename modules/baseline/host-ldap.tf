@@ -5,6 +5,7 @@ module "sg_ldap" {
   security_group_description = "${var.prefix}-ldap-security-group"
 
   ingress_with_cidr_blocks = [
+    # Bastion
     {
       from_port   = 22
       to_port     = 22
@@ -13,20 +14,54 @@ module "sg_ldap" {
       cidr_blocks = local.cidr_bastion_host
     },
 
-
-
-
-
-    # {
-    #   from_port   = 389
-    #   to_port     = 389
-    #   protocol    = "tcp"
-    #   description = ""
-    #   cidr_blocks = "0.0.0.0/0" // TODO: We should limit this to CA GW and Issuing CA only
-    # },
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for CA gateway"
+      cidr_blocks = local.cidr_ca_gateway
+    },
   ]
 
-  egress_with_cidr_blocks = []
+  egress_with_cidr_blocks = [
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for RA app server"
+      cidr_blocks = local.cidr_ra_app_server
+    },
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for CA gateway"
+      cidr_blocks = local.cidr_ca_gateway
+    },
+  ]
 
   tags = var.tags
 }

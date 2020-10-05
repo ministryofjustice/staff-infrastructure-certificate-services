@@ -42,6 +42,15 @@ module "sg_ca_gateway" {
       description = "Allow CA gateway to talk to issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
+
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for CA gateway"
+      cidr_blocks = local.cidr_ldap
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -73,6 +82,15 @@ module "sg_ca_gateway" {
       protocol    = "tcp"
       description = "Allow CA gateway to talk to issuing CA"
       cidr_blocks = local.cidr_issuing_ca
+    },
+
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for CA gateway"
+      cidr_blocks = local.cidr_ldap
     },
   ]
 

@@ -43,6 +43,15 @@ module "sg_ra_app_server" {
       description = "Allow RA app server to talk to issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
+
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for RA app server"
+      cidr_blocks = local.cidr_ldap
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -74,6 +83,15 @@ module "sg_ra_app_server" {
       protocol    = "tcp"
       description = "Allow RA app server to talk to issuing CA"
       cidr_blocks = local.cidr_issuing_ca
+    },
+
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = "tcp"
+      description = "Allow LDAP for RA app server"
+      cidr_blocks = local.cidr_ldap
     },
   ]
 
