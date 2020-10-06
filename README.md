@@ -52,7 +52,6 @@ Run the following commands to get the code running on your machine:
 
 - Run `aws-vault exec moj-pttp-pki -- terraform init` (if you are prompted to bring across workspaces, say yes).
 - If it asks you to enter a value for "The path to the state file inside the bucket", enter the value `terraform.development.state`
-- Create a file named `terraform.tfvars` in the root of the project and populate it with the default developer Terraform settings. # TODO: figure out how to do this in PKI
 - Edit your aws config file (usually found in `~/.aws/config`) to include the key value pair of `region=eu-west-2` for the `profile moj-pttp-pki` workspace.
 - Run `aws-vault exec moj-pttp-pki -- terraform plan` and check that for an output. If it appears as correct terraform output, run `aws-vault exec moj-pttp-pki -- terraform apply`.
 
