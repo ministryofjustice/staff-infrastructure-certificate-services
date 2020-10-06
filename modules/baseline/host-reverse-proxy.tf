@@ -34,8 +34,15 @@ module "sg_reverse_proxy" {
 
     # Public Internet
     {
-      from_port   = local.tcp_port_range_start
-      to_port     = local.tcp_port_range_end
+      from_port   = local.http_port
+      to_port     = local.http_port
+      protocol    = local.tcp_protocol
+      description = "Allow reverse proxy to access the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
+    },
+    {
+      from_port   = local.https_port
+      to_port     = local.https_port
       protocol    = local.tcp_protocol
       description = "Allow reverse proxy to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
@@ -63,8 +70,15 @@ module "sg_reverse_proxy" {
 
     # Public Internet
     {
-      from_port   = local.tcp_port_range_start
-      to_port     = local.tcp_port_range_end
+      from_port   = local.http_port
+      to_port     = local.http_port
+      protocol    = local.tcp_protocol
+      description = "Allow reverse proxy to access the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
+    },
+    {
+      from_port   = local.https_port
+      to_port     = local.https_port
       protocol    = local.tcp_protocol
       description = "Allow reverse proxy to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
