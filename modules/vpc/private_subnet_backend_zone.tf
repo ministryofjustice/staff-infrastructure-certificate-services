@@ -61,7 +61,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
   # Allow all inbound traffic from the public internet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 103
+    rule_no    = 102
     action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.tcp_port_range_start
