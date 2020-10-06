@@ -2,6 +2,8 @@ locals {
   # General
   ami_rhel_7_6_x64           = "ami-06fe0c124aedcef5f"
   ami_windows_2019_x64       = "ami-0aac9d7fa83beb6d2"
+  instance_type_linux        = "t2.medium"
+  instance_type_windows      = "t2.medium"
   public_internet_cidr_block = "0.0.0.0/0"
   ssh_port                   = 22
   rdp_port                   = 3389

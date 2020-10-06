@@ -77,7 +77,7 @@ module "ec2_bastion_host" {
   source = ".././ec2"
 
   ami                         = local.ami_windows_2019_x64
-  instance_type               = "t2.micro"
+  instance_type               = local.instance_type_windows
   subnet_id                   = module.pki_vpc.public_subnet_id
   private_ip                  = local.ip_bastion_host
   key_name                    = module.pki_key_pair.key_name

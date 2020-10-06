@@ -148,7 +148,7 @@ module "ec2_ra_app_server" {
   source = ".././ec2"
 
   ami                         = local.ami_rhel_7_6_x64
-  instance_type               = "t2.micro"
+  instance_type               = local.instance_type_linux
   subnet_id                   = module.pki_vpc.private_subnet_backend_zone_id
   private_ip                  = local.ip_ra_app_server
   key_name                    = module.pki_key_pair.key_name
