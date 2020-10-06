@@ -30,8 +30,8 @@ module "sg_ra_web_server" {
       cidr_blocks = local.cidr_ra_app_server
     },
     {
-      from_port   = 9030
-      to_port     = 9030
+      from_port   = 9039
+      to_port     = 9039
       protocol    = local.tcp_protocol
       description = "Allow RA web server to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
@@ -80,8 +80,8 @@ module "sg_ra_web_server" {
       cidr_blocks = local.cidr_ra_app_server
     },
     {
-      from_port   = 9030
-      to_port     = 9030
+      from_port   = 9039
+      to_port     = 9039
       protocol    = local.tcp_protocol
       description = "Allow RA web server to talk to RA app server"
       cidr_blocks = local.cidr_ra_app_server
