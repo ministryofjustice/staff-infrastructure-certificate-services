@@ -43,6 +43,15 @@ module "sg_bastion_host" {
       description = "Allow bastion to talk to issuing CA"
       cidr_blocks = local.cidr_issuing_ca
     },
+
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to LDAP"
+      cidr_blocks = local.cidr_ldap
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -127,6 +136,15 @@ module "sg_bastion_host" {
       protocol    = local.tcp_protocol
       description = "Allow bastion to talk to issuing CA"
       cidr_blocks = local.cidr_issuing_ca
+    },
+
+    # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to LDAP"
+      cidr_blocks = local.cidr_ldap
     },
   ]
 

@@ -19,6 +19,13 @@ module "sg_ldap" {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
       protocol    = local.tcp_protocol
+      description = "Allow LDAP for bastion server"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = local.tcp_protocol
       description = "Allow LDAP for RA app server"
       cidr_blocks = local.cidr_ra_app_server
     },
@@ -56,6 +63,13 @@ module "sg_ldap" {
 
   egress_with_cidr_blocks = [
     # LDAP
+    {
+      from_port   = local.ldap_port
+      to_port     = local.ldap_port
+      protocol    = local.tcp_protocol
+      description = "Allow LDAP for bastion server"
+      cidr_blocks = local.cidr_bastion_host
+    },
     {
       from_port   = local.ldap_port
       to_port     = local.ldap_port
