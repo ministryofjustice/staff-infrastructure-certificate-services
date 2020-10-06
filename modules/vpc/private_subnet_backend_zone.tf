@@ -58,7 +58,6 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
     to_port    = var.tcp_port_range_end
   }
 
-  # TODO: talk to Rich about this
   # Allow all inbound traffic from the public internet
   ingress {
     protocol   = var.tcp_protocol

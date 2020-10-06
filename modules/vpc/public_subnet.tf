@@ -46,7 +46,6 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.tcp_port_range_end
   }
 
-  # TODO: remove this?
   # Allow inbound HTTP traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
@@ -57,7 +56,6 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.http_port
   }
 
-  # TODO: remove this?
   # Allow inbound HTTPS traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
@@ -68,9 +66,6 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.https_port
   }
 
-  # TODO: talk to Rich about this
-  # Maybe we should have a separate subnet for this, so we don't open this bastion up
-  # Although the Bastion will eventually be decommissioned?
   # Allow inbound traffic on ephemeral ports - this allows repsonses to HTTP requests from private-subnet instances
   ingress {
     protocol   = var.tcp_protocol
