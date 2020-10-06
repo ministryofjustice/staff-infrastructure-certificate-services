@@ -13,6 +13,36 @@ module "sg_bastion_host" {
       description = "Remote desktop connections from the public Internet"
       cidr_blocks = local.public_internet_cidr_block
     },
+
+    # Issuing CA
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -67,6 +97,36 @@ module "sg_bastion_host" {
       protocol    = local.tcp_protocol
       description = "Allow all outbound connections from bastion to the public Internet"
       cidr_blocks = local.public_internet_cidr_block
+    },
+
+    # Issuing CA
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
+    },
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = local.tcp_protocol
+      description = "Allow bastion to talk to issuing CA"
+      cidr_blocks = local.cidr_issuing_ca
     },
   ]
 

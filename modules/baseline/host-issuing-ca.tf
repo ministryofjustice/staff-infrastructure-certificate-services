@@ -13,6 +13,34 @@ module "sg_issuing_ca" {
       description = "Allow SSH from the bastion host"
       cidr_blocks = local.cidr_bastion_host
     },
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
 
     # RA app server
     {
@@ -184,6 +212,36 @@ module "sg_issuing_ca" {
       protocol    = local.tcp_protocol
       description = "Allow issuing CA to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
+    },
+
+    # Bastion
+    {
+      from_port   = 443
+      to_port     = 443
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = 709
+      to_port     = 709
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = 710
+      to_port     = 710
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
+    },
+    {
+      from_port   = 829
+      to_port     = 829
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to talk to bastion"
+      cidr_blocks = local.cidr_bastion_host
     },
   ]
 
