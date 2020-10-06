@@ -45,6 +45,15 @@ module "sg_ra_web_server" {
       description = "Allow RA web server to talk to reverse proxy"
       cidr_blocks = local.cidr_reverse_proxy
     },
+
+    # Public Internet
+    {
+      from_port   = local.tcp_port_range_start
+      to_port     = local.tcp_port_range_end
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to access the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -78,6 +87,15 @@ module "sg_ra_web_server" {
       protocol    = local.tcp_protocol
       description = "Allow RA web server to talk to reverse proxy"
       cidr_blocks = local.cidr_reverse_proxy
+    },
+
+    # Public Internet
+    {
+      from_port   = local.tcp_port_range_start
+      to_port     = local.tcp_port_range_end
+      protocol    = local.tcp_protocol
+      description = "Allow RA web server to access the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
     },
   ]
 
