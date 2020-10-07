@@ -37,7 +37,7 @@ The detailed design documents for this project can be found in Microsoft Teams a
 
 ### Set up aws-vault
 
-Once aws-vault is installed, run the following two commands to create the profile for your PKI AWS account: `aws-vault add moj-pttp-pki`
+Once aws-vault is installed, run the following command to create the profile for your PKI AWS account: `aws-vault add moj-pttp-pki`
 
 This will prompt you for the values of your PKI AWS account's IAM user.
 
@@ -76,7 +76,7 @@ To log in to the browser-based AWS console using `aws-vault`, run the following 
 - Apply the Terraform in this repository
 - Run the script `get-bastion-box-passwords.sh`
 - Remote desktop into the IP address shown in the file `prod_ip_address.txt`
-  - Username= `Administrator`
+  - Username = `Administrator`
   - Password = the value in the file `prod_password_decrypted.txt`
 
 #### SSH-ing into Linux machines (PROD example)
