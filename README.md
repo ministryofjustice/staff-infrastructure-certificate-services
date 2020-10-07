@@ -34,18 +34,18 @@ The detailed design documents for this project can be found in Microsoft Teams a
 
 - The [AWS CLI](https://aws.amazon.com/cli/) should be installed.
 - [aws-vault](https://github.com/99designs/aws-vault) should be installed. This is used to easily manage and switch between AWS account profiles on the command line.
-- [Terraform](https://www.terraform.io/) should be installed. We recommend using a Terraform version manager such as [tfenv](https://github.com/tfutils/tfenv). Please make sure that the version of Terraform which you use on your local machine is the same as the one referenced in the file `buildspec.yml`.
+- [Terraform](https://www.terraform.io/) should be installed. We recommend using a Terraform version manager such as [tfenv](https://github.com/tfutils/tfenv). Please make sure that you are using `Terraform v0.12.29`.
 - You should have AWS account access to the PKI AWS account (you can ask the team on either Slack or Microsoft Teams to sort this out for you).
 
 ### Set up aws-vault
 
-Once aws-vault is installed, run the following two commands to create profiles for your AWS Dev and AWS Shared Services account:
+Once aws-vault is installed, run the following two commands to create profiles for your PKI AWS account:
 
 - `aws-vault add moj-pttp-pki` (this will prompt you for the values of your PKI AWS account's IAM user).
 
 ### Set up MFA on your AWS account
 
-Multi-Factor Authentication (MFA) is required on AWS accounts in this project. You will need to do this for both your Dev and Shared Services AWS accounts.
+Multi-Factor Authentication (MFA) is required on the AWS account on this project.
 
 The steps to set this up are as follows:
 
@@ -67,17 +67,11 @@ Run the following commands to get the code running on your machine:
 
 ### Tearing down infrastructure
 
-The infrastructure for this project should **not** be torn down at the end of each day or over the weekends.
+The infrastructure for this project should **not** be torn down.
 
 ### Useful commands
 
-- To log in to the browser-based AWS console using `aws-vault`, run either of the following commands:
-  - `aws-vault login moj-pttp-pki` to log in to the Shared Services account.
-
-### Securing Subnets and Security Groups
-
-- All subnets in this layout can talk to each other on all ports
-- Locking down of ports is done on a per-security group level
+To log in to the browser-based AWS console using `aws-vault`, run the following command: `aws-vault login moj-pttp-pki`
 
 ### Remote desktop access to the Bastion host (PROD example)
 
@@ -89,7 +83,7 @@ The infrastructure for this project should **not** be torn down at the end of ea
 
 #### SSH-ing into Linux machines (PROD example)
 
-This assumes that you have followed the steps above to remote desktop into the Bastion host
+This assumes that you have followed the steps above to remote desktop into the Bastion host.
 
 - Copy the file `prod_key_pair.pem` to the Bastion host
 - Get the IP address of the Linux host you want to SSH into e.g. `10.180.85.4`
@@ -97,5 +91,5 @@ This assumes that you have followed the steps above to remote desktop into the B
 
 ### Things to do once this project has moved from Terraform to manual management
 
-- Delete the Terraform S3 state bucket and DynamoDB lock table
+- Delete the Terraform S3 state bucket and DynamoDB lock table.
   - The S3 state bucket contains the output variables from running the Terraform, which means that it contains passwords, key pairs etc.
