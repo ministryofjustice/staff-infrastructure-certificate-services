@@ -4,8 +4,6 @@
 
 This project contains the Terraform code to build the Ministry of Justice's infrastructure to host PKI certificates servers.
 
-it is being used to create the baseline infrastructure for the PKI workstream.
-
 The Terraform in this repository is a "once off" to create the baseline infrastructure as a tactical solution, which will then be manually managed going forward.
 
 ## Warning on tearing down infrastructure
