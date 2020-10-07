@@ -16,7 +16,9 @@ This has already been done, and you should **not** run these files again.
 
 ## Architecture
 
-`TODO: add a link to the architecture diagram here`
+The high-level design for this project can be found on the wiki at [this link](https://dsdmoj.atlassian.net/wiki/spaces/PTTPWIK/pages/2382102667/Public+Key+Infrastructure).
+
+The detailed design documents for this project can be found in Microsoft Teams at [this link](https://teams.microsoft.com/_#/files/General?threadId=19%3Ab744b63ceeb9487d9886ccfc61a252d2%40thread.tacv2&ctx=channel&context=Tech%2520Designs%2520-%2520Documents&rootfolder=%252Fsites%252FMoJPKIBuild%252FShared%2520Documents%252FGeneral%252FTech%2520Designs%2520-%2520Documents).
 
 ## Getting started
 
