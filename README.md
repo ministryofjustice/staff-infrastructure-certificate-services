@@ -8,6 +8,14 @@ This project is being used to create the baseline infrastructure for the PKI wor
 
 The Terraform in this repository is a "once off" to create the baseline infrastructure as a tactical solution, which will then be manually managed going forward.
 
+## Warning on tearing down infrastructure
+
+You need to be extremely sure that your changes are not tearing EC2 instances down when running the Terraform in this repository.
+
+If this becomes necessary, teams need to be coordinated and backups need to be taken before tearing instances down.
+
+If you are unsure about this, please speak to someone on the technical team before running any of the Terraform in this repository.
+
 ## Terraform State Management
 
 The Terraform state for this project is created by running the Terraform files in the folder `create-terraform-state-infrastructure`.
