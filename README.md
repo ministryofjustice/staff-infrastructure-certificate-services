@@ -37,9 +37,9 @@ The detailed design documents for this project can be found in Microsoft Teams a
 
 ### Set up aws-vault
 
-Once aws-vault is installed, run the following two commands to create profiles for your PKI AWS account:
+Once aws-vault is installed, run the following two commands to create the profile for your PKI AWS account: `aws-vault add moj-pttp-pki`
 
-- `aws-vault add moj-pttp-pki` (this will prompt you for the values of your PKI AWS account's IAM user).
+This will prompt you for the values of your PKI AWS account's IAM user.
 
 ### Set up MFA on your AWS account
 
