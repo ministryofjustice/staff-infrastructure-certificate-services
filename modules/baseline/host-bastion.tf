@@ -164,5 +164,10 @@ module "ec2_bastion_host" {
   get_password_data           = true
   server_description          = "${var.prefix}-bastion-host"
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Environment = var.environment_description
+    },
+  )
 }

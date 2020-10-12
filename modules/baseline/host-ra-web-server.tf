@@ -129,5 +129,10 @@ module "ec2_ra_web_server" {
   get_password_data           = false
   server_description          = "${var.prefix}-ra-web-server"
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Environment = var.environment_description
+    },
+  )
 }

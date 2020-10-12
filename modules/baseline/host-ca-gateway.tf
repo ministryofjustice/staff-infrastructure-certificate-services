@@ -161,5 +161,10 @@ module "ec2_ca_gateway" {
   get_password_data           = false
   server_description          = "${var.prefix}-ca-gateway"
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Environment = var.environment_description
+    },
+  )
 }

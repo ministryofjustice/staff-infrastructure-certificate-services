@@ -26,7 +26,6 @@ module "label" {
     "business-unit" = "MoJO"
     "application"   = "certificate-services"
 
-    # TODO: do we need this field?
     "environment-name" = "global"
     "source-code"      = "https://github.com/ministryofjustice/staff-infrastructure-certificate-services"
   }
@@ -35,8 +34,9 @@ module "label" {
 module "baseline_pre_production" {
   source = "./modules/baseline"
 
-  prefix = "pre-production-${module.label.id}"
-  tags   = module.label.tags
+  prefix                  = "pre-production-${module.label.id}"
+  tags                    = module.label.tags
+  environment_description = "pre-production"
 
   region_id = data.aws_region.current_region.id
 
@@ -48,8 +48,9 @@ module "baseline_pre_production" {
 module "baseline_production" {
   source = "./modules/baseline"
 
-  prefix = "production-${module.label.id}"
-  tags   = module.label.tags
+  prefix                  = "production-${module.label.id}"
+  tags                    = module.label.tags
+  environment_description = "production"
 
   region_id = data.aws_region.current_region.id
 

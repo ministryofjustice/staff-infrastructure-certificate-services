@@ -261,5 +261,10 @@ module "ec2_issuing_ca" {
   get_password_data           = false
   server_description          = "${var.prefix}-issuing-ca"
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Environment = var.environment_description
+    },
+  )
 }

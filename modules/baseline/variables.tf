@@ -9,3 +9,7 @@ variable "tags" {
 variable "region_id" {
   type = string
 }
+
+variable "environment_description" {
+  type = string
+}

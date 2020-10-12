@@ -101,5 +101,10 @@ module "ec2_reverse_proxy" {
   get_password_data           = false
   server_description          = "${var.prefix}-reverse-proxy"
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Environment = var.environment_description
+    },
+  )
 }

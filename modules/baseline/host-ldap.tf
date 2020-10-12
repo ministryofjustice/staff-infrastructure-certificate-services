@@ -125,5 +125,10 @@ module "ec2_ldap" {
   get_password_data           = false
   server_description          = "${var.prefix}-ldap"
 
-  tags = var.tags
+  tags = merge(
+    var.tags,
+    {
+      Environment = var.environment_description
+    },
+  )
 }
