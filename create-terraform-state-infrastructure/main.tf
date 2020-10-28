@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "terraform_state" {
-  bucket = "moj-pttp-pki-aws-infrastructure-terraform-state"
+  bucket = "test-moj-pttp-pki-aws-infrastructure-terraform-state"
   versioning {
     enabled = true
   }
@@ -14,7 +14,7 @@ resource "aws_s3_bucket" "terraform_state" {
 }
 
 resource "aws_dynamodb_table" "terraform_locks" {
-  name         = "moj-pttp-pki-aws-infrastructure-terraform-state-locks"
+  name         = "test-moj-pttp-pki-aws-infrastructure-terraform-state-locks"
   billing_mode = "PAY_PER_REQUEST"
   hash_key     = "LockID"
   attribute {

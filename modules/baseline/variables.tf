@@ -13,3 +13,7 @@ variable "region_id" {
 variable "environment_description" {
   type = string
 }
+
+variable "trusted_cidr" {
+  type = string
+}

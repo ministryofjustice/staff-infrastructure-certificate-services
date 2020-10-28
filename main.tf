@@ -54,6 +54,8 @@ module "baseline_production" {
 
   region_id = data.aws_region.current_region.id
 
+  trusted_cidr = var.trusted_cidr
+
   providers = {
     aws = aws.env
   }
