@@ -32,7 +32,7 @@ module "label" {
 }
 
 module "baseline_pre_production" {
-  source = "./modules/baseline"
+  source = "./modules/baseline_preprod"
 
   prefix                  = "pre-production-${module.label.id}"
   tags                    = module.label.tags
