@@ -1,20 +1,8 @@
+variable "vpc_id" {
+  type = string
+}
+
 variable "prefix" {
-  type = string
-}
-
-variable "tags" {
-  type = map(string)
-}
-
-variable "region_id" {
-  type = string
-}
-
-variable "environment_description" {
-  type = string
-}
-
-variable "trusted_cidr" {
   type = string
 }
 
@@ -39,5 +27,9 @@ variable "secondary_remote_destination_cidr" {
 }
 
 variable "seondary_internal_cidr" {
+    type = string
+}
+
+variable "backend_zone_route_table_id" {
     type = string
 }

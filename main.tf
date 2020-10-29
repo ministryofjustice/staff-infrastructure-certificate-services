@@ -56,7 +56,17 @@ module "baseline_production" {
 
   trusted_cidr = var.trusted_cidr
 
+  customer_gateway_primary_ip = var.customer_gateway_primary_ip
+  primary_remote_destination_cidr = var.primary_remote_destination_cidr
+  primary_internal_cidr = var.primary_internal_cidr
+
+  customer_gateway_secondary_ip = var.customer_gateway_secondary_ip
+  secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
+  seondary_internal_cidr = var.seondary_internal_cidr
+
   providers = {
     aws = aws.env
   }
 }
+
+
