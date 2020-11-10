@@ -16,38 +16,39 @@ locals {
   ephemeral_port_end         = 65535
   tcp_protocol               = "tcp"
   allow_subnet_traffic       = "allow"
+  hsm_port                   = 1792
 
   # VPC
-  cidr_block_vpc = "10.180.84.0/22"
+  cidr_block_vpc = "10.180.88.0/22"
 
   # Public subnet
-  cidr_public_subnet = "10.180.86.0/24"
+  cidr_public_subnet = "10.180.90.0/24"
 
-  ip_bastion_host  = "10.180.86.4"
-  ip_reverse_proxy = "10.180.86.5"
+  ip_bastion_host  = "10.180.90.4"
+  ip_reverse_proxy = "10.180.90.5"
 
-  cidr_bastion_host  = "10.180.86.4/32"
-  cidr_reverse_proxy = "10.180.86.5/32"
+  cidr_bastion_host  = "10.180.90.4/32"
+  cidr_reverse_proxy = "10.180.90.5/32"
 
   # Backend zone
-  cidr_private_backend_zone = "10.180.85.0/24"
+  cidr_private_backend_zone = "10.180.89.0/24"
 
-  ip_issuing_ca    = "10.180.85.4"
-  ip_ldap          = "10.180.85.5"
-  ip_ra_app_server = "10.180.85.6"
-  ip_ca_gateway    = "10.180.85.7"
+  ip_issuing_ca    = "10.180.89.4"
+  ip_ldap          = "10.180.89.5"
+  ip_ra_app_server = "10.180.89.6"
+  ip_ca_gateway    = "10.180.89.7"
 
-  cidr_issuing_ca    = "10.180.85.4/32"
-  cidr_ldap          = "10.180.85.5/32"
-  cidr_ra_app_server = "10.180.85.6/32"
-  cidr_ca_gateway    = "10.180.85.7/32"
+  cidr_issuing_ca    = "10.180.89.4/32"
+  cidr_ldap          = "10.180.89.5/32"
+  cidr_ra_app_server = "10.180.89.6/32"
+  cidr_ca_gateway    = "10.180.89.7/32"
 
   # RA zone
-  cidr_private_ra_zone = "10.180.84.0/24"
+  cidr_private_ra_zone = "10.180.88.0/24"
 
-  ip_ra_web_server = "10.180.84.4"
+  ip_ra_web_server = "10.180.88.4"
 
-  cidr_ra_web_server = "10.180.84.4/32"
+  cidr_ra_web_server = "10.180.88.4/32"
 
   # HSM Servers
   ip_hsm_primary = "192.168.130.24/32"
