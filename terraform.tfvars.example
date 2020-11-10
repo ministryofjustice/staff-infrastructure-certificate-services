@@ -4,4 +4,4 @@ primary_remote_destination_cidr = "INSERT IP"
 primary_internal_cidr = "INSERT IP"
 customer_gateway_secondary_ip = "INSERT IP"
 secondary_remote_destination_cidr = "1INSERT IP"
-seondary_internal_cidr = "INSERT IP"
+seondary_internal_cidr = "INSERT IP

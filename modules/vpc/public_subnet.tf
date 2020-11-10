@@ -16,20 +16,10 @@ resource "aws_network_acl" "public_subnet_nacl" {
   vpc_id     = aws_vpc.pki_vpc.id
   subnet_ids = [aws_subnet.public_subnet.id]
 
-  # Allow inbound RDP traffic from the public Internet
-  ingress {
-    protocol   = var.tcp_protocol
-    rule_no    = 100
-    action     = var.allow_subnet_traffic
-    cidr_block = var.public_internet_cidr_block
-    from_port  = var.rdp_port
-    to_port    = var.rdp_port
-  }
-
   # Allow inbound traffic from the backend zone subnet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 101
+    rule_no    = 100
     action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_backend_zone_cidr_block
     from_port  = var.tcp_port_range_start
@@ -39,7 +29,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound traffic from the RA zone subnet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 102
+    rule_no    = 101
     action     = var.allow_subnet_traffic
     cidr_block = var.private_subnet_private_ra_zone_cidr_block
     from_port  = var.tcp_port_range_start
@@ -49,7 +39,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound HTTP traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 103
+    rule_no    = 102
     action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.http_port
@@ -59,23 +49,62 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound HTTPS traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 104
+    rule_no    = 103
     action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.https_port
     to_port    = var.https_port
   }
 
-  # Allow inbound traffic on ephemeral ports - this allows repsonses to HTTP requests from private-subnet instances
+  # Allow all inbound traffic from VPC
+  ingress {
+    protocol   = -1
+    rule_no    = 202
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_block
+    from_port  = 0
+    to_port    = 0
+  } 
+
+  # Allow inbound RDP traffic from the Donovan
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 105
+    rule_no    = 203
+    action     = var.allow_subnet_traffic
+    cidr_block = "51.148.131.197/32"
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
+  # Allow inbound RDP traffic from MOJO Devices
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 204
+    action     = var.allow_subnet_traffic
+    cidr_block = "51.149.250.0/24"
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
+  # Deny inbound RDP traffic from the public Internet
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 205
+    action     = "deny"
+    cidr_block = var.public_internet_cidr_block
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
+  # Allow inbound traffic on ephemeral ports the public internet
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 206
     action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.ephemeral_port_start
     to_port    = var.ephemeral_port_end
   }
-
   # Allow all outbound traffic to the public Internet
   egress {
     protocol   = var.tcp_protocol

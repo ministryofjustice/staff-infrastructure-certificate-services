@@ -35,11 +35,6 @@ resource "aws_vpn_connection_route" "entrust" {
   vpn_connection_id      = aws_vpn_connection.main.id
 }
 
-resource "aws_vpn_connection_route" "internal" {
-  destination_cidr_block = var.primary_internal_cidr
-  vpn_connection_id      = aws_vpn_connection.main.id
-}
-
 resource "aws_route" "primary_vpn_route" {
   route_table_id         = var.backend_zone_route_table_id
   destination_cidr_block = var.primary_remote_destination_cidr
@@ -76,11 +71,6 @@ resource "aws_vpn_connection" "vpn_secondary" {
 
 resource "aws_vpn_connection_route" "entrust_secondary" {
   destination_cidr_block = var.secondary_remote_destination_cidr
-  vpn_connection_id      = aws_vpn_connection.vpn_secondary.id
-}
-
-resource "aws_vpn_connection_route" "internal_secondary" {
-  destination_cidr_block = var.seondary_internal_cidr
   vpn_connection_id      = aws_vpn_connection.vpn_secondary.id
 }
 

@@ -1,0 +1,230 @@
+
+
+# NACL
+## Public Subnet IN
+    Permit TCP-80 from 0.0.0.0/0 -103
+    Permit TCP-443 from 0.0.0.0/0 -104
+    Permit TCP-3389 from DONOVAN_PUBLIC_IP -203
+    Permit ALL-Traffic from VPC_CIDR -202
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
+## Public Subnet OUT
+    Permit ALL Traffic to 0.0.0.0/0
+
+## BackEnd Subnet IN
+    Permit ALL Traffic from VPC_CIDR -202
+    *Permit ALL Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
+    Permit ALL Traffic from ENTRUST_HSM_CIDR
+## BackEnd Subnet OUT
+    Permit ALL Traffic to 0.0.0.0/0
+
+## RAZone Subnet IN
+    Permit ALL Traffic from VPC_CIDR
+    *Permit ALL Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
+    *Permit ALL Traffic from MoJO_GP_CIDR ##TODO WHEN VPN UP
+## RAZone Subnet OUT
+    Permit ALL Traffic to 0.0.0.0/0
+
+# Security Groups
+## BASTION-SERVER IN
+    Permit TCP-3389 from DONOVAN_PUBLIC_IP
+    Permit TCP-3389 from ENTRUST_MGMT_CIDR
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## BASTION-SERVER OUT
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    *Permit TCP-9997 to ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP
+
+## REVERSE-PROXY IN
+    Permit TCP-80 from 0.0.0.0/0
+    Permit TCP-443 from 0.0.0.0/0
+    Permit TCP-22 from ENTRUST_MGMT_CIDR
+    Permit TCP-8080 from ENTRUST_MGMT_CIDR
+    Permit TCP-8030 from ENTRUST_MGMT_CIDR
+    Permit TCP-9443 from ENTRUST_MGMT_CIDR
+    Permit TCP-22443 from ENTRUST_MGMT_CIDR
+    Permit TCP-21443 from ENTRUST_MGMT_CIDR
+    Permit TCP-389 from ENTRUST_MGMT_CIDR
+    Permit TCP-443 from ENTRUST_MGMT_CIDR
+    Permit TCP-709 from ENTRUST_MGMT_CIDR
+    Permit TCP-710 from ENTRUST_MGMT_CIDR
+    Permit TCP-829 from ENTRUST_MGMT_CIDR
+    Permit TCP-22 from BASTION_IP
+    Permit TCP-8080 from BASTION_IP
+    Permit TCP-8030 from BASTION_IP
+    Permit TCP-9443 from BASTION_IP
+    Permit TCP-22443 from BASTION_IP
+    Permit TCP-21443 from BASTION_IP
+    Permit TCP-389 from BASTION_IP
+    Permit TCP-443 from BASTION_IP
+    Permit TCP-709 from BASTION_IP
+    Permit TCP-710 from BASTION_IP
+    Permit TCP-829 from BASTION_IP
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## REVERSE-PROXY OUT
+    Permit TCP-8030 to RA_WEB_SERVER_IP
+    Permit TCP-8080 to CA_GATEWAY_IP
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    *Permit TCP-9997 to ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP
+
+## RA-WEB-SERVER IN
+    Permit TCP-22 from ENTRUST_MGMT_CIDR
+    Permit TCP-8080 from ENTRUST_MGMT_CIDR
+    Permit TCP-8030 from ENTRUST_MGMT_CIDR
+    Permit TCP-9443 from ENTRUST_MGMT_CIDR
+    Permit TCP-22443 from ENTRUST_MGMT_CIDR
+    Permit TCP-21443 from ENTRUST_MGMT_CIDR
+    Permit TCP-389 from ENTRUST_MGMT_CIDR
+    Permit TCP-443 from ENTRUST_MGMT_CIDR
+    Permit TCP-709 from ENTRUST_MGMT_CIDR
+    Permit TCP-710 from ENTRUST_MGMT_CIDR
+    Permit TCP-829 from ENTRUST_MGMT_CIDR
+    Permit TCP-22 from BASTION_IP
+    Permit TCP-8080 from BASTION_IP
+    Permit TCP-8030 from BASTION_IP
+    Permit TCP-9443 from BASTION_IP
+    Permit TCP-22443 from BASTION_IP
+    Permit TCP-21443 from BASTION_IP
+    Permit TCP-389 from BASTION_IP
+    Permit TCP-443 from BASTION_IP
+    Permit TCP-709 from BASTION_IP
+    Permit TCP-710 from BASTION_IP
+    Permit TCP-829 from BASTION_IP
+    Permit TCP-8030 from REVERSE_PROXY_IP
+    Permit TCP-9443 from MoJO_GP_CIDR
+    Permit TCP-21443 from MoJO_GP_CIDR
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## RA-WEB-SERVER OUT
+    Permit TCP-8010 to RA_APP_SERVER_IP
+    Permit TCP-8013 to RA_APP_SERVER_IP
+    Permit TCP-9039 to RA_APP_SERVER_IP
+    PERMIT TCP-9997 to ENTRUST_MGMT_CIDR
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP
+
+## RA-APP-SERVER IN
+    Permit TCP-22 from ENTRUST_MGMT_CIDR
+    Permit TCP-15443 from ENTRUST_MGMT_CIDR
+    Permit TCP-389 from ENTRUST_MGMT_CIDR
+    Permit TCP-443 from ENTRUST_MGMT_CIDR
+    Permit TCP-709 from ENTRUST_MGMT_CIDR
+    Permit TCP-710 from ENTRUST_MGMT_CIDR
+    Permit TCP-829 from ENTRUST_MGMT_CIDR
+    Permit TCP-22 from BASTION_IP
+    Permit TCP-15443 from BASTION_IP
+    Permit TCP-389 from BASTION_IP
+    Permit TCP-443 from BASTION_IP
+    Permit TCP-709 from BASTION_IP
+    Permit TCP-710 from BASTION_IP
+    Permit TCP-829 from BASTION_IP
+    Permit TCP-8010 from RA_WEB_SERVER_IP
+    Permit TCP-8013 from RA_WEB_SERVER_IP
+    Permit TCP-9039 from RA_WEB_SERVER_IP
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## RA-APP-SERVER OUT
+    Permit TCP-829 to ISSUING_CA_SERVER_IP
+    Permit TCP-443 to ISSUING_CA_SERVER_IP
+    Permit TCP-709 to ISSUING_CA_SERVER_IP
+    Permit TCP-710 to ISSUING_CA_SERVER_IP
+    Permit TCP-389 to LDAP_SERVER_IP
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    PERMIT TCP-9997 to ENTRUST_MGMT_CIDR
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP
+
+## CA-GATEWAY-SERVER IN
+    Permit TCP-22 from ENTRUST_MGMT_CIDR
+    Permit TCP-15443 from ENTRUST_MGMT_CIDR
+    Permit TCP-389 from ENTRUST_MGMT_CIDR
+    Permit TCP-443 from ENTRUST_MGMT_CIDR
+    Permit TCP-709 from ENTRUST_MGMT_CIDR
+    Permit TCP-710 from ENTRUST_MGMT_CIDR
+    Permit TCP-829 from ENTRUST_MGMT_CIDR
+    Permit TCP-22 from BASTION_IP
+    Permit TCP-15443 from BASTION_IP
+    Permit TCP-389 from BASTION_IP
+    Permit TCP-443 from BASTION_IP
+    Permit TCP-709 from BASTION_IP
+    Permit TCP-710 from BASTION_IP
+    Permit TCP-829 from BASTION_IP
+    Permit TCP-8080 from REVERSE_PROXY_IP
+    Permit TCP-8080 from BASTION_IP
+    Permit TCP-8080 from ENTRUST_MGMT_CIDR
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## CA-GATEWAY-SERVER OUT
+    PERMIT TCP-389 to LDAP_SERVER_IP
+    PERMIT TCP-829 to ISSUING_CA_SERVER_IP
+    PERMIT TCP-443 to ISSUING_CA_SERVER_IP
+    PERMIT TCP-709 to ISSUING_CA_SERVER_IP
+    PERMIT TCP-710 to ISSUING_CA_SERVER_IP
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    PERMIT TCP-9997 to ENTRUST_MGMT_CIDR
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP
+
+## ISSUING-CA-IN
+    Permit TCP-22 from ENTRUST_MGMT_CIDR
+    Permit TCP-15443 from ENTRUST_MGMT_CIDR
+    Permit TCP-389 from ENTRUST_MGMT_CIDR
+    Permit TCP-443 from ENTRUST_MGMT_CIDR
+    Permit TCP-709 from ENTRUST_MGMT_CIDR
+    Permit TCP-710 from ENTRUST_MGMT_CIDR
+    Permit TCP-829 from ENTRUST_MGMT_CIDR
+    Permit TCP-22 from BASTION_IP
+    Permit TCP-15443 from BASTION_IP
+    Permit TCP-389 from BASTION_IP
+    Permit TCP-443 from BASTION_IP
+    Permit TCP-709 from BASTION_IP
+    Permit TCP-710 from BASTION_IP
+    Permit TCP-829 from BASTION_IP
+    Permit TCP-829 from RA_APP_SERVER_IP
+    Permit TCP-443 from RA_APP_SERVER_IP
+    Permit TCP-709 from RA_APP_SERVER_IP
+    Permit TCP-710 from RA_APP_SERVER_IP
+    Permit TCP-829 from CA_GATEWAY_SERVER_IP
+    Permit TCP-443 from CA_GATEWAY_SERVER_IP
+    Permit TCP-709 from CA_GATEWAY_SERVER_IP
+    Permit TCP-710 from CA_GATEWAY_SERVER_IP
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## ISSUING-CA OUT
+    Permit TCP-1792 to ENTRUST_HSM_CIDR
+    Permit TCP-389 to LDAP_SERVER_IP
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    PERMIT TCP-9997 to ENTRUST_MGMT_CIDR
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP
+
+## LDAP-SERVER IN
+    Permit TCP-22 from ENTRUST_MGMT_CIDR
+    Permit TCP-15443 from ENTRUST_MGMT_CIDR
+    Permit TCP-389 from ENTRUST_MGMT_CIDR
+    Permit TCP-443 from ENTRUST_MGMT_CIDR
+    Permit TCP-709 from ENTRUST_MGMT_CIDR
+    Permit TCP-710 from ENTRUST_MGMT_CIDR
+    Permit TCP-829 from ENTRUST_MGMT_CIDR
+    Permit TCP-22 from BASTION_IP
+    Permit TCP-15443 from BASTION_IP
+    Permit TCP-389 from BASTION_IP
+    Permit TCP-443 from BASTION_IP
+    Permit TCP-709 from BASTION_IP
+    Permit TCP-710 from BASTION_IP
+    Permit TCP-829 from BASTION_IP
+    Permit TCP-389 from ISSUING_CA_SERVER_IP
+    Permit TCP-389 from RA_APP_SERVER_IP
+    Permit TCP-389 from CA_GATEWAY_SERVER_IP
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP
+    *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
+## LDAP-SERVER OUT
+    PERMIT TCP-80 to 0.0.0.0/0
+    PERMIT TCP-443 to 0.0.0.0/0
+    PERMIT TCP-9997 to ENTRUST_MGMT_CIDR
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP

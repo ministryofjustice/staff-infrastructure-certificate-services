@@ -129,8 +129,8 @@ module "sg_issuing_ca" {
 
     # HSM Primary
     {
-      from_port   = 9004
-      to_port     = 9004
+      from_port   = 1792
+      to_port     = 1792
       protocol    = local.tcp_protocol
       description = "Allow issuing CA to HSM Primary"
       cidr_blocks = local.ip_hsm_primary
@@ -138,8 +138,8 @@ module "sg_issuing_ca" {
 
     # HSM Secondary
     {
-      from_port   = 9004
-      to_port     = 9004
+      from_port   = 1792
+      to_port     = 1792
       protocol    = local.tcp_protocol
       description = "Allow issuing CA to HSM Secondary"
       cidr_blocks = local.ip_hsm_secondary
@@ -264,16 +264,16 @@ module "sg_issuing_ca" {
 
     # HSM Primary
     {
-      from_port   = 9004
-      to_port     = 9004
+      from_port   = 1792
+      to_port     = 1792
       protocol    = local.tcp_protocol
       description = "Allow issuing CA to HSM Primary"
       cidr_blocks = local.ip_hsm_primary
     },
     # HSM Secondary
     {
-      from_port   = 9004
-      to_port     = 9004
+      from_port   = 1792
+      to_port     = 1792
       protocol    = local.tcp_protocol
       description = "Allow issuing CA to HSM Secondary"
       cidr_blocks = local.ip_hsm_secondary
