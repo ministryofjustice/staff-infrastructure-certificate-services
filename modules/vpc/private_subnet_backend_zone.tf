@@ -57,23 +57,33 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
   }
-
-  # Allow all inbound traffic from the public internet
-  ingress {
-    protocol   = var.tcp_protocol
-    rule_no    = 102
-    action     = var.allow_subnet_traffic
-    cidr_block = var.public_internet_cidr_block
-    from_port  = var.tcp_port_range_start
-    to_port    = var.tcp_port_range_end
-  }
-
+  
     # Allow all inbound traffic from VPC
   ingress {
     protocol   = -1
     rule_no    = 202
     action     = var.allow_subnet_traffic
     cidr_block = var.cidr_block
+    from_port  = 0
+    to_port    = 0
+  }
+
+   # Allow all inbound traffic from HSM Primary
+  ingress {
+    protocol   = -1
+    rule_no    = 203
+    action     = var.allow_subnet_traffic
+    cidr_block = var.ip_hsm_primary
+    from_port  = 0
+    to_port    = 0
+  }
+
+   # Allow all inbound traffic from HSM Secondary
+  ingress {
+    protocol   = -1
+    rule_no    = 204
+    action     = var.allow_subnet_traffic
+    cidr_block = var.ip_hsm_secondary
     from_port  = 0
     to_port    = 0
   }

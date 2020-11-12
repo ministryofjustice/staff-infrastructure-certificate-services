@@ -66,6 +66,14 @@ variable "allow_subnet_traffic" {
   type = string
 }
 
+variable "ip_hsm_primary" {
+  type = string
+}
+
+variable "ip_hsm_secondary" {
+  type = string
+}
+
 variable "tags" {
   type = map(string)
 }

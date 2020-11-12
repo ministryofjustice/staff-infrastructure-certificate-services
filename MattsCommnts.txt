@@ -2,27 +2,27 @@
 
 # NACL
 ## Public Subnet IN
-    Permit TCP-80 from 0.0.0.0/0 -103
-    Permit TCP-443 from 0.0.0.0/0 -104
+    Permit TCP-80 from 0.0.0.0/0 -102
+    Permit TCP-443 from 0.0.0.0/0 -103
     Permit TCP-3389 from DONOVAN_PUBLIC_IP -203
     Permit ALL-Traffic from VPC_CIDR -202
     *Permit ALL-Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
 ## Public Subnet OUT
-    Permit ALL Traffic to 0.0.0.0/0
+    Permit ALL Traffic to 0.0.0.0/0 -100
 
 ## BackEnd Subnet IN
     Permit ALL Traffic from VPC_CIDR -202
     *Permit ALL Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
-    Permit ALL Traffic from ENTRUST_HSM_CIDR
+    Permit ALL Traffic from ENTRUST_HSM_CIDR -203,204
 ## BackEnd Subnet OUT
-    Permit ALL Traffic to 0.0.0.0/0
+    Permit ALL Traffic to 0.0.0.0/0 -102
 
 ## RAZone Subnet IN
-    Permit ALL Traffic from VPC_CIDR
+    Permit ALL Traffic from VPC_CIDR -202
     *Permit ALL Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
     *Permit ALL Traffic from MoJO_GP_CIDR ##TODO WHEN VPN UP
 ## RAZone Subnet OUT
-    Permit ALL Traffic to 0.0.0.0/0
+    Permit ALL Traffic to 0.0.0.0/0 -102
 
 # Security Groups
 ## BASTION-SERVER IN

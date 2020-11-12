@@ -17,7 +17,9 @@ module "pki_vpc" {
   ephemeral_port_end                        = local.ephemeral_port_end
   tcp_protocol                              = local.tcp_protocol
   allow_subnet_traffic                      = local.allow_subnet_traffic
-
+  ip_hsm_primary                            = local.ip_hsm_primary
+  ip_hsm_secondary                          = local.ip_hsm_secondary
+  
   prefix = var.prefix
   tags   = var.tags
 }
