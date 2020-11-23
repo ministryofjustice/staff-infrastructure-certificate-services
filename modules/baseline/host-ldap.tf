@@ -117,6 +117,14 @@ module "sg_ldap" {
       description = "Allow LDAP to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
     },
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
+      cidr_blocks = local.public_internet_cidr_block
+    },
   ]
 
   tags = var.tags

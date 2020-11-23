@@ -61,7 +61,7 @@
     Permit TCP-709 from BASTION_IP
     Permit TCP-710 from BASTION_IP
     Permit TCP-829 from BASTION_IP
-    *Permit All-Traffic from VPC_CIDR -NOT DONE as possibly refined already
+    *Permit All-Traffic from VPC_CIDR -done
     *Permit ALL-Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
 ## REVERSE-PROXY OUT
     Permit TCP-8030 to RA_WEB_SERVER_IP -done
@@ -97,7 +97,7 @@
     Permit TCP-8030 from REVERSE_PROXY_IP -done
     Permit TCP-9443 from MoJO_GP_CIDR ##TODO WHEN PEER IS UP
     Permit TCP-21443 from MoJO_GP_CIDR ##TODO WHEN PEER IS UP
-    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP -NOT DONE as possibly refined already
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP -done
     *Permit ALL-Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
 ## RA-WEB-SERVER OUT
     Permit TCP-8010 to RA_APP_SERVER_IP -done
@@ -126,7 +126,7 @@
     Permit TCP-8010 from RA_WEB_SERVER_IP -done
     Permit TCP-8013 from RA_WEB_SERVER_IP -done
     Permit TCP-9039 from RA_WEB_SERVER_IP -done
-    *Permit All-Traffic from VPC_CIDR -NOT DONE as possibly refined already
+    *Permit All-Traffic from VPC_CIDR -done
     *Permit ALL-Traffic from ENTRUST_MGMT_CIDR #TO-CLEAR-UP
 ## RA-APP-SERVER OUT
     Permit TCP-829 to ISSUING_CA_SERVER_IP -done
@@ -157,7 +157,7 @@
     Permit TCP-8080 from REVERSE_PROXY_IP
     Permit TCP-8080 from BASTION_IP
     Permit TCP-8080 from ENTRUST_MGMT_CIDR
-    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP -NOT DONE as possibly refined already
+    *Permit All-Traffic from VPC_CIDR #TO-CLEAR-UP -done
     *Permit ALL-Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
 ## CA-GATEWAY-SERVER OUT
     PERMIT TCP-389 to LDAP_SERVER_IP -done
@@ -168,7 +168,7 @@
     PERMIT TCP-80 to 0.0.0.0/0 -done
     PERMIT TCP-443 to 0.0.0.0/0 -done
     PERMIT TCP-9997 to ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
-    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP -NOT DONE as possibly refined already
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP -done
 
 ## ISSUING-CA-IN
     Permit TCP-22 from ENTRUST_MGMT_CIDR
@@ -193,7 +193,7 @@
     Permit TCP-443 from CA_GATEWAY_SERVER_IP -done
     Permit TCP-709 from CA_GATEWAY_SERVER_IP -done
     Permit TCP-710 from CA_GATEWAY_SERVER_IP -done
-    *Permit All-Traffic from VPC_CIDR -NOT DONE as possibly refined already
+    *Permit All-Traffic from VPC_CIDR -done
     *Permit ALL-Traffic from ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
 ## ISSUING-CA OUT
     Permit TCP-1792 to ENTRUST_HSM_CIDR -done
@@ -201,7 +201,7 @@
     PERMIT TCP-80 to 0.0.0.0/0 -done
     PERMIT TCP-443 to 0.0.0.0/0 -done
     PERMIT TCP-9997 to ENTRUST_MGMT_CIDR ##TODO WHEN VPN UP
-    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP -NOT DONE as possibly refined already
+    *Permit ALL-Traffic to 0.0.0.0/0 #TO-CLEAR-UP -done
 
 ## LDAP-SERVER IN
     Permit TCP-22 from ENTRUST_MGMT_CIDR

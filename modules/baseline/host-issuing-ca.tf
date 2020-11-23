@@ -127,6 +127,16 @@ module "sg_issuing_ca" {
       cidr_blocks = local.public_internet_cidr_block
     },
 
+    # Inter VPC Traffic
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
+      cidr_blocks = local.cidr_block_vpc
+    },
+
     # HSM Primary
     {
       from_port   = 1792
@@ -229,6 +239,14 @@ module "sg_issuing_ca" {
       to_port     = local.https_port
       protocol    = local.tcp_protocol
       description = "Allow issuing CA to access the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
+    },
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
       cidr_blocks = local.public_internet_cidr_block
     },
 
