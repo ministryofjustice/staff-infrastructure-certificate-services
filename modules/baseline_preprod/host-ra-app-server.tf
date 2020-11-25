@@ -91,6 +91,16 @@ module "sg_ra_app_server" {
       description = "Allow RA app server to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
     },
+
+    # Inter VPC Traffic
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
+      cidr_blocks = local.cidr_block_vpc
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -169,6 +179,14 @@ module "sg_ra_app_server" {
       to_port     = local.https_port
       protocol    = local.tcp_protocol
       description = "Allow RA app server to access the public Internet"
+      cidr_blocks = local.public_internet_cidr_block
+    },
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
       cidr_blocks = local.public_internet_cidr_block
     },
   ]

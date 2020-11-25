@@ -16,6 +16,7 @@ locals {
   ephemeral_port_end         = 65535
   tcp_protocol               = "tcp"
   allow_subnet_traffic       = "allow"
+  hsm_port                   = 1792
 
   # VPC
   cidr_block_vpc = "10.180.84.0/22"

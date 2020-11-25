@@ -126,6 +126,34 @@ module "sg_issuing_ca" {
       description = "Allow issuing CA to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
     },
+
+    # Inter VPC Traffic
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
+      cidr_blocks = local.cidr_block_vpc
+    },
+
+    # HSM Primary
+    {
+      from_port   = 1792
+      to_port     = 1792
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to HSM Primary"
+      cidr_blocks = local.ip_hsm_primary
+    },
+
+    # HSM Secondary
+    {
+      from_port   = 1792
+      to_port     = 1792
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to HSM Secondary"
+      cidr_blocks = local.ip_hsm_secondary
+    },
   ]
 
   egress_with_cidr_blocks = [
@@ -213,6 +241,14 @@ module "sg_issuing_ca" {
       description = "Allow issuing CA to access the public Internet"
       cidr_blocks = local.public_internet_cidr_block
     },
+    {
+      ##TO-CLEAR-UP
+      from_port   = 0
+      to_port     = 0
+      protocol    = -1
+      description = "#TO-CLEAR-UP# Permit all egress traffic"
+      cidr_blocks = local.public_internet_cidr_block
+    },
 
     # Bastion
     {
@@ -243,6 +279,24 @@ module "sg_issuing_ca" {
       description = "Allow issuing CA to talk to bastion"
       cidr_blocks = local.cidr_bastion_host
     },
+
+    # HSM Primary
+    {
+      from_port   = 1792
+      to_port     = 1792
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to HSM Primary"
+      cidr_blocks = local.ip_hsm_primary
+    },
+    # HSM Secondary
+    {
+      from_port   = 1792
+      to_port     = 1792
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to HSM Secondary"
+      cidr_blocks = local.ip_hsm_secondary
+    },
+    
   ]
 
   tags = var.tags
