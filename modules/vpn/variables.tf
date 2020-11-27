@@ -6,19 +6,11 @@ variable "prefix" {
   type = string
 }
 
-variable "customer_gateway_primary_ip" {
-    type = string
-}
-
 variable "primary_remote_destination_cidr" {
     type = string
 }
 
 variable "primary_internal_cidr" {
-    type = string
-}
-
-variable "customer_gateway_secondary_ip" {
     type = string
 }
 
@@ -31,5 +23,13 @@ variable "seondary_internal_cidr" {
 }
 
 variable "backend_zone_route_table_id" {
+    type = string
+}
+
+variable "cgw_hsm_primary_id" {
+    type = string
+}
+
+variable "cgw_hsm_secondary_id" {
     type = string
 }

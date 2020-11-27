@@ -38,15 +38,16 @@ module "vpn_production" {
 
   vpc_id = module.pki_vpc.vpc_id
 
-  customer_gateway_primary_ip = var.customer_gateway_primary_ip
   primary_remote_destination_cidr = var.primary_remote_destination_cidr
   primary_internal_cidr = var.primary_internal_cidr
 
   backend_zone_route_table_id = module.pki_vpc.backend_zone_route_table_id
 
-  customer_gateway_secondary_ip = var.customer_gateway_secondary_ip
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
   seondary_internal_cidr = var.seondary_internal_cidr
+
+  cgw_hsm_primary_id = var.cgw_hsm_primary_id
+  cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
 
   prefix = "production"
 }

@@ -7,25 +7,14 @@ resource "aws_vpn_gateway" "vpn_gateway" {
 }
 
 
-## Primary
-
-resource "aws_customer_gateway" "customer_gateway" {
-  tags = {
-    "Name" = "${var.prefix}-pki-cgw-primary"
-  }
-
-  bgp_asn    = 65000
-  ip_address = var.customer_gateway_primary_ip
-  type       = "ipsec.1"
-}
-
+### Primary
 resource "aws_vpn_connection" "main" {
   tags = {
     "Name" = "${var.prefix}-pki-vpn-primary"
   }
 
   vpn_gateway_id      = aws_vpn_gateway.vpn_gateway.id
-  customer_gateway_id = aws_customer_gateway.customer_gateway.id
+  customer_gateway_id = var.cgw_hsm_primary_id
   type                = "ipsec.1"
   static_routes_only  = true
 }
@@ -42,29 +31,14 @@ resource "aws_route" "primary_vpn_route" {
 }
 
 
-
-
-
-
-### secondary
-
-resource "aws_customer_gateway" "customer_gateway_secondary" {
-  tags = {
-    "Name" = "${var.prefix}-pki-cgw-secondary"
-  }
-
-  bgp_asn    = 65000
-  ip_address = var.customer_gateway_secondary_ip
-  type       = "ipsec.1"
-}
-
+### Secondary
 resource "aws_vpn_connection" "vpn_secondary" {
   tags = {
     "Name" = "${var.prefix}-pki-vpn-secondary"
   }
 
   vpn_gateway_id      = aws_vpn_gateway.vpn_gateway.id
-  customer_gateway_id = aws_customer_gateway.customer_gateway_secondary.id
+  customer_gateway_id = var.cgw_hsm_secondary_id
   type                = "ipsec.1"
   static_routes_only  = true
 }
