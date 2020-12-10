@@ -17,3 +17,11 @@ variable "environment_description" {
 variable "trusted_cidr" {
   type = string
 }
+
+variable "pcx_preproduction_pki_ost_id" {
+  type = string
+}
+
+variable "pcx_preproduction_pki_ost_cidr" {
+  type = string
+}

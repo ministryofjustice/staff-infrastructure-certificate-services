@@ -29,6 +29,12 @@ resource "aws_route" "backend_zone_route" {
   nat_gateway_id         = aws_nat_gateway.pki_nat_gateway.id
 }
 
+resource "aws_route" "ost_peer_route" {
+  route_table_id         = aws_route_table.backend_zone_route_table.id
+  destination_cidr_block = var.ost_cidr_block
+  vpc_peering_connection_id = var.ost_peering_id
+}
+
 resource "aws_route_table_association" "backend_zone_route_table_association" {
   subnet_id      = aws_subnet.private_subnet_backend_zone.id
   route_table_id = aws_route_table.backend_zone_route_table.id

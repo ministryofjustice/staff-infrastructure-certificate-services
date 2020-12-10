@@ -42,6 +42,9 @@ module "baseline_pre_production" {
 
   trusted_cidr = var.trusted_cidr
 
+  pcx_preproduction_pki_ost_id = var.pcx_preproduction_pki_ost_id
+  pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
+
   providers = {
     aws = aws.env
   }
@@ -57,6 +60,9 @@ module "baseline_production" {
   region_id = data.aws_region.current_region.id
 
   trusted_cidr = var.trusted_cidr
+
+  pcx_production_pki_ost_id = var.pcx_production_pki_ost_id
+  pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr
 
   customer_gateway_primary_ip = var.customer_gateway_primary_ip
   primary_remote_destination_cidr = var.primary_remote_destination_cidr

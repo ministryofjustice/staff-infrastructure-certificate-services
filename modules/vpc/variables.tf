@@ -74,6 +74,14 @@ variable "ip_hsm_secondary" {
   type = string
 }
 
+variable "ost_cidr_block" {
+  type = string
+}
+
+variable "ost_peering_id" {
+  type = string
+}
+
 variable "tags" {
   type = map(string)
 }

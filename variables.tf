@@ -31,3 +31,19 @@ variable "secondary_remote_destination_cidr" {
 variable "seondary_internal_cidr" {
     type = string
 }
+
+variable "pcx_preproduction_pki_ost_id" {
+    type = string
+}
+
+variable "pcx_production_pki_ost_id" {
+    type = string
+}
+
+variable "pcx_preproduction_pki_ost_cidr" {
+    type = string
+}
+
+variable "pcx_production_pki_ost_cidr" {
+    type = string
+}
