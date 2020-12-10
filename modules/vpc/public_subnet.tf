@@ -64,7 +64,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     cidr_block = var.cidr_block
     from_port  = 0
     to_port    = 0
-  } 
+  }
 
   # Allow inbound RDP traffic from the Donovan
   ingress {
