@@ -3,5 +3,5 @@ output "private_key_pem_format" {
 }
 
 output "key_name" {
-  value = module.key_pair.this_key_pair_key_name
+  value = module.key_pair.key_pair_key_name
 }
