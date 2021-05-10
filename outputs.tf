@@ -31,3 +31,7 @@ output "prod_ec2_bastion_public_ip" {
 output "prod_ec2_bastion_password_data" {
   value = module.baseline_production.ec2_bastion_password_data
 }
+
+output "assume_role_arn" {
+  value = module.iam.assume_role_arn
+}

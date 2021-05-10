@@ -30,3 +30,7 @@ variable "cgw_hsm_primary_ip" {
 variable "cgw_hsm_secondary_ip" {
     type = string
 }
+
+variable "mojo_production_account_id" {
+    type = string
+}

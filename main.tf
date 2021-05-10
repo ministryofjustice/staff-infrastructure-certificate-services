@@ -39,6 +39,13 @@ module "cgw" {
 
 }
 
+module "iam" {
+  source = "./modules/iam"
+
+  mojo_production_account_id = var.mojo_production_account_id
+
+}
+
 module "baseline_pre_production" {
   source = "./modules/baseline_preprod"
 
