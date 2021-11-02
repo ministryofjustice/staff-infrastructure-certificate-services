@@ -1,5 +1,5 @@
 terraform {
-  required_version = "> 0.12.0"
+  required_version = "~> 0.14.11"
   backend "s3" {
     bucket         = "moj-pttp-pki-aws-infrastructure-terraform-state"
     key            = "global/s3/terraform.tfstate"
@@ -9,7 +9,7 @@ terraform {
 }
 
 provider "aws" {
-  version = "~> 2.68"
+  version = "~> 3.63"
   alias   = "env"
 }
 
@@ -17,7 +17,7 @@ data "aws_region" "current_region" {}
 
 module "label" {
   source  = "cloudposse/label/null"
-  version = "0.16.0"
+  version = "0.25.0"
 
   name      = "pki"
   delimiter = "-"
