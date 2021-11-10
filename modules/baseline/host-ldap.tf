@@ -60,7 +60,7 @@ module "sg_ldap" {
       cidr_blocks = local.public_internet_cidr_block
     },
 
-   # VPC Traffic  
+    # VPC Traffic  
     {
       ##TO-CLEAR-UP
       from_port   = 0

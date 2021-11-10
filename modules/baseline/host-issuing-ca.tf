@@ -296,7 +296,7 @@ module "sg_issuing_ca" {
       description = "Allow issuing CA to HSM Secondary"
       cidr_blocks = local.ip_hsm_secondary
     },
-    
+
   ]
 
   tags = var.tags
