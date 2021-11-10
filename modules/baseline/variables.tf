@@ -19,25 +19,33 @@ variable "trusted_cidr" {
 }
 
 variable "primary_remote_destination_cidr" {
-    type = string
+  type = string
 }
 
 variable "primary_internal_cidr" {
-    type = string
+  type = string
 }
 
 variable "secondary_remote_destination_cidr" {
-    type = string
+  type = string
 }
 
 variable "seondary_internal_cidr" {
-    type = string
+  type = string
 }
 
 variable "cgw_hsm_primary_id" {
-    type = string
+  type = string
 }
 
 variable "cgw_hsm_secondary_id" {
-    type = string
+  type = string
+}
+
+variable "pcx_production_pki_ost_id" {
+  type = string
+}
+
+variable "pcx_production_pki_ost_cidr" {
+  type = string
 }

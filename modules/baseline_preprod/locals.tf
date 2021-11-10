@@ -51,7 +51,7 @@ locals {
   cidr_ra_web_server = "10.180.84.4/32"
 
   # HSM Servers
-  ip_hsm_primary = "192.168.130.24/32"
+  ip_hsm_primary   = "192.168.130.24/32"
   ip_hsm_secondary = "192.168.30.24/32"
 
 }

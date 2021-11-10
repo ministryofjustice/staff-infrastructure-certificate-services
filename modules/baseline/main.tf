@@ -19,6 +19,8 @@ module "pki_vpc" {
   allow_subnet_traffic                      = local.allow_subnet_traffic
   ip_hsm_primary                            = local.ip_hsm_primary
   ip_hsm_secondary                          = local.ip_hsm_secondary
+  ost_peering_id                            = var.pcx_production_pki_ost_id
+  ost_cidr_block                            = var.pcx_production_pki_ost_cidr
 
   prefix = var.prefix
   tags   = var.tags
@@ -39,14 +41,14 @@ module "vpn_production" {
   vpc_id = module.pki_vpc.vpc_id
 
   primary_remote_destination_cidr = var.primary_remote_destination_cidr
-  primary_internal_cidr = var.primary_internal_cidr
+  primary_internal_cidr           = var.primary_internal_cidr
 
   backend_zone_route_table_id = module.pki_vpc.backend_zone_route_table_id
 
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
-  seondary_internal_cidr = var.seondary_internal_cidr
+  seondary_internal_cidr            = var.seondary_internal_cidr
 
-  cgw_hsm_primary_id = var.cgw_hsm_primary_id
+  cgw_hsm_primary_id   = var.cgw_hsm_primary_id
   cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
 
   prefix = "production"
