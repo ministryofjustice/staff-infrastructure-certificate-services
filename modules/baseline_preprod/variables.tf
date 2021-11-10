@@ -41,3 +41,11 @@ variable "cgw_hsm_primary_id" {
 variable "cgw_hsm_secondary_id" {
     type = string
 }
+
+variable "pcx_preproduction_pki_ost_id" {
+  type = string
+}
+
+variable "pcx_preproduction_pki_ost_cidr" {
+  type = string
+}

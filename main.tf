@@ -66,6 +66,9 @@ module "baseline_pre_production" {
   cgw_hsm_primary_id = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
 
+  pcx_preproduction_pki_ost_id = var.pcx_preproduction_pki_ost_id
+  pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
+
   providers = {
     aws = aws.env
   }
@@ -90,6 +93,9 @@ module "baseline_production" {
 
   cgw_hsm_primary_id = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
+
+  pcx_production_pki_ost_id = var.pcx_production_pki_ost_id
+  pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr
 
   providers = {
     aws = aws.env

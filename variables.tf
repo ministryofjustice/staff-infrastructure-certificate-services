@@ -31,6 +31,22 @@ variable "cgw_hsm_secondary_ip" {
     type = string
 }
 
+variable "pcx_preproduction_pki_ost_id" {
+    type = string
+}
+
+variable "pcx_production_pki_ost_id" {
+    type = string
+}
+
+variable "pcx_preproduction_pki_ost_cidr" {
+    type = string
+}
+
+variable "pcx_production_pki_ost_cidr" {
+    type = string
+} 
+
 variable "mojo_production_account_id" {
     type = string
 }
