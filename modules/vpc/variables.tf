@@ -86,6 +86,10 @@ variable "mojo_tgw_id" {
     type = string
 }
 
+variable "gp_client_cidr_block" {
+    type = string
+}
+
 variable "tags" {
   type = map(string)
 }

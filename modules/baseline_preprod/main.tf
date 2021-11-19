@@ -22,6 +22,7 @@ module "pki_vpc" {
   ost_peering_id                            = var.pcx_preproduction_pki_ost_id
   ost_cidr_block                            = var.pcx_preproduction_pki_ost_cidr
   mojo_tgw_id                               = var.mojo_tgw_id
+  gp_client_cidr_block                      = var.gp_client_cidr_block
 
   prefix = var.prefix
   tags   = var.tags
