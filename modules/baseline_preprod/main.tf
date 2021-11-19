@@ -21,6 +21,7 @@ module "pki_vpc" {
   ip_hsm_secondary                          = local.ip_hsm_secondary
   ost_peering_id                            = var.pcx_preproduction_pki_ost_id
   ost_cidr_block                            = var.pcx_preproduction_pki_ost_cidr
+  mojo_tgw_id                               = var.mojo_tgw_id
 
   prefix = var.prefix
   tags   = var.tags
@@ -52,4 +53,14 @@ module "vpn_pre-production" {
   cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
 
   prefix = "pre-production"
+}
+
+module "tgw-attach" {
+  source = ".././tgw"
+
+  vpc_id                            = module.pki_vpc.vpc_id
+  mojo_tgw_id                       = var.mojo_tgw_id
+  private_subnet_private_ra_zone_id = module.pki_vpc.private_subnet_private_ra_zone_id
+
+  prefix = var.prefix
 }
