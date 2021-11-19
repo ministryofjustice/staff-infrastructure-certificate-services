@@ -51,9 +51,9 @@ variable "pcx_production_pki_ost_cidr" {
 }
 
 variable "mojo_tgw_id" {
-    type = string
+  type = string
 }
 
 variable "gp_client_cidr_block" {
-    type = string
+  type = string
 } 

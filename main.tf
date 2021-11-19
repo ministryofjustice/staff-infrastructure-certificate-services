@@ -69,7 +69,7 @@ module "baseline_pre_production" {
   pcx_preproduction_pki_ost_id   = var.pcx_preproduction_pki_ost_id
   pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
 
-  mojo_tgw_id = var.mojo_tgw_id
+  mojo_tgw_id          = var.mojo_tgw_id
   gp_client_cidr_block = var.gp_client_cidr_block
 
   providers = {
@@ -100,7 +100,7 @@ module "baseline_production" {
   pcx_production_pki_ost_id   = var.pcx_production_pki_ost_id
   pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr
 
-  mojo_tgw_id = var.mojo_tgw_id
+  mojo_tgw_id          = var.mojo_tgw_id
   gp_client_cidr_block = var.gp_client_cidr_block
 
   providers = {
