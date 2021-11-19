@@ -58,8 +58,8 @@ module "vpn_production" {
 module "tgw-attach" {
   source = ".././tgw"
 
-  vpc_id = module.pki_vpc.vpc_id
-  mojo_tgw_id = var.mojo_tgw_id
+  vpc_id                            = module.pki_vpc.vpc_id
+  mojo_tgw_id                       = var.mojo_tgw_id
   private_subnet_private_ra_zone_id = module.pki_vpc.private_subnet_private_ra_zone_id
 
   prefix = var.prefix
