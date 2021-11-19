@@ -82,6 +82,10 @@ variable "ost_peering_id" {
   type = string
 }
 
+variable "mojo_tgw_id" {
+    type = string
+}
+
 variable "tags" {
   type = map(string)
 }

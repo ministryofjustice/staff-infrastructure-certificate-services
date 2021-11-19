@@ -49,3 +49,7 @@ variable "pcx_preproduction_pki_ost_id" {
 variable "pcx_preproduction_pki_ost_cidr" {
   type = string
 }
+
+variable "mojo_tgw_id" {
+    type = string
+}
