@@ -30,8 +30,8 @@ resource "aws_route" "backend_zone_route" {
 }
 
 resource "aws_route" "ost_peer_route" {
-  route_table_id         = aws_route_table.backend_zone_route_table.id
-  destination_cidr_block = var.ost_cidr_block
+  route_table_id            = aws_route_table.backend_zone_route_table.id
+  destination_cidr_block    = var.ost_cidr_block
   vpc_peering_connection_id = var.ost_peering_id
 }
 
@@ -73,8 +73,8 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
   }
-  
-    # Allow all inbound traffic from VPC
+
+  # Allow all inbound traffic from VPC
   ingress {
     protocol   = -1
     rule_no    = 202
@@ -84,7 +84,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
     to_port    = 0
   }
 
-   # Allow all inbound traffic from HSM Primary
+  # Allow all inbound traffic from HSM Primary
   ingress {
     protocol   = -1
     rule_no    = 203
@@ -94,7 +94,7 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
     to_port    = 0
   }
 
-   # Allow all inbound traffic from HSM Secondary
+  # Allow all inbound traffic from HSM Secondary
   ingress {
     protocol   = -1
     rule_no    = 204

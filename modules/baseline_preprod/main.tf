@@ -43,14 +43,14 @@ module "vpn_pre-production" {
   vpc_id = module.pki_vpc.vpc_id
 
   primary_remote_destination_cidr = var.primary_remote_destination_cidr
-  primary_internal_cidr = var.primary_internal_cidr
+  primary_internal_cidr           = var.primary_internal_cidr
 
   backend_zone_route_table_id = module.pki_vpc.backend_zone_route_table_id
 
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
-  seondary_internal_cidr = var.seondary_internal_cidr
+  seondary_internal_cidr            = var.seondary_internal_cidr
 
-  cgw_hsm_primary_id = var.cgw_hsm_primary_id
+  cgw_hsm_primary_id   = var.cgw_hsm_primary_id
   cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
 
   prefix = "pre-production"
@@ -59,8 +59,8 @@ module "vpn_pre-production" {
 module "tgw-attach" {
   source = ".././tgw"
 
-  vpc_id = module.pki_vpc.vpc_id
-  mojo_tgw_id = var.mojo_tgw_id
+  vpc_id                            = module.pki_vpc.vpc_id
+  mojo_tgw_id                       = var.mojo_tgw_id
   private_subnet_private_ra_zone_id = module.pki_vpc.private_subnet_private_ra_zone_id
 
   prefix = var.prefix

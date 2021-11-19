@@ -73,8 +73,8 @@ resource "aws_network_acl" "private_subnet_private_ra_zone_nacl" {
     from_port  = var.tcp_port_range_start
     to_port    = var.tcp_port_range_end
   }
-  
-   # Allow all inbound traffic from VPC
+
+  # Allow all inbound traffic from VPC
   ingress {
     protocol   = -1
     rule_no    = 202
@@ -82,7 +82,7 @@ resource "aws_network_acl" "private_subnet_private_ra_zone_nacl" {
     cidr_block = var.cidr_block
     from_port  = 0
     to_port    = 0
-  } 
+  }
 
   # Allow all outbound traffic to the public subnet
   egress {
