@@ -34,7 +34,7 @@ module "label" {
 module "cgw" {
   source = "./modules/cgw"
 
-  cgw_hsm_primary_ip = var.cgw_hsm_primary_ip
+  cgw_hsm_primary_ip   = var.cgw_hsm_primary_ip
   cgw_hsm_secondary_ip = var.cgw_hsm_secondary_ip
 
 }
@@ -58,15 +58,15 @@ module "baseline_pre_production" {
   trusted_cidr = var.trusted_cidr
 
   primary_remote_destination_cidr = var.primary_remote_destination_cidr
-  primary_internal_cidr = var.primary_internal_cidr
+  primary_internal_cidr           = var.primary_internal_cidr
 
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
-  seondary_internal_cidr = var.seondary_internal_cidr
+  seondary_internal_cidr            = var.seondary_internal_cidr
 
-  cgw_hsm_primary_id = module.cgw.cgw_hsm_primary_id
+  cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
 
-  pcx_preproduction_pki_ost_id = var.pcx_preproduction_pki_ost_id
+  pcx_preproduction_pki_ost_id   = var.pcx_preproduction_pki_ost_id
   pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
 
   mojo_tgw_id = var.mojo_tgw_id
@@ -88,15 +88,15 @@ module "baseline_production" {
   trusted_cidr = var.trusted_cidr
 
   primary_remote_destination_cidr = var.primary_remote_destination_cidr
-  primary_internal_cidr = var.primary_internal_cidr
+  primary_internal_cidr           = var.primary_internal_cidr
 
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
-  seondary_internal_cidr = var.seondary_internal_cidr
+  seondary_internal_cidr            = var.seondary_internal_cidr
 
-  cgw_hsm_primary_id = module.cgw.cgw_hsm_primary_id
+  cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
 
-  pcx_production_pki_ost_id = var.pcx_production_pki_ost_id
+  pcx_production_pki_ost_id   = var.pcx_production_pki_ost_id
   pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr
 
   mojo_tgw_id = var.mojo_tgw_id
