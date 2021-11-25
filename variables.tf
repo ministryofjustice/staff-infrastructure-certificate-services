@@ -51,6 +51,10 @@ variable "mojo_tgw_id" {
   type = string
 }
 
+variable "gp_client_cidr_block" {
+  type = string
+}
+
 variable "mojo_production_account_id" {
   type = string
 }
