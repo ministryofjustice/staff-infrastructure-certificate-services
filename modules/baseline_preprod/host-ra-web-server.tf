@@ -71,6 +71,22 @@ module "sg_ra_web_server" {
       description = "#TO-CLEAR-UP# Permit all egress traffic"
       cidr_blocks = local.cidr_block_vpc
     },
+
+    # Global Protect
+    {
+      from_port   = 21443
+      to_port     = 21443
+      protocol    = local.tcp_protocol
+      description = "Allow Global Protect Users to CSRES"
+      cidr_blocks = var.gp_client_cidr_block
+    },
+    {
+      from_port   = 9443
+      to_port     = 9443
+      protocol    = local.tcp_protocol
+      description = "Allow Global Protect Users to UMS"
+      cidr_blocks = var.gp_client_cidr_block
+    },
   ]
 
   egress_with_cidr_blocks = [
