@@ -35,6 +35,12 @@ resource "aws_route" "ost_peer_route" {
   vpc_peering_connection_id = var.ost_peering_id
 }
 
+resource "aws_route" "gp_tgw_route_backend_zone" {
+  route_table_id         = aws_route_table.backend_zone_route_table.id
+  destination_cidr_block = var.gp_client_cidr_block
+  transit_gateway_id     = var.mojo_tgw_id
+}
+
 resource "aws_route_table_association" "backend_zone_route_table_association" {
   subnet_id      = aws_subnet.private_subnet_backend_zone.id
   route_table_id = aws_route_table.backend_zone_route_table.id
