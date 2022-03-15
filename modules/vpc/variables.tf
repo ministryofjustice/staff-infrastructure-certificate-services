@@ -86,7 +86,7 @@ variable "mojo_prod_tgw_id" {
   type = string
 }
 
-variable "gp_client_cidr_block" {
+variable "gp_client_prod_cidr_block" {
   type = string
 }
 

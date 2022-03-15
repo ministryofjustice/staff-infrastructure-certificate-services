@@ -70,7 +70,7 @@ module "baseline_pre_production" {
   pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
 
   mojo_prod_tgw_id          = var.mojo_prod_tgw_id
-  gp_client_cidr_block = var.gp_client_cidr_block
+  gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
 
   providers = {
     aws = aws.env
@@ -101,7 +101,7 @@ module "baseline_production" {
   pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr
 
   mojo_prod_tgw_id          = var.mojo_prod_tgw_id
-  gp_client_cidr_block = var.gp_client_cidr_block
+  gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
 
   providers = {
     aws = aws.env
