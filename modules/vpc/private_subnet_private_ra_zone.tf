@@ -32,7 +32,7 @@ resource "aws_route" "ra_zone_route" {
 resource "aws_route" "gp_tgw_route" {
   route_table_id         = aws_route_table.ra_zone_route_table.id
   destination_cidr_block = var.gp_client_cidr_block
-  transit_gateway_id     = var.mojo_tgw_id
+  transit_gateway_id     = var.mojo_prod_tgw_id
 }
 
 resource "aws_route_table_association" "ra_zone_route_table_association" {

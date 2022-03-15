@@ -47,7 +47,7 @@ variable "pcx_production_pki_ost_cidr" {
   type = string
 }
 
-variable "mojo_tgw_id" {
+variable "mojo_prod_tgw_id" {
   type = string
 }
 

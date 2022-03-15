@@ -6,7 +6,7 @@ variable "private_subnet_private_ra_zone_id" {
   type = string
 }
 
-variable "mojo_tgw_id" {
+variable "mojo_prod_tgw_id" {
   type = string
 }
 
