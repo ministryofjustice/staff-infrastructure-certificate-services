@@ -78,14 +78,14 @@ module "sg_ra_web_server" {
       to_port     = 21443
       protocol    = local.tcp_protocol
       description = "Allow Global Protect Users to CSRES"
-      cidr_blocks = var.gp_client_cidr_block
+      cidr_blocks = var.gp_client_prod_cidr_block
     },
     {
       from_port   = 9443
       to_port     = 9443
       protocol    = local.tcp_protocol
       description = "Allow Global Protect Users to UMS"
-      cidr_blocks = var.gp_client_cidr_block
+      cidr_blocks = var.gp_client_prod_cidr_block
     },
   ]
 

@@ -108,7 +108,7 @@ module "sg_ra_app_server" {
       to_port     = 15443
       protocol    = local.tcp_protocol
       description = "Allow Global Protect Users to CFGWS"
-      cidr_blocks = var.gp_client_cidr_block
+      cidr_blocks = var.gp_client_prod_cidr_block
     },
   ]
 
