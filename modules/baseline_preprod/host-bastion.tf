@@ -164,6 +164,12 @@ module "ec2_bastion_host" {
   get_password_data           = true
   server_description          = "${var.prefix}-bastion-host"
 
+  root_block_device = [
+    {
+      volume_size = 100
+    },
+  ]  
+
   tags = merge(
     var.tags,
     {
