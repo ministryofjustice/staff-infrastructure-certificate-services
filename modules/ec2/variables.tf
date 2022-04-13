@@ -65,3 +65,8 @@ variable "associate_public_ip_address" {
   description = "If true, the EC2 instance will have associated public IP address"
   type        = bool
 }
+
+variable "root_block_device" {
+  type        = list(any)
+  default     = []
+}
