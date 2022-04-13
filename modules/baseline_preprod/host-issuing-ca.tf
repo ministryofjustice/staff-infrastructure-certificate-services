@@ -315,6 +315,12 @@ module "ec2_issuing_ca" {
   get_password_data           = false
   server_description          = "${var.prefix}-issuing-ca"
 
+  root_block_device = [
+  {
+    volume_size = 30
+  },
+  ]  
+
   tags = merge(
     var.tags,
     {
