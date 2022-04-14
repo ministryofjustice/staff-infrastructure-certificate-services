@@ -119,6 +119,12 @@ module "ec2_reverse_proxy" {
   get_password_data           = false
   server_description          = "${var.prefix}-reverse-proxy"
 
+  root_block_device = [
+  {
+    volume_size = 40
+  },
+  ] 
+
   tags = merge(
     var.tags,
     {

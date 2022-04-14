@@ -216,6 +216,12 @@ module "ec2_ra_app_server" {
   get_password_data           = false
   server_description          = "${var.prefix}-ra-app-server"
 
+  root_block_device = [
+  {
+    volume_size = 40
+  },
+  ] 
+
   tags = merge(
     var.tags,
     {

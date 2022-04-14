@@ -143,6 +143,12 @@ module "ec2_ldap" {
   get_password_data           = false
   server_description          = "${var.prefix}-ldap"
 
+  root_block_device = [
+  {
+    volume_size = 40
+  },
+  ] 
+
   tags = merge(
     var.tags,
     {

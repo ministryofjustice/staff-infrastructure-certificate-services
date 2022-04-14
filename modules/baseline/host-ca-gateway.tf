@@ -179,6 +179,12 @@ module "ec2_ca_gateway" {
   get_password_data           = false
   server_description          = "${var.prefix}-ca-gateway"
 
+  root_block_device = [
+  {
+    volume_size = 40
+  },
+  ]   
+
   tags = merge(
     var.tags,
     {
