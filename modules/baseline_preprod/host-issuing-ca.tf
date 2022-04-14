@@ -317,7 +317,7 @@ module "ec2_issuing_ca" {
 
   root_block_device = [
   {
-    volume_size = 30
+    volume_size = 40
   },
   ]  
 
