@@ -9,6 +9,7 @@
                 "cloudwatch:GetMetricData",
                 "cloudwatch:ListMetrics",
                 "tag:GetResources"
+                "apigateway:GET"
             ],
             "Resource": [
                 "*"
