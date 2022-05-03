@@ -1,0 +1,7 @@
+certificate-services:
+  - '**'
+
+documentation:
+  - "diagrams/**"
+  - "documentation/**"
+  - "README.md"
