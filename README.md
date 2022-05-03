@@ -91,3 +91,4 @@ This assumes that you have followed the steps above to remote desktop into the B
 
 - Delete the Terraform S3 state bucket and DynamoDB lock table.
   - The S3 state bucket contains the output variables from running the Terraform, which means that it contains passwords, key pairs etc.
+asfdklwuvSABEFIUEWbs
