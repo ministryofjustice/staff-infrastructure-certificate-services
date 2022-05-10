@@ -17,3 +17,7 @@ output "private_subnet_private_ra_zone_id" {
 output "backend_zone_route_table_id" {
   value = aws_route_table.backend_zone_route_table.id
 }
+
+output "private_subnet_backend_zone_az" {
+  value = aws_subnet.private_subnet_backend_zone.availability_zone
+}
