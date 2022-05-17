@@ -3,6 +3,15 @@ variable "env" {
   default = "development"
 }
 
+variable "region" {
+  type = string
+  default = "eu-west-2"
+}
+
+variable "assume_role" {
+  type = string
+}
+
 variable "trusted_cidr" {
   type = string
 }

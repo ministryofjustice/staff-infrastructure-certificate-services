@@ -1,16 +1,19 @@
 terraform {
-  required_version = "~> 0.14.11"
   backend "s3" {
-    bucket         = "moj-pttp-pki-aws-infrastructure-terraform-state"
-    key            = "global/s3/terraform.tfstate"
-    dynamodb_table = "moj-pttp-pki-aws-infrastructure-terraform-state-locks"
+    bucket         = "mojo-pki-aws-infrastructure-terraform-state"
+    # key            = "global/s3/terraform.tfstate"
+    dynamodb_table = "mojo-pki-aws-infrastructure-terraform-state-locks"
     encrypt        = true
   }
 }
 
 provider "aws" {
-  version = "~> 3.63"
+  region = var.region
   alias   = "env"
+
+  assume_role {
+    role_arn = var.assume_role
+  }
 }
 
 data "aws_region" "current_region" {}
@@ -37,6 +40,9 @@ module "cgw" {
   cgw_hsm_primary_ip   = var.cgw_hsm_primary_ip
   cgw_hsm_secondary_ip = var.cgw_hsm_secondary_ip
 
+  providers = {
+    aws = aws.env
+  }
 }
 
 module "iam" {
@@ -44,6 +50,9 @@ module "iam" {
 
   mojo_production_account_id = var.mojo_production_account_id
 
+  providers = {
+    aws = aws.env
+  }
 }
 
 module "baseline_pre_production" {
