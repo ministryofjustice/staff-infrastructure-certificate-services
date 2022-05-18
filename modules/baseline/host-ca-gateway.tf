@@ -180,10 +180,10 @@ module "ec2_ca_gateway" {
   server_description          = "${var.prefix}-ca-gateway"
 
   root_block_device = [
-  {
-    volume_size = 40
-  },
-  ]   
+    {
+      volume_size = 40
+    },
+  ]
 
   tags = merge(
     var.tags,

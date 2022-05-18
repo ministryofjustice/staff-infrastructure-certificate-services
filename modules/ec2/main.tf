@@ -17,7 +17,7 @@ module "ec2" {
 
   get_password_data = var.get_password_data
 
-  root_block_device = var.root_block_device 
+  root_block_device = var.root_block_device
 
   tags = merge(
     var.tags,

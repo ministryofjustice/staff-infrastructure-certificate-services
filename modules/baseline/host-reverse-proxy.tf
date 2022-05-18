@@ -120,10 +120,10 @@ module "ec2_reverse_proxy" {
   server_description          = "${var.prefix}-reverse-proxy"
 
   root_block_device = [
-  {
-    volume_size = 40
-  },
-  ] 
+    {
+      volume_size = 40
+    },
+  ]
 
   tags = merge(
     var.tags,
