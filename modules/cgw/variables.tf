@@ -1,7 +1,7 @@
 variable "cgw_hsm_primary_ip" {
-    type = string
+  type = string
 }
 
 variable "cgw_hsm_secondary_ip" {
-    type = string
+  type = string
 }

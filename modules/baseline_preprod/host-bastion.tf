@@ -168,7 +168,7 @@ module "ec2_bastion_host" {
     {
       volume_size = 100
     },
-  ]  
+  ]
 
   tags = merge(
     var.tags,

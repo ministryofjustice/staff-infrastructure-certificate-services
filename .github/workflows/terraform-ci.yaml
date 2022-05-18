@@ -1,0 +1,82 @@
+name: Terraform CI
+
+on:
+  pull_request:
+    branches:
+      - "main"
+  push:
+    branches:
+      - "main"
+
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  terraform-apply-prod:
+    name: 'Production'
+    runs-on: ubuntu-latest
+    environment: production
+    defaults:
+      run:
+        shell: bash
+    env:
+        ENV: "production"
+        TF_VAR_assume_role: ${{ secrets.TF_VAR_ASSUME_ROLE }}
+        TF_VAR_trusted_cidr: ${{ secrets.TF_VAR_TRUSTED_CIDR }}
+        TF_VAR_primary_remote_destination_cidr: ${{ secrets.TF_VAR_primary_REMOTE_DESTINATION_CIDR }}
+        TF_VAR_primary_internal_cidr: ${{ secrets.TF_VAR_PRIMARY_INTERNAL_CIDR }}
+        TF_VAR_secondary_remote_destination_cidr: ${{ secrets.TF_VAR_SECONDARY_REMOTE_DESTINATION_CIDR }}
+        TF_VAR_seondary_internal_cidr: ${{ secrets.TF_VAR_SEONDARY_INTERNAL_CIDR }}
+        TF_VAR_cgw_hsm_primary_ip: ${{ secrets.TF_VAR_CGW_HSM_PRIMARY_IP }}
+        TF_VAR_cgw_hsm_secondary_ip: ${{ secrets.TF_VAR_CGW_HSM_SECONDARY_IP }}
+        TF_VAR_pcx_preproduction_pki_ost_id: ${{ secrets.TF_VAR_PCX_PREPRODUCTION_PKI_OST_ID }}
+        TF_VAR_pcx_production_pki_ost_id: ${{ secrets.TF_VAR_PCX_PRODUCTION_PKI_OST_ID }}
+        TF_VAR_pcx_preproduction_pki_ost_cidr: ${{ secrets.TF_VAR_PCX_PREPRODUCTION_PKI_OST_CIDR }}
+        TF_VAR_pcx_production_pki_ost_cidr: ${{ secrets.TF_VAR_PCX_PRODUCTION_PKI_OST_CIDR }}
+        TF_VAR_mojo_prod_tgw_id: ${{ secrets.TF_VAR_MOJO_PROD_TGW_ID }}
+        TF_VAR_gp_client_prod_cidr_block: ${{ secrets.TF_VAR_GP_CLIENT_PROD_CIDR_BLOCK }}
+        TF_VAR_mojo_production_account_id: ${{ secrets.TF_VAR_MOJO_PRODUCTION_ACCOUNT_ID }}
+
+    steps:
+    # Checkout the repository to the GitHub Actions runner
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    # Configure AWS credentials
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-region: eu-west-2
+        role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+        role-session-name: GitHubWorkflow
+
+    # Install the latest version of Terraform CLI
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+
+    # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
+    - name: Terraform Init
+      run: terraform init -reconfigure --backend-config="key=$ENV/terraform.$ENV.state"
+
+    # Select or create and then select a Terraform workspace
+    - name: Terraform Workspace
+      run: terraform workspace select $ENV || terraform workspace new $ENV
+
+    # Checks that all Terraform configuration files adhere to a canonical format
+    - name: Terraform Format
+      run: terraform fmt --recursive -check
+
+    # Validates Terraform configuration
+    - name: Terraform Validate
+      run: terraform validate
+
+    # Generates an execution plan for Terraform
+    - name: Terraform Plan
+      run: terraform plan
+
+      # On push to main, build or change infrastructure according to Terraform configuration files
+      # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
+    - name: Terraform Apply
+      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      run: terraform apply -auto-approve

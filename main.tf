@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket         = "mojo-pki-aws-infrastructure-terraform-state"
+    bucket = "mojo-pki-aws-infrastructure-terraform-state"
     # key            = "global/s3/terraform.tfstate"
     dynamodb_table = "mojo-pki-aws-infrastructure-terraform-state-locks"
     encrypt        = true
@@ -9,7 +9,7 @@ terraform {
 
 provider "aws" {
   region = var.region
-  alias   = "env"
+  alias  = "env"
 
   assume_role {
     role_arn = var.assume_role

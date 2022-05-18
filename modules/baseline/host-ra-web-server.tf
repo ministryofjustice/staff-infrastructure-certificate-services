@@ -164,10 +164,10 @@ module "ec2_ra_web_server" {
   server_description          = "${var.prefix}-ra-web-server"
 
   root_block_device = [
-  {
-    volume_size = 40
-  },
-  ] 
+    {
+      volume_size = 40
+    },
+  ]
 
   tags = merge(
     var.tags,

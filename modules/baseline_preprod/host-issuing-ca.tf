@@ -316,10 +316,10 @@ module "ec2_issuing_ca" {
   server_description          = "${var.prefix}-issuing-ca"
 
   root_block_device = [
-  {
-    volume_size = 40
-  },
-  ]  
+    {
+      volume_size = 40
+    },
+  ]
 
   tags = merge(
     var.tags,

@@ -217,10 +217,10 @@ module "ec2_ra_app_server" {
   server_description          = "${var.prefix}-ra-app-server"
 
   root_block_device = [
-  {
-    volume_size = 40
-  },
-  ] 
+    {
+      volume_size = 40
+    },
+  ]
 
   tags = merge(
     var.tags,
