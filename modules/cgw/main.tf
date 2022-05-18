@@ -1,3 +1,9 @@
+terraform {
+  required_providers {
+    aws = {}
+  }
+}
+
 resource "aws_customer_gateway" "cgw_hsm_primary" {
   tags = {
     "Name" = "cgw_pki_hsm_primary"

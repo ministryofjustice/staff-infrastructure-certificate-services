@@ -1,3 +1,9 @@
+terraform {
+  required_providers {
+    aws = {}
+  }
+}
+
 module "pki_vpc" {
   source = ".././vpc"
 

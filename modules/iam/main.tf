@@ -1,3 +1,9 @@
+terraform {
+  required_providers {
+    aws = {}
+  }
+}
+
 resource "aws_iam_role" "mojo_prod_cloudwatch_exporter_assume_role" {
   name        = "mojo-prod-cloudwatch-exporter-prod-assume-role"
   description = "Allows the MoJO production root account access to Cloudwatch metrics in PKI Preprod and Prod"
