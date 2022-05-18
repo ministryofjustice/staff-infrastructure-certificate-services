@@ -1,5 +1,7 @@
 # MoJ Staff Infrastructure: Certificate Services
 
+[![Terraform CI](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/actions/workflows/terraform-ci.yaml/badge.svg)](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/actions/workflows/terraform-ci.yaml)
+
 ## Introduction
 
 This project contains the Terraform code to build the Ministry of Justice's infrastructure to host PKI certificates servers.
