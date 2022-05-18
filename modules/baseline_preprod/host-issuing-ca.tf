@@ -333,7 +333,6 @@ resource "aws_ebs_volume" "issuing_CA_secondary_ebs" {
   availability_zone = module.pki_vpc.private_subnet_backend_zone_az
   size              = 40
 
-  tags = var.tags
 }
 
 resource "aws_volume_attachment" "issuing_CA_secondary_ebs_attach" {
