@@ -118,6 +118,8 @@ module "ec2_reverse_proxy" {
   associate_public_ip_address = true
   get_password_data           = false
   server_description          = "${var.prefix}-reverse-proxy"
+  scheduledStop               = "true"
+  scheduledStart              = "true"
 
   root_block_device = [
     {
