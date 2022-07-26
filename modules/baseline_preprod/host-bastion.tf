@@ -187,5 +187,5 @@ resource "aws_eip" "bastion_host_eip" {
     {
       Name = "${var.prefix}-bastion-host-eip"
     },
-  )  
+  )
 }

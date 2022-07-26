@@ -142,5 +142,5 @@ resource "aws_eip" "reverse_proxy_eip" {
     {
       Name = "${var.prefix}-reverse-proxy-eip"
     },
-  )  
+  )
 }
