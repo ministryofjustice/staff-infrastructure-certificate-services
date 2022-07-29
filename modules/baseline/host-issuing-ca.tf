@@ -331,7 +331,7 @@ module "ec2_issuing_ca" {
 
 resource "aws_ebs_volume" "issuing_CA_secondary_ebs" {
   availability_zone = module.pki_vpc.private_subnet_backend_zone_az
-  size              = 40
+  size              = 60
 
 }
 
