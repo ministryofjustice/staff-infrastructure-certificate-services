@@ -67,3 +67,7 @@ variable "gp_client_prod_cidr_block" {
 variable "mojo_production_account_id" {
   type = string
 }
+
+variable "alz_cidr_block" {
+  type = string
+}
