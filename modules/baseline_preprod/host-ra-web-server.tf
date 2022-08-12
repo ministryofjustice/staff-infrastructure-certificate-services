@@ -95,7 +95,7 @@ module "sg_ra_web_server" {
       protocol    = local.tcp_protocol
       description = "Allow traffic from ALZ"
       cidr_blocks = local.cidr_private_a
-    },  
+    },
   ]
 
   egress_with_cidr_blocks = [
