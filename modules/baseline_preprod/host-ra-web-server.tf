@@ -87,6 +87,15 @@ module "sg_ra_web_server" {
       description = "Allow Global Protect Users to UMS"
       cidr_blocks = var.gp_client_prod_cidr_block
     },
+
+    # Azure Landing Zone - Private Class A
+    {
+      from_port   = 8030
+      to_port     = 8030
+      protocol    = local.tcp_protocol
+      description = "Allow traffic from ALZ"
+      cidr_blocks = local.cidr_private_a
+    },  
   ]
 
   egress_with_cidr_blocks = [
