@@ -54,7 +54,7 @@ locals {
   ip_hsm_primary   = "192.168.130.24/32"
   ip_hsm_secondary = "192.168.30.24/32"
 
-    # RFC1918 Private Networks
+  # RFC1918 Private Networks
   cidr_private_a = "10.0.0.0/8"
   cidr_private_b = "172.16.0.0/12"
   cidr_private_c = "192.168.0.0/16"
