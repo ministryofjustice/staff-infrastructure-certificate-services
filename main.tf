@@ -80,6 +80,7 @@ module "baseline_pre_production" {
 
   mojo_prod_tgw_id          = var.mojo_prod_tgw_id
   gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
+  alz_cidr_block            = var.alz_cidr_block
 
   providers = {
     aws = aws.env
@@ -111,6 +112,7 @@ module "baseline_production" {
 
   mojo_prod_tgw_id          = var.mojo_prod_tgw_id
   gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
+  alz_cidr_block            = var.alz_cidr_block
 
   providers = {
     aws = aws.env

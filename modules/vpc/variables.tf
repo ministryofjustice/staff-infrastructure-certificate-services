@@ -93,3 +93,7 @@ variable "gp_client_prod_cidr_block" {
 variable "tags" {
   type = map(string)
 }
+
+variable "alz_cidr_block" {
+  type = string
+}

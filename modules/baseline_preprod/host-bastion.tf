@@ -179,3 +179,15 @@ module "ec2_bastion_host" {
     },
   )
 }
+
+resource "aws_eip" "bastion_host_eip" {
+  instance = module.ec2_bastion_host.instance_id[0]
+  vpc      = true
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.prefix}-bastion-host-eip"
+    },
+  )
+}

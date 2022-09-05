@@ -35,6 +35,12 @@ resource "aws_route" "gp_tgw_route" {
   transit_gateway_id     = var.mojo_prod_tgw_id
 }
 
+resource "aws_route" "alz_tgw_route" {
+  route_table_id         = aws_route_table.ra_zone_route_table.id
+  destination_cidr_block = var.alz_cidr_block
+  transit_gateway_id     = var.mojo_prod_tgw_id
+}
+
 resource "aws_route_table_association" "ra_zone_route_table_association" {
   subnet_id      = aws_subnet.private_subnet_private_ra_zone.id
   route_table_id = aws_route_table.ra_zone_route_table.id

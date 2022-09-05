@@ -56,4 +56,8 @@ variable "mojo_prod_tgw_id" {
 
 variable "gp_client_prod_cidr_block" {
   type = string
-} 
+}
+
+variable "alz_cidr_block" {
+  type = string
+}

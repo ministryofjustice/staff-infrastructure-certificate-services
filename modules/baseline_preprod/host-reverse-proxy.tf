@@ -134,3 +134,15 @@ module "ec2_reverse_proxy" {
     },
   )
 }
+
+resource "aws_eip" "reverse_proxy_eip" {
+  instance = module.ec2_reverse_proxy.instance_id[0]
+  vpc      = true
+
+  tags = merge(
+    var.tags,
+    {
+      Name = "${var.prefix}-reverse-proxy-eip"
+    },
+  )
+}

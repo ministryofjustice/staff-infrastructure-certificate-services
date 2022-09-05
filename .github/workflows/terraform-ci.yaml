@@ -37,6 +37,7 @@ jobs:
         TF_VAR_mojo_prod_tgw_id: ${{ secrets.TF_VAR_MOJO_PROD_TGW_ID }}
         TF_VAR_gp_client_prod_cidr_block: ${{ secrets.TF_VAR_GP_CLIENT_PROD_CIDR_BLOCK }}
         TF_VAR_mojo_production_account_id: ${{ secrets.TF_VAR_MOJO_PRODUCTION_ACCOUNT_ID }}
+        TF_VAR_alz_cidr_block: ${{ secrets.TF_VAR_ALZ_CIDR_BLOCK }}        
 
     steps:
     # Checkout the repository to the GitHub Actions runner
