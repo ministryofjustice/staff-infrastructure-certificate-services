@@ -163,6 +163,8 @@ module "ec2_bastion_host" {
   associate_public_ip_address = true
   get_password_data           = true
   server_description          = "${var.prefix}-bastion-host"
+  scheduledStop               = "true"
+  scheduledStart              = "true"
 
   root_block_device = [
     {
