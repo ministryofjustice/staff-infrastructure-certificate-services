@@ -314,8 +314,6 @@ module "ec2_issuing_ca" {
   associate_public_ip_address = false
   get_password_data           = false
   server_description          = "${var.prefix}-issuing-ca"
-  scheduledStop               = "true"
-  scheduledStart              = "true-prep-issuing-ca-schedule"
 
   root_block_device = [
     {

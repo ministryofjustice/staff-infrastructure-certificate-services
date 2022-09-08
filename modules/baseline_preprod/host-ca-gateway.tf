@@ -178,8 +178,6 @@ module "ec2_ca_gateway" {
   associate_public_ip_address = false
   get_password_data           = false
   server_description          = "${var.prefix}-ca-gateway"
-  scheduledStop               = "true"
-  scheduledStart              = "true"
 
   root_block_device = [
     {
