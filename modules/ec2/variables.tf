@@ -70,15 +70,3 @@ variable "root_block_device" {
   type    = list(any)
   default = []
 }
-
-variable "scheduledStop" {
-  description = "Tag to determine if the instance is scheduled to stop"
-  type        = string
-  default     = "false"
-}
-
-variable "scheduledStart" {
-  description = "Tag to determine if the instance is scheduled to stop"
-  type        = string
-  default     = "false"
-}

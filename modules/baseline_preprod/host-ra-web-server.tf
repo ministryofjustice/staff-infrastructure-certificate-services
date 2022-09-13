@@ -171,8 +171,6 @@ module "ec2_ra_web_server" {
   associate_public_ip_address = false
   get_password_data           = false
   server_description          = "${var.prefix}-ra-web-server"
-  scheduledStop               = "true"
-  scheduledStart              = "true"
 
   root_block_device = [
     {

@@ -22,9 +22,7 @@ module "ec2" {
   tags = merge(
     var.tags,
     {
-      Name           = var.server_description
-      scheduledStop  = var.scheduledStop
-      scheduledStart = var.scheduledStart
+      Name = var.server_description
     },
   )
 }
