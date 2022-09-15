@@ -23,6 +23,8 @@ module "ec2" {
     var.tags,
     {
       Name = var.server_description
+      scheduledStop = var.scheduledStop
+      scheduledStart = var.scheduledStart
     },
   )
 }
