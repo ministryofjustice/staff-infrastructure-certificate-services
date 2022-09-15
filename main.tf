@@ -119,4 +119,10 @@ module "baseline_production" {
   }
 }
 
+module "lambda_stop_start" {
+  source = "./modules/lambda_stop_start"
 
+  providers = {
+    aws = aws.env
+  }
+}
