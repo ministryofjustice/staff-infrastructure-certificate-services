@@ -1,3 +1,9 @@
+terraform {
+  required_providers {
+    aws = {}
+  }
+}
+
 module "lambda_scheduler_stop" {
   source  = "diodonfrost/lambda-scheduler-stop-start/aws"
   version = "3.1.3"
