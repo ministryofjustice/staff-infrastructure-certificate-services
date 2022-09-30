@@ -142,8 +142,8 @@ module "ec2_ldap" {
   associate_public_ip_address = false
   get_password_data           = false
   server_description          = "${var.prefix}-ldap"
-  scheduledStop               = "true"
-  scheduledStart              = "true-prep-ldap-schedule"
+  scheduledStop               = "false"
+  scheduledStart              = "false"
 
   root_block_device = [
     {
