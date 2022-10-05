@@ -1,6 +1,6 @@
-# MoJ Staff Infrastructure: Certificate Services
+[![repo standards badge](https://img.shields.io/badge/dynamic/json?color=blue&style=flat&logo=github&labelColor=32393F&label=MoJ%20Compliant&query=%24.result&url=https%3A%2F%2Foperations-engineering-reports.cloud-platform.service.justice.gov.uk%2Fapi%2Fv1%2Fcompliant_public_repositories%2Fstaff-infrastructure-certificate-services)](https://operations-engineering-reports.cloud-platform.service.justice.gov.uk/public-github-repositories.html#staff-infrastructure-certificate-services "Link to report") [![Terraform CI](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/actions/workflows/terraform-ci.yaml/badge.svg)](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/actions/workflows/terraform-ci.yaml)
 
-[![Terraform CI](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/actions/workflows/terraform-ci.yaml/badge.svg)](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/actions/workflows/terraform-ci.yaml)
+# MoJ Staff Infrastructure: Certificate Services
 
 ## Introduction
 
@@ -11,10 +11,12 @@ The Terraform in this repository is a "once off" to create the baseline infrastr
 ## Warning on tearing down infrastructure
 
 You need to be extremely sure that your changes are not tearing EC2 instances down when running the Terraform in this repository.
+![badge](https://user-images.githubusercontent.com/41325732/193793492-4ecd66a1-5b5b-40dc-88d7-f68541ce7d24.svg)
 
 If this becomes necessary, teams need to be coordinated and backups need to be taken before tearing instances down.
 
 If you are unsure about this, please speak to someone on the technical team before running any of the Terraform in this repository.
+![badge](https://user-images.githubusercontent.com/41325732/193788841-245aace7-9b8d-4c92-9652-ded4690f4098.svg)
 
 ## Terraform State Management
 
