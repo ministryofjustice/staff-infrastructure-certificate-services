@@ -215,8 +215,8 @@ module "ec2_ra_app_server" {
   associate_public_ip_address = false
   get_password_data           = false
   server_description          = "${var.prefix}-ra-app-server"
-  scheduledStop               = "true"
-  scheduledStart              = "true-prep-ra-app-schedule"
+  scheduledStop               = "false"
+  scheduledStart              = "false-prep-ra-app-schedule"
 
   root_block_device = [
     {
