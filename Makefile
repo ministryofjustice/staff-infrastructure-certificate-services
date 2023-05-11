@@ -7,16 +7,19 @@ fmt:
 	terraform fmt -recursive
 
 init:
-	aws-vault exec $$AWS_VAULT_PROFILE -- terraform init -upgrade -reconfigure \
+	terraform init -upgrade -reconfigure \
 	--backend-config="key=production/terraform.production.state"
 
 validate:
-	aws-vault exec $$AWS_VAULT_PROFILE -- terraform validate
+	terraform validate
 
 plan:
-	aws-vault exec $$AWS_VAULT_PROFILE -- terraform plan
+	terraform plan
 
 apply:
-	aws-vault exec $$AWS_VAULT_PROFILE -- terraform apply
+	terraform apply
+
+generate-tfvars:
+	./scripts/generate_tfvars.sh	
 
 .PHONY: fmt init validate plan apply
