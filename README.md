@@ -2,11 +2,24 @@
 
 # MoJ Staff Infrastructure: Certificate Services
 
+- [Introduction](#introduction)
+- [Warning on tearing down infrastructure](#warning-on-tearing-down-infrastructure)
+- [Terraform State Management](#terraform-state-management)
+- [Architecture](#architecture)
+- [Getting started](#getting-started)
+  - [Prerequisites](prerequisites)
+  - [Authenticate with AWS](authenticate-with-aws)
+  - [Running the code](running-the-code)
+- [Tearing down infrastructure](#tearing-down-infrastructure)
+- [Access to instances](#access-to-instances)
+  - [Remote desktop access to the Bastion host](#remote-desktop-access-to-the-bastion-host-prod-example)
+  - [SSH-ing into Linux machines](#ssh-ing-into-linux-machines-prod-example)
+
 ## Introduction
 
 This project contains the Terraform code to build the Ministry of Justice's infrastructure to host PKI certificates servers.
 
-The Terraform in this repository is a "once off" to create the baseline infrastructure as a tactical solution, which will then be manually managed going forward.
+The Terraform in this repository is a "once off" to create the Pre-Production (PREP) and Production (PROD) baseline infrastructure as a tactical solution. The infrastructure is designed by our PKI service provider in accordance with their requirements for their service to run. Our PKI service provider manually install, configure and manage the PKI service on the infrastructure.
 
 ## Warning on tearing down infrastructure
 
@@ -30,50 +43,64 @@ The high-level design for this project can be found on the wiki at [this link](h
 
 The detailed design documents for this project can be found in Microsoft Teams at [this link](https://teams.microsoft.com/_#/files/General?threadId=19%3Ab744b63ceeb9487d9886ccfc61a252d2%40thread.tacv2&ctx=channel&context=Tech%2520Designs%2520-%2520Documents&rootfolder=%252Fsites%252FMoJPKIBuild%252FShared%2520Documents%252FGeneral%252FTech%2520Designs%2520-%2520Documents).
 
+| :bell:**ATTENTION**                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------- |
+| The infrastructure for the PREP and PROD environments are managed individually in different modules in this repository |
+
+| Environment | Directory of Modules                                                                                                                          |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| PREP        | [modules/baseline_preprod](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/tree/main/modules/baseline_preprod) |
+| PROD        | [modules/baseline](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/tree/main/modules/baseline)                 |
+
 ## Getting started
+
+| :bell:**ATTENTION**                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| There is a CI/CD pipeline for this infractructure in Github Actions. Deployments should go through the pipeline. Developers can follow the following if they need to troubeshoot etc the code from their own machine. |
 
 ### Prerequisites
 
 - The [AWS CLI](https://aws.amazon.com/cli/) should be installed.
 - [aws-vault](https://github.com/99designs/aws-vault) should be installed. This is used to easily manage and switch between AWS account profiles on the command line.
-- [Terraform](https://www.terraform.io/) should be installed. We recommend using a Terraform version manager such as [tfenv](https://github.com/tfutils/tfenv). Please make sure that you are using `Terraform v0.12.29`.
-- You should have AWS account access to the PKI AWS account (you can ask the team on either Slack or Microsoft Teams to sort this out for you).
+- [Terraform](https://www.terraform.io/) should be installed. We recommend using a Terraform version manager such as [tfenv](https://github.com/tfutils/tfenv). Please make sure that you are using `Terraform v1.1.9`.
 
-### Set up aws-vault
+You should also have AWS account access to at least the Public Key Infrastructure and Shared Services AWS accounts.
 
-Once aws-vault is installed, run the following command to create the profile for your PKI AWS account: `aws-vault add moj-pttp-pki`
+### Authenticate with AWS
 
-This will prompt you for the values of your PKI AWS account's IAM user.
+Terraform is run locally in a similar way to how it is run on the build pipelines (GitHub Actions).
 
-### Set up MFA on your AWS account
+It assumes an IAM role defined in the Shared Services, and targets the AWS account to gain access to the PKI environment.
+This is done in the Terraform AWS provider with the `assume_role` configuration.
 
-Multi-Factor Authentication (MFA) is required on the AWS account on this project.
+Authentication is made with the Shared Services AWS account, which then assumes the role into the target environment.
 
-The steps to set this up are as follows:
+Assuming you have been granted necessary access permissions to the Shared Service Account, please follow the NVVS Devops best practices provided [step-by-step guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#configure-aws-vault) to configure your AWS Vault and AWS Cli with AWS SSO.
 
-- Navigate to the AWS console for a given account.
-- Click on "IAM" under Services in the AWS console.
-- Click on "Users" in the IAM menu.
-- Find your username within the list and click on it.
-- Select the security credentials tab, then assign an MFA device using the "Virtual MFA device" option (follow the on-screen instructions for this step).
-- Edit your local `~/.aws/config` file with the key value pair of `mfa_serial=<iam_role_from_mfa_device>` for each of your accounts. The value for `<iam_role_from_mfa_device>` can be found in the AWS console on your IAM user details page, under "Assigned MFA device". Ensure that you remove the text "(Virtual)" from the end of key value pair's value when you edit this file.
+### Prepare the variables
+
+1. Copy `.env.example` to `.env`
+1. Modify the `.env` file and provide values for variables as below:
+
+| Variables             | How?                                                                                                                                                                                                                                      |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AWS_PROFILE=`        | your **AWS-CLI** profile name for the **Shared Services** AWS account. Check [this guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#configure-aws-vault) if you need help. |
+| `AWS_DEFAULT_REGION=` | `eu-west-2`                                                                                                                                                                                                                               |
+| `TF_WORKSPACE=`       | The name of the terraform workspace. The workspace for PREP and PROD is `production`                                                                                                                                                      |
 
 ### Running the code
 
 Run the following commands to get the code running on your machine:
 
-- Run `aws-vault exec moj-pttp-pki -- terraform init` (if you are prompted to bring across workspaces, say yes).
-- If it asks you to enter a value for "The path to the state file inside the bucket", enter the value `terraform.development.state`
-- Edit your aws config file (usually found in `~/.aws/config`) to include the key value pair of `region=eu-west-2` for the `profile moj-pttp-pki` workspace.
-- Run `aws-vault exec moj-pttp-pki -- terraform plan` and check that for an output. If it appears as correct terraform output, run `aws-vault exec moj-pttp-pki -- terraform apply`.
+- Run `make generate-tfvars`. This will pull down the tfvars file from aws parameter store.
+- Run `make init`
+- Run `make plan` and check that for an output. If it appears as correct terraform output, run `make apply`.
 
-### Tearing down infrastructure
+## Tearing down infrastructure
 
 The infrastructure for this project should **not** be torn down.
 
-### Useful commands
-
-To log in to the browser-based AWS console using `aws-vault`, run the following command: `aws-vault login moj-pttp-pki`
+## Access to instances
 
 ### Remote desktop access to the Bastion host (PROD example)
 
@@ -83,15 +110,10 @@ To log in to the browser-based AWS console using `aws-vault`, run the following 
   - Username = `Administrator`
   - Password = the value in the file `prod_password_decrypted.txt`
 
-#### SSH-ing into Linux machines (PROD example)
+### SSH-ing into Linux machines (PROD example)
 
 This assumes that you have followed the steps above to remote desktop into the Bastion host.
 
 - Copy the file `prod_key_pair.pem` to the Bastion host
 - Get the IP address of the Linux host you want to SSH into e.g. `10.180.85.4`
 - From the folder containing the file `prod_key_pair.pem`, run the command `ssh ec2-user@10.180.85.4 -i prod_key_pair.pem -v`
-
-### Things to do once this project has moved from Terraform to manual management
-
-- Delete the Terraform S3 state bucket and DynamoDB lock table.
-  - The S3 state bucket contains the output variables from running the Terraform, which means that it contains passwords, key pairs etc.
