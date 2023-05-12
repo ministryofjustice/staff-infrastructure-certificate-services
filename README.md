@@ -19,7 +19,7 @@
 
 This project contains the Terraform code to build the Ministry of Justice's infrastructure to host PKI certificates servers.
 
-The Terraform in this repository is a "once off" to create the Pre-Production (PREP) and Production (PROD) baseline infrastructure as a tactical solution. The infrastructure is designed by our PKI service provider in accordance with their requirements for their service to run. Our PKI service provider manually install, configure and manage the PKI service on the infrastructure. 
+The Terraform in this repository is a "once off" to create the Pre-Production (PREP) and Production (PROD) baseline infrastructure as a tactical solution. The infrastructure is designed by our PKI service provider in accordance with their requirements for their service to run. Our PKI service provider manually install, configure and manage the PKI service on the infrastructure.
 
 ## Warning on tearing down infrastructure
 
@@ -43,20 +43,21 @@ The high-level design for this project can be found on the wiki at [this link](h
 
 The detailed design documents for this project can be found in Microsoft Teams at [this link](https://teams.microsoft.com/_#/files/General?threadId=19%3Ab744b63ceeb9487d9886ccfc61a252d2%40thread.tacv2&ctx=channel&context=Tech%2520Designs%2520-%2520Documents&rootfolder=%252Fsites%252FMoJPKIBuild%252FShared%2520Documents%252FGeneral%252FTech%2520Designs%2520-%2520Documents).
 
-| :bell:**ATTENTION** |
-| --- |
+| :bell:**ATTENTION**                                                                                                    |
+| ---------------------------------------------------------------------------------------------------------------------- |
 | The infrastructure for the PREP and PROD environments are managed individually in different modules in this repository |
 
-| Environment | Directory of Modules |
-| --- | --- |
-| PREP | [modules/baseline_preprod](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/tree/main/modules/baseline_preprod) |
-| PROD | [modules/baseline](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/tree/main/modules/baseline)
+| Environment | Directory of Modules                                                                                                                          |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| PREP        | [modules/baseline_preprod](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/tree/main/modules/baseline_preprod) |
+| PROD        | [modules/baseline](https://github.com/ministryofjustice/staff-infrastructure-certificate-services/tree/main/modules/baseline)                 |
 
 ## Getting started
 
-| :bell:**ATTENTION** |
-| --- |
+| :bell:**ATTENTION**                                                                                                                                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | There is a CI/CD pipeline for this infractructure in Github Actions. Deployments should go through the pipeline. Developers can follow the following if they need to troubeshoot etc the code from their own machine. |
+
 ### Prerequisites
 
 - The [AWS CLI](https://aws.amazon.com/cli/) should be installed.
@@ -81,11 +82,11 @@ Assuming you have been granted necessary access permissions to the Shared Servic
 1. Copy `.env.example` to `.env`
 1. Modify the `.env` file and provide values for variables as below:
 
-| Variables | How? |
-| --- | --- | 
-| `AWS_PROFILE=` | your **AWS-CLI** profile name for the **Shared Services** AWS account. Check [this guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#configure-aws-vault) if you need help. |
-| `AWS_DEFAULT_REGION=` | `eu-west-2` |
-| `TF_WORKSPACE=` | The name of the terraform workspace. The workspace for PREP and PROD is `production` 
+| Variables             | How?                                                                                                                                                                                                                                      |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `AWS_PROFILE=`        | your **AWS-CLI** profile name for the **Shared Services** AWS account. Check [this guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#configure-aws-vault) if you need help. |
+| `AWS_DEFAULT_REGION=` | `eu-west-2`                                                                                                                                                                                                                               |
+| `TF_WORKSPACE=`       | The name of the terraform workspace. The workspace for PREP and PROD is `production`                                                                                                                                                      |
 
 ### Running the code
 
@@ -100,6 +101,7 @@ Run the following commands to get the code running on your machine:
 The infrastructure for this project should **not** be torn down.
 
 ## Access to instances
+
 ### Remote desktop access to the Bastion host (PROD example)
 
 - Apply the Terraform in this repository
