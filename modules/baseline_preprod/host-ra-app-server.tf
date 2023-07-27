@@ -220,7 +220,7 @@ module "ec2_ra_app_server" {
 
   root_block_device = [
     {
-      volume_size = 80
+      volume_size = 60
     },
   ]
 
