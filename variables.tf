@@ -13,7 +13,7 @@ variable "assume_role" {
 }
 
 variable "trusted_cidr" {
-  type = string
+  type = list
 }
 
 variable "primary_remote_destination_cidr" {
