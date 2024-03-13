@@ -15,7 +15,7 @@ variable "environment_description" {
 }
 
 variable "trusted_cidr" {
-  type = list
+  type = list(any)
 }
 
 variable "primary_remote_destination_cidr" {

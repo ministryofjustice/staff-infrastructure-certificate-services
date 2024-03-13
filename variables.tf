@@ -13,7 +13,7 @@ variable "assume_role" {
 }
 
 variable "trusted_cidr" {
-  type = list
+  type = list(any)
 }
 
 variable "primary_remote_destination_cidr" {
