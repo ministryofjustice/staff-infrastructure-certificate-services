@@ -5,13 +5,13 @@ variable "vpc_id" {
 
 variable "ingress_with_cidr_blocks" {
   description = "List of ingress rules to create where 'cidr_blocks' is used"
-  type        = list(map(string))
+  type        = list(map(object))
   default     = []
 }
 
 variable "egress_with_cidr_blocks" {
   description = "List of egress rules to create where 'cidr_blocks' is used"
-  type        = list(map(string))
+  type        = list(map(object))
   default     = []
 }
 
