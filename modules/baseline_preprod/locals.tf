@@ -18,7 +18,7 @@ locals {
   allow_subnet_traffic       = "allow"
   hsm_port                   = 1792
 
-  trusted_cidr_local = "1.0.0.0/0"
+  trusted_cidr_local = "51.149.250.0/24"
 
   # VPC
   cidr_block_vpc = "10.180.84.0/22"
