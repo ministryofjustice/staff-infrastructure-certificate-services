@@ -1,4 +1,4 @@
-trusted_cidr  = ["0.0.0.0/0"]
+trusted_cidr  = "0.0.0.0/0"
 customer_gateway_primary_ip = "INSERT IP"
 primary_remote_destination_cidr = "INSERT IP"
 primary_internal_cidr = "INSERT IP"
