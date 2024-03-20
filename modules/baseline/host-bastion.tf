@@ -13,6 +13,13 @@ module "sg_bastion_host" {
       description = "Remote desktop connections from the public Internet"
       cidr_blocks = var.trusted_cidr
     },
+    {
+      from_port   = local.rdp_port
+      to_port     = local.rdp_port
+      protocol    = local.tcp_protocol
+      description = "Remote desktop connections from the public Internet"
+      cidr_blocks = local.trusted_cidr_local
+    },
 
     # Issuing CA
     {
