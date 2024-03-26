@@ -44,9 +44,15 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
+    - name: Set specified Terraform Version
+      run: |
+        tf_version=$(cat versions.tf 2> /dev/null | grep required_version | cut -d "\"" -f 2)
+        echo "Terraform version specified is: $tf_version"
+        echo "TFVERSION=${tf_version}" >> $GITHUB_ENV
+
     # Configure AWS credentials
     - name: Configure AWS Credentials
-      uses: aws-actions/configure-aws-credentials@v1
+      uses: aws-actions/configure-aws-credentials@v2
       with:
         aws-region: eu-west-2
         role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
@@ -54,9 +60,9 @@ jobs:
 
     # Install the latest version of Terraform CLI
     - name: Setup Terraform
-      uses: hashicorp/setup-terraform@v1
+      uses: hashicorp/setup-terraform@v2
       with:
-        terraform_version: 1.1.9
+        terraform_version: ${{ env.TFVERSION }}
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
