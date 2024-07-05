@@ -62,13 +62,23 @@ The detailed design documents for this project can be found in Microsoft Teams a
 
 - The [AWS CLI](https://aws.amazon.com/cli/) should be installed.
 - [aws-vault](https://github.com/99designs/aws-vault) should be installed. This is used to easily manage and switch between AWS account profiles on the command line.
-- [Terraform](https://www.terraform.io/) should be installed. We recommend using a Terraform version manager such as [tfenv](https://github.com/tfutils/tfenv). Please make sure that you are using `Terraform v1.1.x`.
+- [Docker Desktop](https://docs.docker.com/get-docker/) 
+- [Tooling Container](https://github.com/ministryofjustice/nvvs-containers/pkgs/container/nvvs%2Fterraforms) 
+  ```shell
+docker pull ghcr.io/ministryofjustice/nvvs/terraforms:latest
+```
+
+#### Deprecated
+
+Terraform isn't required to be installed locally. The Makefile has been written such that a tooling container is used that has Terraform installed and provides a consistent local development environment
+for running Terraform and/or AWS CLI.
+- [Terraform](https://www.terraform.io/). We recommend using a Terraform version manager such as [tfenv](https://github.com/tfutils/tfenv). Please make sure that you are using `Terraform v1.1.x`.
 
 You should also have AWS account access to at least the Public Key Infrastructure and Shared Services AWS accounts.
 
 ### Authenticate with AWS
 
-Terraform is run locally in a similar way to how it is run on the build pipelines (GitHub Actions).
+Terraform is run locally via a Docker tooling container in a similar way to how it is run on the build pipelines (GitHub Actions).
 
 It assumes an IAM role defined in the Shared Services, and targets the AWS account to gain access to the PKI environment.
 This is done in the Terraform AWS provider with the `assume_role` configuration.
@@ -83,10 +93,10 @@ Assuming you have been granted necessary access permissions to the Shared Servic
 1. Modify the `.env` file and provide values for variables as below:
 
 | Variables             | How?                                                                                                                                                                                                                                      |
-| --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+|-----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `AWS_PROFILE=`        | your **AWS-CLI** profile name for the **Shared Services** AWS account. Check [this guide](https://ministryofjustice.github.io/nvvs-devops/documentation/team-guide/best-practices/use-aws-sso.html#configure-aws-vault) if you need help. |
 | `AWS_DEFAULT_REGION=` | `eu-west-2`                                                                                                                                                                                                                               |
-| `TF_WORKSPACE=`       | The name of the terraform workspace. The workspace for PREP and PROD is `production`                                                                                                                                                      |
+| `ENV=`                | The name of the environemnt and terraform workspace. The workspace for PREP and PROD is `production`                                                                                                                                      |
 
 ### Running the code
 
