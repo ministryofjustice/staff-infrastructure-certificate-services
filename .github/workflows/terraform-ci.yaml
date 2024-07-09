@@ -79,6 +79,7 @@ jobs:
           TF_VAR_assume_role_arn, staff-infrastructure-certificate-services/production/assume_role_arn
           TF_VAR_cgw_hsm_primary_ip, staff-infrastructure-certificate-services/production/cgw_hsm_primary_ip
           TF_VAR_cgw_hsm_secondary_ip, staff-infrastructure-certificate-services/production/cgw_hsm_secondary_ip
+        name-transformation: uppercase
 
     # Install the latest version of Terraform CLI
     - name: Setup Terraform
