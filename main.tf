@@ -12,7 +12,7 @@ provider "aws" {
   alias  = "env"
 
   assume_role {
-    role_arn = var.assume_role
+    role_arn = local.assume_role
   }
 }
 
@@ -37,8 +37,8 @@ module "label" {
 module "cgw" {
   source = "./modules/cgw"
 
-  cgw_hsm_primary_ip   = var.cgw_hsm_primary_ip
-  cgw_hsm_secondary_ip = var.cgw_hsm_secondary_ip
+  cgw_hsm_primary_ip   = local.cgw_hsm_primary_ip
+  cgw_hsm_secondary_ip = local.cgw_hsm_secondary_ip
 
   providers = {
     aws = aws.env
@@ -48,7 +48,7 @@ module "cgw" {
 module "iam" {
   source = "./modules/iam"
 
-  mojo_production_account_id = var.mojo_production_account_id
+  mojo_production_account_id = local.mojo_production_account_id
 
   providers = {
     aws = aws.env
@@ -64,23 +64,23 @@ module "baseline_pre_production" {
 
   region_id = data.aws_region.current_region.id
 
-  trusted_cidr = var.trusted_cidr
+  trusted_cidr = local.trusted_cidr
 
-  primary_remote_destination_cidr = var.primary_remote_destination_cidr
-  primary_internal_cidr           = var.primary_internal_cidr
+  primary_remote_destination_cidr = local.primary_remote_destination_cidr
+  primary_internal_cidr           = local.primary_internal_cidr
 
-  secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
-  seondary_internal_cidr            = var.seondary_internal_cidr
+  secondary_remote_destination_cidr = local.secondary_remote_destination_cidr
+  seondary_internal_cidr            = local.secondary_internal_cidr
 
   cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
 
-  pcx_preproduction_pki_ost_id   = var.pcx_preproduction_pki_ost_id
-  pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
+  pcx_preproduction_pki_ost_id   = local.pcx_preproduction_pki_ost_id
+  pcx_preproduction_pki_ost_cidr = local.pcx_preproduction_pki_ost_cidr
 
-  mojo_prod_tgw_id          = var.mojo_prod_tgw_id
-  gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
-  alz_cidr_block            = var.alz_cidr_block
+  mojo_prod_tgw_id          = local.mojo_prod_tgw_id
+  gp_client_prod_cidr_block = local.gp_client_prod_cidr_block
+  alz_cidr_block            = local.alz_cidr_block
 
   providers = {
     aws = aws.env
@@ -96,23 +96,23 @@ module "baseline_production" {
 
   region_id = data.aws_region.current_region.id
 
-  trusted_cidr = var.trusted_cidr
+  trusted_cidr = local.trusted_cidr
 
-  primary_remote_destination_cidr = var.primary_remote_destination_cidr
-  primary_internal_cidr           = var.primary_internal_cidr
+  primary_remote_destination_cidr = local.primary_remote_destination_cidr
+  primary_internal_cidr           = local.primary_internal_cidr
 
-  secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
-  seondary_internal_cidr            = var.seondary_internal_cidr
+  secondary_remote_destination_cidr = local.secondary_remote_destination_cidr
+  seondary_internal_cidr            = local.secondary_internal_cidr
 
   cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
 
-  pcx_production_pki_ost_id   = var.pcx_production_pki_ost_id
-  pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr
+  pcx_production_pki_ost_id   = local.pcx_production_pki_ost_id
+  pcx_production_pki_ost_cidr = local.pcx_production_pki_ost_cidr
 
-  mojo_prod_tgw_id          = var.mojo_prod_tgw_id
-  gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
-  alz_cidr_block            = var.alz_cidr_block
+  mojo_prod_tgw_id          = local.mojo_prod_tgw_id
+  gp_client_prod_cidr_block = local.gp_client_prod_cidr_block
+  alz_cidr_block            = local.alz_cidr_block
 
   providers = {
     aws = aws.env
