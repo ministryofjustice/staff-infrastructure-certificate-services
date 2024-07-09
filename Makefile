@@ -137,7 +137,11 @@ aws_ssm_start_session: ## Use AWS CLI to start SSM session on an EC2 instance (m
 
 .PHONY: generate-tfvars
 generate-tfvars: ## Create terraform.tfvars file from a single AWS SSM Parameterstore key
-	./scripts/generate_tfvars.sh
+	$(DOCKER_RUN) /bin/bash -c "./scripts/generate_tfvars.sh"
+
+.PHONY: gen-env
+gen-env: ## generate a ".env" file with the correct TF_VARS for the environment e.g. (make gen-env ENV_ARGUMENT=pre-production)
+	$(DOCKER_RUN) /bin/bash -c "./scripts/generate-env-file.sh $$ENV_ARGUMENT"
 
 .PHONY: tfenv
 tfenv: ## tfenv pin - terraform version from versions.tf
