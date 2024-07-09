@@ -80,6 +80,11 @@ jobs:
           TF_VAR_CGW_HSM_PRIMARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_primary_ip
           TF_VAR_CGW_HSM_SECONDARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_secondary_ip
 
+    # env vars
+    - name: Assign secrets to env vars
+      run: |    
+        echo "TF_VAR_alz_cidr_block=${TF_VAR_ALZ_CIDR_BLOCK}" >> $GITHUB_ENV    
+
     # Install the latest version of Terraform CLI
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v2
