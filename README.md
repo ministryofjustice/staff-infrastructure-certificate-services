@@ -62,10 +62,12 @@ The detailed design documents for this project can be found in Microsoft Teams a
 
 - The [AWS CLI](https://aws.amazon.com/cli/) should be installed.
 - [aws-vault](https://github.com/99designs/aws-vault) should be installed. This is used to easily manage and switch between AWS account profiles on the command line.
-- [Docker Desktop](https://docs.docker.com/get-docker/) 
-- [Tooling Container](https://github.com/ministryofjustice/nvvs-containers/pkgs/container/nvvs%2Fterraforms) 
+- [Docker Desktop](https://docs.docker.com/get-docker/)
+- [Tooling Container](https://github.com/ministryofjustice/nvvs-containers/pkgs/container/nvvs%2Fterraforms)
   ```shell
-docker pull ghcr.io/ministryofjustice/nvvs/terraforms:latest
+  docker pull ghcr.io/ministryofjustice/nvvs/terraforms:latest
+  ```
+
 ```
 
 #### Deprecated
@@ -127,3 +129,4 @@ This assumes that you have followed the steps above to remote desktop into the B
 - Copy the file `prod_key_pair.pem` to the Bastion host
 - Get the IP address of the Linux host you want to SSH into e.g. `10.180.85.4`
 - From the folder containing the file `prod_key_pair.pem`, run the command `ssh ec2-user@10.180.85.4 -i prod_key_pair.pem -v`
+```
