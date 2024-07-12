@@ -7,7 +7,6 @@ on:
   push:
     branches:
       - "main"
-      - "ND-427*"
 
 permissions:
   id-token: write
