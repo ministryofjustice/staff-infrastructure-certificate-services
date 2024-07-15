@@ -58,3 +58,5 @@ pre_prod_ip_address.txt
 prod_ip_address.txt
 
 **/.vscode/*
+
+*.terraform-version
