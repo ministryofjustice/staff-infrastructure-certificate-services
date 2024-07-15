@@ -86,10 +86,30 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.rdp_port
   }
 
-  # Deny inbound RDP traffic from the public Internet
+  # Allow inbound RDP traffic from Entrust Offices
   ingress {
     protocol   = var.tcp_protocol
     rule_no    = 205
+    action     = var.allow_subnet_traffic
+    cidr_block = "86.129.202.242/32"
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
+  # Allow inbound RDP traffic from Entrust Offices backup connection
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 206
+    action     = var.allow_subnet_traffic
+    cidr_block = "62.6.167.196/32"
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
+  # Deny inbound RDP traffic from the public Internet
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 208
     action     = "deny"
     cidr_block = var.public_internet_cidr_block
     from_port  = var.rdp_port
@@ -99,7 +119,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound traffic on ephemeral ports the public internet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 206
+    rule_no    = 209
     action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.ephemeral_port_start
