@@ -106,6 +106,16 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.rdp_port
   }
 
+  # Allow Entrust Bastion access via VPN to MoJ Bastion
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 207
+    action     = var.allow_subnet_traffic
+    cidr_block = "192.168.141.10/31"
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
   # Deny inbound RDP traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
