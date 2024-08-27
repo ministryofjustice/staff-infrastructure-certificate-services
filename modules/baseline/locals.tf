@@ -17,6 +17,7 @@ locals {
   tcp_protocol               = "tcp"
   allow_subnet_traffic       = "allow"
   hsm_port                   = 1792
+  splunk_port                = 9997
 
   # MoJ
   trusted_cidr_local = "51.149.250.0/24"
@@ -61,5 +62,13 @@ locals {
   cidr_private_a = "10.0.0.0/8"
   cidr_private_b = "172.16.0.0/12"
   cidr_private_c = "192.168.0.0/16"
+
+  # Entrust Offices
+  cidr_entrust_donovan = "51.148.131.197/32"
+  cidr_entrust_offices = "86.129.202.242/32"
+  cidr_entrust_offices_backup = "62.6.167.196/32"
+
+  # Entrust Data Center
+  cidr_entrust_bastions = "192.168.141.10/31"
 
 }

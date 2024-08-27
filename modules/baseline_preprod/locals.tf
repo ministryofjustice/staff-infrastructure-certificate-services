@@ -62,4 +62,12 @@ locals {
   cidr_private_b = "172.16.0.0/12"
   cidr_private_c = "192.168.0.0/16"
 
+  # Entrust Offices
+  cidr_entrust_donovan = "51.148.131.197/32"
+  cidr_entrust_offices = "86.129.202.242/32"
+  cidr_entrust_offices_backup = "62.6.167.196/32"
+
+  # Entrust Data Center
+  cidr_entrust_bastions = "192.168.141.10/31"
+
 }
