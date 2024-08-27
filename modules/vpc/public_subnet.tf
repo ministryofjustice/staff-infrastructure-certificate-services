@@ -71,7 +71,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     protocol   = var.tcp_protocol
     rule_no    = 210
     action     = var.allow_subnet_traffic
-    cidr_block = "51.148.131.197/32"
+    cidr_block = var.cidr_entrust_donovan
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -81,7 +81,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     protocol   = var.tcp_protocol
     rule_no    = 220
     action     = var.allow_subnet_traffic
-    cidr_block = "51.149.250.0/24"
+    cidr_block = var.trusted_cidr_local
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -91,7 +91,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     protocol   = var.tcp_protocol
     rule_no    = 230
     action     = var.allow_subnet_traffic
-    cidr_block = "86.129.202.242/32"
+    cidr_block = var.cidr_entrust_offices
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -101,7 +101,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     protocol   = var.tcp_protocol
     rule_no    = 240
     action     = var.allow_subnet_traffic
-    cidr_block = "62.6.167.196/32"
+    cidr_block = var.cidr_entrust_offices_backup
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -111,9 +111,36 @@ resource "aws_network_acl" "public_subnet_nacl" {
     protocol   = var.tcp_protocol
     rule_no    = 250
     action     = var.allow_subnet_traffic
-    cidr_block = "192.168.141.10/31"
+    cidr_block = var.cidr_entrust_bastions
     from_port  = var.rdp_port
     to_port    = var.rdp_port
+  }
+
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 254
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.https_port
+    to_port    = var.https_port
+  }
+
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 256
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.splunk_port
+    to_port    = var.splunk_port
+  }
+
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 258
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.ssh_port
+    to_port    = var.ssh_port
   }
 
   # Deny inbound RDP traffic from the public Internet
