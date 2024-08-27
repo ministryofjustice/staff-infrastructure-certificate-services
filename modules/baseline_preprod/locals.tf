@@ -17,6 +17,7 @@ locals {
   tcp_protocol               = "tcp"
   allow_subnet_traffic       = "allow"
   hsm_port                   = 1792
+  splunk_port                = 9997
 
   # MoJ
   trusted_cidr_local = "51.149.250.0/24"
