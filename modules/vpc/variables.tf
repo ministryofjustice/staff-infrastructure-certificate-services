@@ -50,6 +50,10 @@ variable "https_port" {
   type = number
 }
 
+variable "splunk_port" {
+  type = string
+}
+
 variable "ephemeral_port_start" {
   type = number
 }
@@ -95,5 +99,25 @@ variable "tags" {
 }
 
 variable "alz_cidr_block" {
+  type = string
+}
+
+variable "cidr_entrust_bastions" {
+  type = string
+}
+
+variable "cidr_entrust_offices_backup" {
+  type = string
+}
+
+variable "cidr_entrust_offices" {
+  type = string
+}
+
+variable "trusted_cidr_local" {
+  type = string
+}
+
+variable "cidr_entrust_donovan" {
   type = string
 }
