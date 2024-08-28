@@ -25,11 +25,11 @@ module "pki_vpc" {
   allow_subnet_traffic                      = local.allow_subnet_traffic
   ip_hsm_primary                            = local.ip_hsm_primary
   ip_hsm_secondary                          = local.ip_hsm_secondary
-  ost_peering_id                            = local.pcx_preproduction_pki_ost_id
-  ost_cidr_block                            = local.pcx_preproduction_pki_ost_cidr
-  mojo_prod_tgw_id                          = local.mojo_prod_tgw_id
-  gp_client_prod_cidr_block                 = local.gp_client_prod_cidr_block
-  alz_cidr_block                            = local.alz_cidr_block
+  ost_peering_id                            = var.pcx_preproduction_pki_ost_id
+  ost_cidr_block                            = var.pcx_preproduction_pki_ost_cidr
+  mojo_prod_tgw_id                          = var.mojo_prod_tgw_id
+  gp_client_prod_cidr_block                 = var.gp_client_prod_cidr_block
+  alz_cidr_block                            = var.alz_cidr_block
   cidr_entrust_offices_backup               = local.cidr_entrust_offices_backup
   cidr_entrust_offices                      = local.cidr_entrust_offices
   cidr_entrust_donovan                      = local.cidr_entrust_donovan
