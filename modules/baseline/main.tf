@@ -25,8 +25,8 @@ module "pki_vpc" {
   allow_subnet_traffic                      = local.allow_subnet_traffic
   ip_hsm_primary                            = local.ip_hsm_primary
   ip_hsm_secondary                          = local.ip_hsm_secondary
-  ost_peering_id                            = local.pcx_production_pki_ost_id
-  ost_cidr_block                            = local.pcx_production_pki_ost_cidr
+  ost_peering_id                            = var.pcx_production_pki_ost_id
+  ost_cidr_block                            = var.pcx_production_pki_ost_cidr
   mojo_prod_tgw_id                          = var.mojo_prod_tgw_id
   gp_client_prod_cidr_block                 = var.gp_client_prod_cidr_block
   alz_cidr_block                            = var.alz_cidr_block
