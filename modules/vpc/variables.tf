@@ -51,7 +51,7 @@ variable "https_port" {
 }
 
 variable "splunk_port" {
-  type = string
+  type = number
 }
 
 variable "ephemeral_port_start" {
