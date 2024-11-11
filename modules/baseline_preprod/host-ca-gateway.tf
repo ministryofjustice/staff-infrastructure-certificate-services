@@ -198,9 +198,9 @@ module "ec2_ca_gateway" {
 module "ma_system_status_check" {
   source = ".././alarms"
 
-  alarm_name          = "${var.prefix}-system-status-check-ca-gateway"
+  alarm_name          = "${var.prefix}-system-status-check-ca-gateway-alarm"
   namespace           = "${var.prefix}-ca-gateway"
-  alarm_description   = "Check for instance status check errors."
+  alarm_description   = "Check for system status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
   threshold           = 1
@@ -214,7 +214,7 @@ module "ma_system_status_check" {
 module "ma_instance_status_check" {
   source = ".././alarms"
 
-  alarm_name          = "${var.prefix}-instance-status-check-ca-gateway"
+  alarm_name          = "${var.prefix}-instance-status-check-ca-gateway-alarm"
   namespace           = "${var.prefix}-ca-gateway"
   alarm_description   = "Check for instance status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
@@ -225,4 +225,36 @@ module "ma_instance_status_check" {
 
   metric_name = "StatusCheckFailed_Instance"
   statistic   = "Maximum"
+}
+
+module "ma_cpu_utilization_status_check" {
+  source = ".././alarms"
+
+  alarm_name          = "${var.prefix}-cpu-utilization-ca-gateway-alarm"
+  namespace           = "${var.prefix}-ca-gateway"
+  alarm_description   = "Alarm when CPU utilization is greater than or equal to 15%."
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 2
+  threshold           = 15
+  period              = 300 # 5 minutes
+  unit                = "Count"
+
+  metric_name = "CPUUtilization"
+  statistic   = "Average"
+}
+
+module "ma_network_packets_in_status_check" {
+  source = ".././alarms"
+
+  alarm_name          = "${var.prefix}-network-packets-in-ca-gateway-alarm"
+  namespace           = "${var.prefix}-ca-gateway"
+  alarm_description   = "Alarm when incoming network packets is greater than or equal to 1500."
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 2
+  threshold           = 1500
+  period              = 300 # 5 minutes
+  unit                = "Count"
+
+  metric_name = "NetworkPacketsIn"
+  statistic   = "Average"
 }
