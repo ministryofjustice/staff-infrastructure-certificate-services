@@ -199,6 +199,7 @@ module "metric_alarm" {
   source = ".././alarms"
 
   alarm_name          = "${var.prefix}-status-check-ca-gateway"
+  namespace           = "${var.prefix}-ca-gateway"
   alarm_description   = "Check for instance status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1

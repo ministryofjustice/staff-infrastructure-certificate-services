@@ -10,7 +10,7 @@ module "metric_alarm" {
   period              = var.period
   unit                = var.unit
 
-  namespace   = "${var.prefix}-pki-service"
+  namespace   = var.namespace
   metric_name = var.metric_name
   statistic   = var.statistic
 
