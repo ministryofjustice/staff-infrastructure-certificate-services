@@ -195,7 +195,7 @@ module "ec2_ca_gateway" {
   )
 }
 
-module "metric_alarm" {
+module "ma_system_status_check" {
   source = ".././alarms"
 
   alarm_name          = "${var.prefix}-system-status-check-ca-gateway"
@@ -211,7 +211,7 @@ module "metric_alarm" {
   statistic   = "Maximum"
 }
 
-module "metric_alarm" {
+module "ma_instance_status_check" {
   source = ".././alarms"
 
   alarm_name          = "${var.prefix}-instance-status-check-ca-gateway"
