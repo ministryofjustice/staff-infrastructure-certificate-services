@@ -196,7 +196,7 @@ module "ec2_ca_gateway" {
 }
 
 module "metric_alarm" {  
-  source = ".././metric_alarm"
+  source = ".././alarms"
 
   alarm_name  = "${var.prefix}-status-check-ca-gateway"
   alarm_description = "Check for instance status check errors."
