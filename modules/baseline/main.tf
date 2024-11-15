@@ -30,6 +30,12 @@ module "pki_vpc" {
   mojo_prod_tgw_id                          = var.mojo_prod_tgw_id
   gp_client_prod_cidr_block                 = var.gp_client_prod_cidr_block
   alz_cidr_block                            = var.alz_cidr_block
+  cidr_entrust_offices_backup               = local.cidr_entrust_offices_backup
+  cidr_entrust_offices                      = local.cidr_entrust_offices
+  cidr_entrust_donovan                      = local.cidr_entrust_donovan
+  cidr_entrust_bastions                     = local.cidr_entrust_bastions
+  splunk_port                               = local.splunk_port
+  trusted_cidr_local                        = local.trusted_cidr_local
 
   prefix = var.prefix
   tags   = var.tags

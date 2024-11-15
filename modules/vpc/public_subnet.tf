@@ -59,7 +59,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow all inbound traffic from VPC
   ingress {
     protocol   = -1
-    rule_no    = 202
+    rule_no    = 200
     action     = var.allow_subnet_traffic
     cidr_block = var.cidr_block
     from_port  = 0
@@ -69,9 +69,9 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound RDP traffic from the Donovan
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 203
+    rule_no    = 210
     action     = var.allow_subnet_traffic
-    cidr_block = "51.148.131.197/32"
+    cidr_block = var.cidr_entrust_donovan
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -79,9 +79,9 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound RDP traffic from MOJO Devices
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 204
+    rule_no    = 220
     action     = var.allow_subnet_traffic
-    cidr_block = "51.149.250.0/24"
+    cidr_block = var.trusted_cidr_local
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -89,9 +89,9 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound RDP traffic from Entrust Offices
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 205
+    rule_no    = 230
     action     = var.allow_subnet_traffic
-    cidr_block = "86.129.202.242/32"
+    cidr_block = var.cidr_entrust_offices
     from_port  = var.rdp_port
     to_port    = var.rdp_port
   }
@@ -99,17 +99,54 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound RDP traffic from Entrust Offices backup connection
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 206
+    rule_no    = 240
     action     = var.allow_subnet_traffic
-    cidr_block = "62.6.167.196/32"
+    cidr_block = var.cidr_entrust_offices_backup
     from_port  = var.rdp_port
     to_port    = var.rdp_port
+  }
+
+  # Allow Entrust Bastion access via VPN to MoJ Bastion
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 250
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 254
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.https_port
+    to_port    = var.https_port
+  }
+
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 256
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.splunk_port
+    to_port    = var.splunk_port
+  }
+
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 258
+    action     = var.allow_subnet_traffic
+    cidr_block = var.cidr_entrust_bastions
+    from_port  = var.ssh_port
+    to_port    = var.ssh_port
   }
 
   # Deny inbound RDP traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 208
+    rule_no    = 260
     action     = "deny"
     cidr_block = var.public_internet_cidr_block
     from_port  = var.rdp_port
@@ -119,7 +156,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
   # Allow inbound traffic on ephemeral ports the public internet
   ingress {
     protocol   = var.tcp_protocol
-    rule_no    = 209
+    rule_no    = 270
     action     = var.allow_subnet_traffic
     cidr_block = var.public_internet_cidr_block
     from_port  = var.ephemeral_port_start
