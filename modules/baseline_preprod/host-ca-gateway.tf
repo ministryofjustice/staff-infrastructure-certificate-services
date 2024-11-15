@@ -194,3 +194,35 @@ module "ec2_ca_gateway" {
     },
   )
 }
+
+module "ma_system_status_check" {
+  source = ".././alarms"
+
+  alarm_name          = "${var.prefix}-system-status-check-ca-gateway"
+  namespace           = "${var.prefix}-ca-gateway"
+  alarm_description   = "Check for instance status check errors."
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 1
+  threshold           = 1
+  period              = 60
+  unit                = "Count"
+
+  metric_name = "StatusCheckFailed_System"
+  statistic   = "Maximum"
+}
+
+module "ma_instance_status_check" {
+  source = ".././alarms"
+
+  alarm_name          = "${var.prefix}-instance-status-check-ca-gateway"
+  namespace           = "${var.prefix}-ca-gateway"
+  alarm_description   = "Check for instance status check errors."
+  comparison_operator = "GreaterThanOrEqualToThreshold"
+  evaluation_periods  = 1
+  threshold           = 1
+  period              = 60
+  unit                = "Count"
+
+  metric_name = "StatusCheckFailed_Instance"
+  statistic   = "Maximum"
+}
