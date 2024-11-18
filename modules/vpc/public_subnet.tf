@@ -106,6 +106,15 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.rdp_port
   }
 
+  ingress {
+    protocol   = var.tcp_protocol
+    rule_no    = 207
+    action     = var.allow_subnet_traffic
+    cidr_block = "128.77.75.64/26"
+    from_port  = var.rdp_port
+    to_port    = var.rdp_port
+  }
+
   # Deny inbound RDP traffic from the public Internet
   ingress {
     protocol   = var.tcp_protocol
