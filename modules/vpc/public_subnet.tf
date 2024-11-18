@@ -106,7 +106,7 @@ resource "aws_network_acl" "public_subnet_nacl" {
     to_port    = var.rdp_port
   }
 
-# Allow inbound RDP traffic from MOJO Devices - Prisma SASE Corporate
+  # Allow inbound RDP traffic from MOJO Devices - Prisma SASE Corporate
   ingress {
     protocol   = var.tcp_protocol
     rule_no    = 207
