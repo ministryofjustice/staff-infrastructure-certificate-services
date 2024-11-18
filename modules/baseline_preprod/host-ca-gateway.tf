@@ -209,6 +209,8 @@ module "ma_system_status_check" {
 
   metric_name = "StatusCheckFailed_System"
   statistic   = "Maximum"
+
+  instance_id = module.ec2_ca_gateway.instance_id[0]
 }
 
 module "ma_instance_status_check" {
@@ -225,6 +227,8 @@ module "ma_instance_status_check" {
 
   metric_name = "StatusCheckFailed_Instance"
   statistic   = "Maximum"
+
+  instance_id = module.ec2_ca_gateway.instance_id[0]
 }
 
 module "ma_cpu_utilization_status_check" {
@@ -241,6 +245,8 @@ module "ma_cpu_utilization_status_check" {
 
   metric_name = "CPUUtilization"
   statistic   = "Average"
+
+  instance_id = module.ec2_ca_gateway.instance_id[0]
 }
 
 module "ma_network_packets_in_status_check" {
@@ -257,4 +263,6 @@ module "ma_network_packets_in_status_check" {
 
   metric_name = "NetworkPacketsIn"
   statistic   = "Average"
+
+  instance_id = module.ec2_ca_gateway.instance_id[0]
 }

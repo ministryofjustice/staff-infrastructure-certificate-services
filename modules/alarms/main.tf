@@ -15,4 +15,8 @@ module "metric_alarm" {
   statistic   = var.statistic
 
   alarm_actions = var.alarm_actions
+
+  dimensions = {
+    InstanceId = var.instance_id
+  }
 }
