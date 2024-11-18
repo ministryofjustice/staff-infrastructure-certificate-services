@@ -53,3 +53,9 @@ variable "alarm_actions" {
   type        = list(string)
   default     = null
 }
+
+variable "instance_id" {
+  description = "EC2 instance ID to attach the alarm/metric too."
+  type        = string
+  default     = null
+}
