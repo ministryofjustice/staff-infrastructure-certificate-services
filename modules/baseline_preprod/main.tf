@@ -74,7 +74,7 @@ module "tgw-attach" {
 }
 
 module "sns_topic" {
-  source  = "terraform-aws-modules/sns/aws"
+  source = "terraform-aws-modules/sns/aws"
 
-  name  = "ec2-alarm-sns"
+  name = "ec2-alarm-sns"
 }
