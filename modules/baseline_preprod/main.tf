@@ -72,3 +72,9 @@ module "tgw-attach" {
 
   prefix = var.prefix
 }
+
+module "sns_topic" {
+  source  = "terraform-aws-modules/sns/aws"
+
+  name  = "ec2-alarm-sns"
+}
