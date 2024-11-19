@@ -34,7 +34,7 @@ variable "period" {
 }
 
 variable "unit" {
-  description = " The unit for the alarm's associated metric."
+  description = " The unit for the alarm's associated metric. "
   type        = string
 }
 
