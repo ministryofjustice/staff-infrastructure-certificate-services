@@ -82,6 +82,8 @@ module "baseline_pre_production" {
   gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
   alz_cidr_block            = var.alz_cidr_block
 
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+
   providers = {
     aws = aws.env
   }

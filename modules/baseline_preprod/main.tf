@@ -72,3 +72,27 @@ module "tgw-attach" {
 
   prefix = var.prefix
 }
+
+module "sns_topic" {
+  source = ".././sns"
+
+  name              = "ec2-alarm-sns"
+  teams_webhook_url = "https://tempurl"
+}
+
+module "teams_lambda" {
+  source = ".././lambda"
+
+  source_file = "lambda/lambda_function.py"
+  output_path = "lambda/lambda_function.zip"
+
+  function_name        = "ms-teams-sns-notification"
+  description          = "Send alarms from EC2 instances to MS Teams channel"
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+}
+
+resource "aws_sns_topic_subscription" "teams_notifications_subscription" {
+  topic_arn = module.sns_topic.sns_topic_arn
+  protocol  = "https"
+  endpoint  = module.teams_lambda.lambda_function_arn
+}
