@@ -76,7 +76,7 @@ module "tgw-attach" {
 module "sns_topic" {
   source = ".././sns"
 
-  name              = "ec2-alarm-sns"
+  name                 = "ec2-alarm-sns"
   ms_teams_webhook_url = "https://tempurl"
 }
 
