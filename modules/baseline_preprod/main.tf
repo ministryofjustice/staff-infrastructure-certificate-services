@@ -77,7 +77,7 @@ module "sns_topic" {
   source = ".././sns"
 
   name              = "ec2-alarm-sns"
-  teams_webhook_url = "https://tempurl"
+  ms_teams_webhook_url = "https://tempurl"
 }
 
 module "teams_lambda" {

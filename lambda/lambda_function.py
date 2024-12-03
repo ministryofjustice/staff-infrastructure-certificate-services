@@ -50,7 +50,7 @@ def lambda_handler(event, context):
     }
 
     # Sending the Teams message to the specified webhook URL
-    webhook_url = os.environ['TEAMS_WEBHOOK_URL']
+    webhook_url = os.environ['MS_TEAMS_WEBHOOK_URL']
     headers = {
         'Content-Type': 'application/json'
     }

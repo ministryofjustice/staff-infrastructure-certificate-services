@@ -3,7 +3,7 @@ variable "name" {
   type        = string
 }
 
-variable "teams_webhook_url" {
+variable "ms_teams_webhook_url" {
   description = "The MS Teams Channel Webhook url to send the message card too."
   type        = string
 }
