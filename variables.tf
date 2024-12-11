@@ -71,3 +71,7 @@ variable "mojo_production_account_id" {
 variable "alz_cidr_block" {
   type = string
 }
+
+variable "ms_teams_webhook_url" {
+  type = string
+}

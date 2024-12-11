@@ -1,0 +1,79 @@
+{
+  "type": "AdaptiveCard",
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.4",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "MoJ PKI Service Alarm",
+      "wrap": true,
+      "spacing": "ExtraLarge",
+      "fontType": "Default",
+      "size": "Medium",
+      "weight": "Bolder",
+      "color": "Attention"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Alarm Description",
+              "wrap": true,
+              "weight": "Bolder",
+              "color": "Accent"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "Alarm Link",
+              "wrap": true,
+              "color": "Accent",
+              "weight": "Bolder"
+            }
+          ]
+        }
+      ],
+      "spacing": "Small",
+      "separator": true,
+      "horizontalAlignment": "Center"
+    },
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "@{triggerBody()?['Title']}",
+              "wrap": true
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "horizontalAlignment": "right",
+              "text": "View alarm [@{triggerBody()?['potentialAction']?[0]?['targets'][0]['uri']}](@{triggerBody()?['potentialAction']?[0]?['targets'][0]['uri']}) ",
+              "wrap": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
