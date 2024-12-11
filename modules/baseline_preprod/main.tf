@@ -93,6 +93,6 @@ module "teams_lambda" {
 
 resource "aws_sns_topic_subscription" "teams_notifications_subscription" {
   topic_arn = module.sns_topic.sns_topic_arn
-  protocol  = "https"
+  protocol  = "lambda"
   endpoint  = module.teams_lambda.lambda_function_arn
 }
