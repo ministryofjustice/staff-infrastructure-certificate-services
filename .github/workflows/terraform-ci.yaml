@@ -28,15 +28,6 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
-    
-    - name: Build Lambda
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.13'
-        cache: 'pip' # caching pip dependencies
-    - run: |
-        cd lambda
-        pip install -r requirements.txt -t .\
 
     - name: Set specified Terraform Version
       run: |
@@ -100,6 +91,17 @@ jobs:
       uses: hashicorp/setup-terraform@v2
       with:
         terraform_version: ${{ env.TFVERSION }}
+
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+        cache: 'pip' # caching pip dependencies
+
+    - name: Build Lambda
+      run: |
+        cd lambda
+        pip install -r requirements.txt -t .\
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
