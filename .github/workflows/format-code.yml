@@ -8,5 +8,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: ministryofjustice/github-actions/code-formatter@v6
+        with:
+          ignore-files: "lambda/requirements.txt"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
