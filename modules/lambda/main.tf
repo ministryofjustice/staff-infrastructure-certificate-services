@@ -1,6 +1,6 @@
 data "archive_file" "teams_lambda_file" {
   type        = "zip"
-  source_dir  = var.source_file
+  source_dir  = var.source_dir
   output_path = var.output_path
 }
 
