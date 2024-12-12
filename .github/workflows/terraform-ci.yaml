@@ -28,6 +28,15 @@ jobs:
     # Checkout the repository to the GitHub Actions runner
     - name: Checkout
       uses: actions/checkout@v3
+    
+    - name: Build Lambda
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13'
+        cache: 'pip' # caching pip dependencies
+    - run: |
+        cd lambda
+        pip install -r requirements.txt -t .\
 
     - name: Set specified Terraform Version
       run: |
