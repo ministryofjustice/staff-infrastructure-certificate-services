@@ -408,7 +408,7 @@ module "ma_cpu_utilization_status_check" {
   alarm_description   = "Alarm when CPU utilization is greater than or equal to 15%."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
-  threshold           = 15
+  threshold           = 20
   period              = 300 # 5 minutes
   unit                = "Count"
 
@@ -425,7 +425,7 @@ module "ma_network_packets_in_status_check" {
   alarm_description   = "Alarm when incoming network packets is greater than or equal to 1500."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
-  threshold           = 1500
+  threshold           = 2500
   period              = 300 # 5 minutes
   unit                = "Count"
 
