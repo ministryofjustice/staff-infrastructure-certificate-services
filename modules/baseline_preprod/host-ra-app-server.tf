@@ -246,7 +246,8 @@ module "ma_system_status_check_ra_app_server" {
   metric_name = "StatusCheckFailed_System"
   statistic   = "Maximum"
 
-  instance_id = module.ec2_ra_app_server.instance_id[0]
+  instance_id   = module.ec2_ra_app_server.instance_id[0]
+  alarm_actions = [module.sns_topic.sns_topic_arn]
 }
 
 module "ma_instance_status_check_ra_app_server" {
@@ -263,7 +264,8 @@ module "ma_instance_status_check_ra_app_server" {
   metric_name = "StatusCheckFailed_Instance"
   statistic   = "Maximum"
 
-  instance_id = module.ec2_ra_app_server.instance_id[0]
+  instance_id   = module.ec2_ra_app_server.instance_id[0]
+  alarm_actions = [module.sns_topic.sns_topic_arn]
 }
 
 module "ma_cpu_utilization_status_check_ra_app_server" {
@@ -280,7 +282,8 @@ module "ma_cpu_utilization_status_check_ra_app_server" {
   metric_name = "CPUUtilization"
   statistic   = "Average"
 
-  instance_id = module.ec2_ra_app_server.instance_id[0]
+  instance_id   = module.ec2_ra_app_server.instance_id[0]
+  alarm_actions = [module.sns_topic.sns_topic_arn]
 }
 
 module "ma_network_packets_in_status_check_ra_app_server" {
@@ -297,5 +300,6 @@ module "ma_network_packets_in_status_check_ra_app_server" {
   metric_name = "NetworkPacketsIn"
   statistic   = "Average"
 
-  instance_id = module.ec2_ra_app_server.instance_id[0]
+  instance_id   = module.ec2_ra_app_server.instance_id[0]
+  alarm_actions = [module.sns_topic.sns_topic_arn]
 }

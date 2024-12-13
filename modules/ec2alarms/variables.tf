@@ -43,6 +43,12 @@ variable "statistic" {
   type        = string
 }
 
+variable "alarm_actions" {
+  description = "The list of actions to execute when this alarm transitions into an ALARM state from any other state."
+  type        = list(string)
+  default     = null
+}
+
 variable "instance_id" {
   description = "EC2 instance ID to attach the alarm/metric too."
   type        = string

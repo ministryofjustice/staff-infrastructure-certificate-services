@@ -14,7 +14,7 @@ module "metric_alarm" {
   metric_name = var.metric_name
   statistic   = var.statistic
 
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = var.alarm_actions
 
   dimensions = {
     InstanceId = var.instance_id
