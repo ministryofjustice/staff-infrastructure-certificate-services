@@ -196,10 +196,9 @@ module "ec2_ca_gateway" {
 }
 
 module "ma_system_status_check" {
-  source = ".././alarms"
+  source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-system-status-check-ca-gateway-alarm"
-  namespace           = "AWS/EC2"
   alarm_description   = "Check for system status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
@@ -211,15 +210,12 @@ module "ma_system_status_check" {
   statistic   = "Maximum"
 
   instance_id = module.ec2_ca_gateway.instance_id[0]
-
-  alarm_actions = [module.sns_topic.sns_topic_arn]
 }
 
 module "ma_instance_status_check" {
-  source = ".././alarms"
+  source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-instance-status-check-ca-gateway-alarm"
-  namespace           = "AWS/EC2"
   alarm_description   = "Check for instance status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
@@ -231,15 +227,12 @@ module "ma_instance_status_check" {
   statistic   = "Maximum"
 
   instance_id = module.ec2_ca_gateway.instance_id[0]
-
-  alarm_actions = [module.sns_topic.sns_topic_arn]
 }
 
 module "ma_cpu_utilization_status_check" {
-  source = ".././alarms"
+  source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-cpu-utilization-ca-gateway-alarm"
-  namespace           = "AWS/EC2"
   alarm_description   = "Alarm when CPU utilization is greater than or equal to 15%."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
@@ -251,15 +244,12 @@ module "ma_cpu_utilization_status_check" {
   statistic   = "Average"
 
   instance_id = module.ec2_ca_gateway.instance_id[0]
-
-  alarm_actions = [module.sns_topic.sns_topic_arn]
 }
 
 module "ma_network_packets_in_status_check" {
-  source = ".././alarms"
+  source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-network-packets-in-ca-gateway-alarm"
-  namespace           = "AWS/EC2"
   alarm_description   = "Alarm when incoming network packets is greater than or equal to 1500."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
@@ -271,6 +261,4 @@ module "ma_network_packets_in_status_check" {
   statistic   = "Average"
 
   instance_id = module.ec2_ca_gateway.instance_id[0]
-
-  alarm_actions = [module.sns_topic.sns_topic_arn]
 }

@@ -3,11 +3,6 @@ variable "alarm_name" {
   type        = string
 }
 
-variable "namespace" {
-  description = "The namespace for the alarm's associated metric."
-  type        = string
-}
-
 variable "alarm_description" {
   description = "Description of the alarm"
   type        = string
@@ -46,12 +41,6 @@ variable "metric_name" {
 variable "statistic" {
   description = "The statistic to apply to the alarm's associated metric. Either of the following is supported: SampleCount, Average, Sum, Minimum, Maximum."
   type        = string
-}
-
-variable "alarm_actions" {
-  description = "The list of actions to execute when this alarm transitions into an ALARM state from any other state."
-  type        = list(string)
-  default     = null
 }
 
 variable "instance_id" {

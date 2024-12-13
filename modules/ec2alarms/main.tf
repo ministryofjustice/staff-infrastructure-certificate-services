@@ -10,11 +10,11 @@ module "metric_alarm" {
   period              = var.period
   unit                = var.unit
 
-  namespace   = var.namespace
+  namespace   = "AWS/EC2"
   metric_name = var.metric_name
   statistic   = var.statistic
 
-  alarm_actions = var.alarm_actions
+  alarm_actions = [module.sns_topic.sns_topic_arn]
 
   dimensions = {
     InstanceId = var.instance_id
