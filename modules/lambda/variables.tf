@@ -8,8 +8,8 @@ variable "description" {
   type        = string
 }
 
-variable "source_file" {
-  description = "Location of the lambda function."
+variable "source_dir" {
+  description = "Location of the lambda function code."
   type        = string
 }
 

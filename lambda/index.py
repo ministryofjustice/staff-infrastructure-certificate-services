@@ -12,10 +12,10 @@ def lambda_handler(event, context):
     alarm_name = json.loads(message)['AlarmName']
     alarm_desc = json.loads(message)['AlarmDescription']
     new_state = json.loads(message)['NewStateValue']
+    new_state_reason = json.loads(message)['NewStateReason']
     alarm_time = json.loads(message)['StateChangeTime']
     instance_id = json.loads(message)['Trigger']['Dimensions'][0]['value']
     region = json.loads(message)['Region']
-    account_id = context.invoked_function_arn.split(':')[4]
 
     # Create url link to view alarm
     alarm_url = f"https://console.aws.amazon.com/cloudwatch/home?region={region}#s=Alarms&alarm={alarm_name}"
@@ -38,11 +38,11 @@ def lambda_handler(event, context):
         "potentialAction": [
             {
                 "@type": "OpenUri",
-                "name": "View Alarm",
+                "name": "Reason",
                 "targets": [
                     {
                         "os": "default",
-                        "uri": alarm_url
+                        "uri": new_state_reason
                     }
                 ]
             }

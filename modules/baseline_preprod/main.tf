@@ -83,7 +83,7 @@ module "sns_topic" {
 module "teams_lambda" {
   source = ".././lambda"
 
-  source_file = "lambda/lambda_function.py"
+  source_dir  = "lambda"
   output_path = "lambda/lambda_function.zip"
 
   function_name        = "ms-teams-sns-notification"
