@@ -235,7 +235,7 @@ module "ec2_ra_app_server" {
 module "ma_system_status_check" {
   source = ".././ec2alarms"
 
-  alarm_name          = "${var.prefix}-system-status-check-ra_app_server-alarm"
+  alarm_name          = "${var.prefix}-system-status-check-ra-app-server-alarm"
   alarm_description   = "Check for system status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
@@ -252,7 +252,7 @@ module "ma_system_status_check" {
 module "ma_instance_status_check" {
   source = ".././ec2alarms"
 
-  alarm_name          = "${var.prefix}-instance-status-check-ra_app_server-alarm"
+  alarm_name          = "${var.prefix}-instance-status-check-ra-app-server-alarm"
   alarm_description   = "Check for instance status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
@@ -269,11 +269,11 @@ module "ma_instance_status_check" {
 module "ma_cpu_utilization_status_check" {
   source = ".././ec2alarms"
 
-  alarm_name          = "${var.prefix}-cpu-utilization-ra_app_server-alarm"
+  alarm_name          = "${var.prefix}-cpu-utilization-ra-app-server-alarm"
   alarm_description   = "Alarm when CPU utilization is greater than or equal to 15%."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
-  threshold           = 15
+  threshold           = 18
   period              = 300 # 5 minutes
   unit                = "Count"
 
@@ -286,11 +286,11 @@ module "ma_cpu_utilization_status_check" {
 module "ma_network_packets_in_status_check" {
   source = ".././ec2alarms"
 
-  alarm_name          = "${var.prefix}-network-packets-in-ra_app_server-alarm"
+  alarm_name          = "${var.prefix}-network-packets-in-ra-app-server-alarm"
   alarm_description   = "Alarm when incoming network packets is greater than or equal to 1500."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
-  threshold           = 1500
+  threshold           = 3500
   period              = 300 # 5 minutes
   unit                = "Count"
 
