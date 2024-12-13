@@ -367,7 +367,7 @@ resource "aws_volume_attachment" "issuing_CA_tertiary_ebs_attach" {
   instance_id = module.ec2_issuing_ca.instance_id[0]
 }
 
-module "ma_system_status_check" {
+module "ma_system_status_check_issuing_ca" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-system-status-check-issuing-ca-alarm"
@@ -384,7 +384,7 @@ module "ma_system_status_check" {
   instance_id = module.ec2_issuing_ca.instance_id[0]
 }
 
-module "ma_instance_status_check" {
+module "ma_instance_status_check_issuing_ca" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-instance-status-check-issuing-ca-alarm"
@@ -401,7 +401,7 @@ module "ma_instance_status_check" {
   instance_id = module.ec2_issuing_ca.instance_id[0]
 }
 
-module "ma_cpu_utilization_status_check" {
+module "ma_cpu_utilization_status_check_issuing_ca" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-cpu-utilization-issuing-ca-alarm"
@@ -418,7 +418,7 @@ module "ma_cpu_utilization_status_check" {
   instance_id = module.ec2_issuing_ca.instance_id[0]
 }
 
-module "ma_network_packets_in_status_check" {
+module "ma_network_packets_in_status_check_issuing_ca" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-network-packets-in-issuing-ca-alarm"

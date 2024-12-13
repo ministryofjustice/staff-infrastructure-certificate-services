@@ -195,7 +195,7 @@ module "ec2_ra_web_server" {
   )
 }
 
-module "ma_system_status_check" {
+module "ma_system_status_check_ra_web_server" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-system-status-check-ra-web-server-alarm"
@@ -212,7 +212,7 @@ module "ma_system_status_check" {
   instance_id = module.ec2_ra_web_server.instance_id[0]
 }
 
-module "ma_instance_status_check" {
+module "ma_instance_status_check_ra_web_server" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-instance-status-check-ra-web-server-alarm"
@@ -229,7 +229,7 @@ module "ma_instance_status_check" {
   instance_id = module.ec2_ra_web_server.instance_id[0]
 }
 
-module "ma_cpu_utilization_status_check" {
+module "ma_cpu_utilization_status_check_ra_web_server" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-cpu-utilization-ra-web-server-alarm"
@@ -246,7 +246,7 @@ module "ma_cpu_utilization_status_check" {
   instance_id = module.ec2_ra_web_server.instance_id[0]
 }
 
-module "ma_network_packets_in_status_check" {
+module "ma_network_packets_in_status_check_ra_web_server" {
   source = ".././ec2alarms"
 
   alarm_name          = "${var.prefix}-network-packets-in-ra-web-server-alarm"
