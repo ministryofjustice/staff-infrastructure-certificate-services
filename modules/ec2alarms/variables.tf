@@ -3,11 +3,6 @@ variable "alarm_name" {
   type        = string
 }
 
-variable "namespace" {
-  description = "The namespace for the alarm's associated metric."
-  type        = string
-}
-
 variable "alarm_description" {
   description = "Description of the alarm"
   type        = string
