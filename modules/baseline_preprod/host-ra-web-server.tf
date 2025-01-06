@@ -210,7 +210,7 @@ module "ma_system_status_check_ra_web_server" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }
 
 module "ma_instance_status_check_ra_web_server" {
@@ -228,7 +228,7 @@ module "ma_instance_status_check_ra_web_server" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }
 
 module "ma_cpu_utilization_status_check_ra_web_server" {
@@ -246,7 +246,7 @@ module "ma_cpu_utilization_status_check_ra_web_server" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }
 
 module "ma_network_packets_in_status_check_ra_web_server" {
@@ -264,5 +264,5 @@ module "ma_network_packets_in_status_check_ra_web_server" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }

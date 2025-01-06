@@ -107,6 +107,7 @@ module "baseline_pre_production" {
   alz_cidr_block            = var.alz_cidr_block
 
   ms_teams_webhook_url = var.ms_teams_webhook_url
+  sns_topic_arn        = module.sns_topic.sns_topic_arn
 
   providers = {
     aws = aws.env
@@ -139,6 +140,9 @@ module "baseline_production" {
   mojo_prod_tgw_id          = var.mojo_prod_tgw_id
   gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
   alz_cidr_block            = var.alz_cidr_block
+
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+  sns_topic_arn        = module.sns_topic.sns_topic_arn
 
   providers = {
     aws = aws.env

@@ -208,7 +208,7 @@ module "ma_system_status_check_ca_gateway" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ca_gateway.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }
 
 module "ma_instance_status_check_ca_gateway" {
@@ -226,7 +226,7 @@ module "ma_instance_status_check_ca_gateway" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ca_gateway.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }
 
 module "ma_cpu_utilization_status_check_ca_gateway" {
@@ -244,7 +244,7 @@ module "ma_cpu_utilization_status_check_ca_gateway" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ca_gateway.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }
 
 module "ma_network_packets_in_status_check_ca_gateway" {
@@ -262,5 +262,5 @@ module "ma_network_packets_in_status_check_ca_gateway" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ca_gateway.instance_id[0]
-  alarm_actions = [module.sns_topic.sns_topic_arn]
+  alarm_actions = [var.sns_topic_arn]
 }

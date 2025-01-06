@@ -65,3 +65,7 @@ variable "alz_cidr_block" {
 variable "ms_teams_webhook_url" {
   type = string
 }
+
+variable "sns_topic_arn" {
+  type = string
+}
