@@ -128,3 +128,27 @@ module "lambda_stop_start" {
     aws = aws.env
   }
 }
+
+module "sns_topic" {
+  source = ".././sns"
+
+  name                 = "ec2-alarm-sns"
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+}
+
+module "teams_lambda" {
+  source = ".././lambda"
+
+  source_dir  = "lambda"
+  output_path = "lambda/lambda_function.zip"
+
+  function_name        = "ms-teams-sns-notification"
+  description          = "Send alarms from EC2 instances to MS Teams channel"
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+}
+
+resource "aws_sns_topic_subscription" "teams_notifications_subscription" {
+  topic_arn = module.sns_topic.sns_topic_arn
+  protocol  = "lambda"
+  endpoint  = module.teams_lambda.lambda_function_arn
+}
