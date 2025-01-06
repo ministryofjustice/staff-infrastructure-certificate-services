@@ -57,7 +57,7 @@ module "vpn_production" {
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
   seondary_internal_cidr            = var.seondary_internal_cidr
 
-  sns_topic_arn                     = module.sns_topic.sns_topic_arn
+  sns_topic_arn = module.sns_topic.sns_topic_arn
 
   cgw_hsm_primary_id   = var.cgw_hsm_primary_id
   cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
