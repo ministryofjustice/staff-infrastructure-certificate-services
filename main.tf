@@ -55,6 +55,30 @@ module "iam" {
   }
 }
 
+module "sns_topic" {
+  source = "./modules/sns"
+
+  name                 = "ec2-alarm-sns"
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+}
+
+module "teams_lambda" {
+  source = "./modules/lambda"
+
+  source_dir  = "lambda"
+  output_path = "lambda/lambda_function.zip"
+
+  function_name        = "ms-teams-sns-notification"
+  description          = "Send alarms from EC2 instances to MS Teams channel"
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+}
+
+resource "aws_sns_topic_subscription" "teams_notifications_subscription" {
+  topic_arn = module.sns_topic.sns_topic_arn
+  protocol  = "lambda"
+  endpoint  = module.teams_lambda.lambda_function_arn
+}
+
 module "baseline_pre_production" {
   source = "./modules/baseline_preprod"
 
@@ -83,6 +107,7 @@ module "baseline_pre_production" {
   alz_cidr_block            = var.alz_cidr_block
 
   ms_teams_webhook_url = var.ms_teams_webhook_url
+  sns_topic_arn        = module.sns_topic.sns_topic_arn
 
   providers = {
     aws = aws.env
@@ -115,6 +140,9 @@ module "baseline_production" {
   mojo_prod_tgw_id          = var.mojo_prod_tgw_id
   gp_client_prod_cidr_block = var.gp_client_prod_cidr_block
   alz_cidr_block            = var.alz_cidr_block
+
+  ms_teams_webhook_url = var.ms_teams_webhook_url
+  sns_topic_arn        = module.sns_topic.sns_topic_arn
 
   providers = {
     aws = aws.env

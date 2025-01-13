@@ -61,3 +61,11 @@ variable "gp_client_prod_cidr_block" {
 variable "alz_cidr_block" {
   type = string
 }
+
+variable "ms_teams_webhook_url" {
+  type = string
+}
+
+variable "sns_topic_arn" {
+  type = string
+}
