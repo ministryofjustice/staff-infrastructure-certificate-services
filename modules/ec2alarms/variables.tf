@@ -18,6 +18,11 @@ variable "evaluation_periods" {
   type        = number
 }
 
+variable "datapoints_to_alarm" {
+  description = "The number of datapoints that must be breaching to trigger the alarm."
+  type        = number
+}
+
 variable "threshold" {
   description = "The value against which the specified statistic is compared."
   type        = number
