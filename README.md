@@ -2,7 +2,6 @@
 
 # MoJ Staff Infrastructure: Certificate Services
 
-
 - [Introduction](#introduction)
 - [Warning on tearing down infrastructure](#warning-on-tearing-down-infrastructure)
 - [Terraform State Management](#terraform-state-management)
