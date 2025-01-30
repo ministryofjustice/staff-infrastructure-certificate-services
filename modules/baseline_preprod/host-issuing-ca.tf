@@ -336,7 +336,7 @@ resource "aws_ebs_volume" "issuing_CA_secondary_ebs" {
   size              = 60
   tags = merge(
     var.tags, {
-      Name = "${var.prefix}-issuing-ca-dev-sdh",
+      Name        = "${var.prefix}-issuing-ca-dev-sdh",
       Environment = var.environment_description,
       device_name = "/dev/sdh"
     }
