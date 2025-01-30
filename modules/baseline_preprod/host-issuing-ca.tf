@@ -424,6 +424,8 @@ module "ma_cpu_utilization_status_check_issuing_ca" {
   alarm_actions = [var.sns_topic_arn]
 }
 
+data "aws_caller_identity" "current" {}
+
 module "ma_network_packets_in_status_check_issuing_ca" {
   source = ".././ec2alarms"
 
@@ -440,5 +442,6 @@ module "ma_network_packets_in_status_check_issuing_ca" {
   statistic   = "Average"
 
   instance_id   = module.ec2_issuing_ca.instance_id[0]
-  alarm_actions = ["${var.sns_topic_arn}-${var.sns_topic_id}-${var.sns_topic_name}-${var.sns_topic_owner}"]
+  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
+  #alarm_actions = ["${var.sns_topic_arn}-${var.sns_topic_id}-${var.sns_topic_name}-${var.sns_topic_owner}"]
 }
