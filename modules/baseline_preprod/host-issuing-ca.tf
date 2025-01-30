@@ -440,5 +440,5 @@ module "ma_network_packets_in_status_check_issuing_ca" {
   statistic   = "Average"
 
   instance_id   = module.ec2_issuing_ca.instance_id[0]
-  alarm_actions = [var.sns_topic_arn]
+  alarm_actions = ["${var.sns_topic_arn}-${var.sns_topic_id}-${var.sns_topic_name}-${var.sns_topic_owner}"]
 }
