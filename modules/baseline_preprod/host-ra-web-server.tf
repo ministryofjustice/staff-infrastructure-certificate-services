@@ -211,7 +211,7 @@ module "ma_system_status_check_ra_web_server" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
+  alarm_actions = [local.sns_topic_alarm_action]
 }
 
 module "ma_instance_status_check_ra_web_server" {
@@ -230,7 +230,7 @@ module "ma_instance_status_check_ra_web_server" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
+  alarm_actions = [local.sns_topic_alarm_action]
 }
 
 module "ma_cpu_utilization_status_check_ra_web_server" {
@@ -249,7 +249,7 @@ module "ma_cpu_utilization_status_check_ra_web_server" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
+  alarm_actions = [local.sns_topic_alarm_action]
 }
 
 module "ma_network_packets_in_status_check_ra_web_server" {
@@ -268,5 +268,5 @@ module "ma_network_packets_in_status_check_ra_web_server" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
+  alarm_actions = [local.sns_topic_alarm_action]
 }

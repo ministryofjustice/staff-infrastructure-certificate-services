@@ -62,4 +62,6 @@ locals {
   cidr_private_b = "172.16.0.0/12"
   cidr_private_c = "192.168.0.0/16"
 
+  sns_topic_alarm_action = "arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"
+
 }
