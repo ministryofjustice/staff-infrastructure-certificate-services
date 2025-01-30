@@ -69,3 +69,15 @@ variable "ms_teams_webhook_url" {
 variable "sns_topic_arn" {
   type = string
 }
+
+variable "sns_topic_id" {
+  type = string
+}
+
+variable "sns_topic_name" {
+  type = string
+}
+
+variable "sns_topic_owner" {
+  type = string
+}

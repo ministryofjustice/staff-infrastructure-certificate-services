@@ -108,6 +108,9 @@ module "baseline_pre_production" {
 
   ms_teams_webhook_url = var.ms_teams_webhook_url
   sns_topic_arn        = module.sns_topic.sns_topic_arn
+  sns_topic_id         = module.sns_topic.sns_topic_id
+  sns_topic_name       = module.sns_topic.sns_topic_name
+  sns_topic_owner      = module.sns_topic.sns_topic_owner
 
   providers = {
     aws = aws.env
@@ -143,6 +146,10 @@ module "baseline_production" {
 
   ms_teams_webhook_url = var.ms_teams_webhook_url
   sns_topic_arn        = module.sns_topic.sns_topic_arn
+  sns_topic_arn        = module.sns_topic.sns_topic_arn
+  sns_topic_id         = module.sns_topic.sns_topic_id
+  sns_topic_name       = module.sns_topic.sns_topic_name
+  sns_topic_owner      = module.sns_topic.sns_topic_owner
 
   providers = {
     aws = aws.env
