@@ -365,8 +365,6 @@ resource "aws_volume_attachment" "issuing_CA_tertiary_ebs_attach" {
   instance_id = module.ec2_issuing_ca.instance_id[0]
 }
 
-data "aws_caller_identity" "current" {}
-
 module "ma_system_status_check_issuing_ca" {
   source = ".././ec2alarms"
 

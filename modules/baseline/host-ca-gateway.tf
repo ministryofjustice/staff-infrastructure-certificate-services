@@ -193,8 +193,6 @@ module "ec2_ca_gateway" {
   )
 }
 
-data "aws_caller_identity" "current" {}
-
 module "ma_system_status_check_ca_gateway" {
   source = ".././ec2alarms"
 

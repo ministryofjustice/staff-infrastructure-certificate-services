@@ -195,8 +195,6 @@ module "ec2_ra_web_server" {
   )
 }
 
-data "aws_caller_identity" "current" {}
-
 module "ma_system_status_check_ra_web_server" {
   source = ".././ec2alarms"
 
