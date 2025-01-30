@@ -393,7 +393,7 @@ module "ma_instance_status_check_issuing_ca" {
   evaluation_periods  = 1
   datapoints_to_alarm = 1
   threshold           = 1
-  period              = 60
+  period              = 10
   unit                = "Count"
 
   metric_name = "StatusCheckFailed_Instance"
