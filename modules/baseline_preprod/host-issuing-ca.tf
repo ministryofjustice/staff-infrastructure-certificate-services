@@ -335,11 +335,11 @@ resource "aws_ebs_volume" "issuing_CA_secondary_ebs" {
   availability_zone = module.pki_vpc.private_subnet_backend_zone_az
   size              = 60
   tags = merge(
-    var.tags, tomap({
-      "Name" : "${var.prefix}-issuing-ca-dev-sdh",
-      "Environment" : var.environment_description,
-      "device_name" : "/dev/sdh"
-    })
+    var.tags, {
+      Name = "${var.prefix}-issuing-ca-dev-sdh",
+      Environment = var.environment_description,
+      device_name = "/dev/sdh"
+    }
   )
 }
 
