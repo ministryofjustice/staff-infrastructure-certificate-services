@@ -202,6 +202,7 @@ module "ma_system_status_check_ra_web_server" {
   alarm_description   = "Check for system status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
+  datapoints_to_alarm = 1
   threshold           = 1
   period              = 60
   unit                = "Count"
@@ -210,7 +211,7 @@ module "ma_system_status_check_ra_web_server" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [var.sns_topic_arn]
+  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
 }
 
 module "ma_instance_status_check_ra_web_server" {
@@ -220,6 +221,7 @@ module "ma_instance_status_check_ra_web_server" {
   alarm_description   = "Check for instance status check errors."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 1
+  datapoints_to_alarm = 1
   threshold           = 1
   period              = 60
   unit                = "Count"
@@ -228,7 +230,7 @@ module "ma_instance_status_check_ra_web_server" {
   statistic   = "Maximum"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [var.sns_topic_arn]
+  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
 }
 
 module "ma_cpu_utilization_status_check_ra_web_server" {
@@ -238,6 +240,7 @@ module "ma_cpu_utilization_status_check_ra_web_server" {
   alarm_description   = "Alarm when CPU utilization is greater than or equal to 15%."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
+  datapoints_to_alarm = 2
   threshold           = 1
   period              = 300 # 5 minutes
   unit                = "Count"
@@ -246,7 +249,7 @@ module "ma_cpu_utilization_status_check_ra_web_server" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [var.sns_topic_arn]
+  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
 }
 
 module "ma_network_packets_in_status_check_ra_web_server" {
@@ -256,6 +259,7 @@ module "ma_network_packets_in_status_check_ra_web_server" {
   alarm_description   = "Alarm when incoming network packets is greater than or equal to 1500."
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
+  datapoints_to_alarm = 2
   threshold           = 3000
   period              = 300 # 5 minutes
   unit                = "Count"
@@ -264,5 +268,5 @@ module "ma_network_packets_in_status_check_ra_web_server" {
   statistic   = "Average"
 
   instance_id   = module.ec2_ra_web_server.instance_id[0]
-  alarm_actions = [var.sns_topic_arn]
+  alarm_actions = ["arn:aws:sns:${var.region_id}:${data.aws_caller_identity.current.account_id}:ec2-alarm-sns"]
 }

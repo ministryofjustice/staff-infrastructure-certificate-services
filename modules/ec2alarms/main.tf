@@ -6,6 +6,7 @@ module "metric_alarm" {
   alarm_description   = var.alarm_description
   comparison_operator = var.comparison_operator
   evaluation_periods  = var.evaluation_periods
+  datapoints_to_alarm = var.datapoints_to_alarm
   threshold           = var.threshold
   period              = var.period
   unit                = var.unit

@@ -4,6 +4,8 @@ terraform {
   }
 }
 
+data "aws_caller_identity" "current" {}
+
 module "pki_vpc" {
   source = ".././vpc"
 
