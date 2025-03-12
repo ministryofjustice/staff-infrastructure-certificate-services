@@ -74,3 +74,22 @@ module "tgw-attach" {
 
   prefix = var.prefix
 }
+
+module "vpn_pre-productionv2" {
+  source = ".././vpnv2"
+
+  vpc_id = module.pki_vpc.vpc_id
+
+  tertiary_remote_destination_cidr = var.primary_remote_destination_cidr
+  tertiary_internal_cidr           = var.primary_internal_cidr
+
+  backend_zone_route_table_id = module.pki_vpc.backend_zone_route_table_id
+
+  quarternary_remote_destination_cidr = var.secondary_remote_destination_cidr
+  quarternary_internal_cidr            = var.seondary_internal_cidr
+
+  cgw_hsm_tertiary_id   = var.cgw_hsm_primary_id
+  cgw_hsm_quarternary_id = var.cgw_hsm_secondary_id
+
+  prefix = "pre-production"
+}
