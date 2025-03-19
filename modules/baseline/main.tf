@@ -63,11 +63,11 @@ module "vpn_production" {
   tertiary_internal_cidr           = var.quarternary_internal_cidr
 
   quarternary_remote_destination_cidr = var.quarternary_remote_destination_cidr
-  quarternary_internal_cidr            = var.quarternary_internal_cidr
+  quarternary_internal_cidr           = var.quarternary_internal_cidr
 
-  cgw_hsm_primary_id   = var.cgw_hsm_primary_id
-  cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
-  cgw_hsm_tertiary_id   = var.cgw_hsm_tertiary_id
+  cgw_hsm_primary_id     = var.cgw_hsm_primary_id
+  cgw_hsm_secondary_id   = var.cgw_hsm_secondary_id
+  cgw_hsm_tertiary_id    = var.cgw_hsm_tertiary_id
   cgw_hsm_quarternary_id = var.cgw_hsm_quarternary_id
 
   prefix = "production"
