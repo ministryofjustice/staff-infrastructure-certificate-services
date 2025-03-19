@@ -64,8 +64,8 @@ jobs:
           TF_VAR_CGW_HSM_PRIMARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_primary_ip
           TF_VAR_CGW_HSM_SECONDARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_secondary_ip
           TF_VAR_MS_TEAMS_WEBHOOK_URL, staff-infrastructure-certificate-services/production/ms_teams_webhook_url
-          TF_VAR_CGW_HSM_TERTIARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_tertiary_id
-          TF_VAR_CGW_HSM_QUARTERNARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_quarternary_id
+          TF_VAR_CGW_HSM_TERTIARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_tertiary_ip
+          TF_VAR_CGW_HSM_QUARTERNARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_quarternary_ip
           TF_VAR_TERTIARY_INTERNAL_CIDR, staff-infrastructure-certificate-services/production/tertiary_internal_cidr
           TF_VAR_QUARTERNARY_INTERNAL_CIDR, staff-infrastructure-certificate-services/production/quarternary_internal_cidr
           TF_VAR_TERTIARY_REMOTE_DESTINATION_CIDR, staff-infrastructure-certificate-services/production/tertiary_remote_destination_cidr
@@ -94,8 +94,8 @@ jobs:
         echo "TF_VAR_assume_role=${TF_VAR_ASSUME_ROLE}" >> $GITHUB_ENV
         echo "TF_VAR_cgw_hsm_primary_ip=${TF_VAR_CGW_HSM_PRIMARY_IP}" >> $GITHUB_ENV
         echo "TF_VAR_cgw_hsm_secondary_ip=${TF_VAR_CGW_HSM_SECONDARY_IP}" >> $GITHUB_ENV
-        echo "TF_VAR_cgw_hsm_tertiary_id=${TF_VAR_CGW_HSM_TERTIARY_IP}" >> $GITHUB_ENV
-        echo "TF_VAR_cgw_hsm_quarternary_id=${TF_VAR_CGW_HSM_QUARTERNARY_IP}" >> $GITHUB_ENV
+        echo "TF_VAR_cgw_hsm_tertiary_ip=${TF_VAR_CGW_HSM_TERTIARY_IP}" >> $GITHUB_ENV
+        echo "TF_VAR_cgw_hsm_quarternary_ip=${TF_VAR_CGW_HSM_QUARTERNARY_IP}" >> $GITHUB_ENV
         echo "TF_VAR_ms_teams_webhook_url=${TF_VAR_MS_TEAMS_WEBHOOK_URL}" >> $GITHUB_ENV
 
     # Install the latest version of Terraform CLI
