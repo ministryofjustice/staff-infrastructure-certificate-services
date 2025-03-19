@@ -23,3 +23,23 @@ resource "aws_customer_gateway" "cgw_hsm_secondary" {
   ip_address = var.cgw_hsm_secondary_ip
   type       = "ipsec.1"
 }
+
+resource "aws_customer_gateway" "cgw_hsm_tertiary" {
+  tags = {
+    "Name" = "cgw_pki_hsm_tertiary"
+  }
+
+  bgp_asn    = 65000
+  ip_address = var.cgw_hsm_tertiary_ip
+  type       = "ipsec.1"
+}
+
+resource "aws_customer_gateway" "cgw_hsm_quarternary" {
+  tags = {
+    "Name" = "cgw_pki_hsm_quarternary"
+  }
+
+  bgp_asn    = 65000
+  ip_address = var.cgw_hsm_quarternary_ip
+  type       = "ipsec.1"
+}
