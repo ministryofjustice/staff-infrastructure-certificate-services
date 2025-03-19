@@ -56,11 +56,11 @@ variable "cgw_hsm_secondary_ip" {
   type = string
 }
 
-variable "cgw_hsm_tertiary_id" {
+variable "cgw_hsm_tertiary_ip" {
   type = string
 }
 
-variable "cgw_hsm_quarternary_id" {
+variable "cgw_hsm_quarternary_ip" {
   type = string
 }
 
