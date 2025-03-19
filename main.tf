@@ -37,9 +37,9 @@ module "label" {
 module "cgw" {
   source = "./modules/cgw"
 
-  cgw_hsm_primary_ip   = var.cgw_hsm_primary_ip
-  cgw_hsm_secondary_ip = var.cgw_hsm_secondary_ip
-  cgw_hsm_tertiary_ip = var.cgw_hsm_tertiary_ip
+  cgw_hsm_primary_ip     = var.cgw_hsm_primary_ip
+  cgw_hsm_secondary_ip   = var.cgw_hsm_secondary_ip
+  cgw_hsm_tertiary_ip    = var.cgw_hsm_tertiary_ip
   cgw_hsm_quarternary_ip = var.cgw_hsm_quarternary_ip
 
   providers = {
@@ -104,8 +104,8 @@ module "baseline_pre_production" {
   quarternary_remote_destination_cidr = var.quarternary_remote_destination_cidr
   quarternary_internal_cidr           = var.quarternary_internal_cidr
 
-  cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
-  cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
+  cgw_hsm_primary_id     = module.cgw.cgw_hsm_primary_id
+  cgw_hsm_secondary_id   = module.cgw.cgw_hsm_secondary_id
   cgw_hsm_tertiary_id    = module.cgw.cgw_hsm_tertiary_id
   cgw_hsm_quarternary_id = module.cgw.cgw_hsm_quarternary_id
 
@@ -147,8 +147,8 @@ module "baseline_production" {
   quarternary_remote_destination_cidr = var.quarternary_remote_destination_cidr
   quarternary_internal_cidr           = var.quarternary_internal_cidr
 
-  cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
-  cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
+  cgw_hsm_primary_id     = module.cgw.cgw_hsm_primary_id
+  cgw_hsm_secondary_id   = module.cgw.cgw_hsm_secondary_id
   cgw_hsm_tertiary_id    = module.cgw.cgw_hsm_tertiary_id
   cgw_hsm_quarternary_id = module.cgw.cgw_hsm_quarternary_id
 
