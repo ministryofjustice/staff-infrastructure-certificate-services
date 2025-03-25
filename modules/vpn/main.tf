@@ -6,7 +6,6 @@ resource "aws_vpn_gateway" "vpn_gateway" {
   vpc_id = var.vpc_id
 }
 
-
 ### Primary
 resource "aws_vpn_connection" "main" {
   tags = {
@@ -44,66 +43,58 @@ resource "aws_vpn_connection" "vpn_secondary" {
 }
 
 resource "aws_vpn_connection_route" "entrust_secondary" {
-  destination_cidr_block = var.secondary_remote_destination_cidr
+  destination_cidr_block = var.secondary_remote_destination_cidr //192.168.30.0/24
   vpn_connection_id      = aws_vpn_connection.vpn_secondary.id
 }
 
 resource "aws_route" "secondary_vpn_route" {
   route_table_id         = var.backend_zone_route_table_id
-  destination_cidr_block = var.secondary_remote_destination_cidr
+  destination_cidr_block = var.secondary_remote_destination_cidr //192.168.30.0/24
   gateway_id             = aws_vpn_gateway.vpn_gateway.id
 }
 
-resource "aws_vpn_gateway" "vpn_gateway_v2" {
+### HSM LD6 London
+resource "aws_vpn_connection" "vpn_ld6" {
   tags = {
-    "Name" = "${var.prefix}-pki-vpgv2"
+    "Name" = "${var.prefix}-pki-vpn-ld6"
   }
 
-  vpc_id = var.vpc_id
-}
-
-### Tertiary
-resource "aws_vpn_connection" "vpn_tertiary" {
-  tags = {
-    "Name" = "${var.prefix}-pki-vpn-tertiary"
-  }
-
-  vpn_gateway_id      = aws_vpn_gateway.vpn_gateway_v2.id
-  customer_gateway_id = var.cgw_hsm_tertiary_id
+  vpn_gateway_id      = aws_vpn_gateway.vpn_gateway.id
+  customer_gateway_id = var.cgw_hsm_ld6_id // 88.84.131.132 
   type                = "ipsec.1"
   static_routes_only  = true
 }
 
 resource "aws_vpn_connection_route" "entrust" {
-  destination_cidr_block = var.tertiary_remote_destination_cidr
-  vpn_connection_id      = aws_vpn_connection.vpn_tertiary.id
+  destination_cidr_block = var.ld6_remote_destination_cidr //[192.168.31.0/24, 192.168.3.0/24]
+  vpn_connection_id      = aws_vpn_connection.vpn_ld6.id
 }
 
-resource "aws_route" "tertiary_vpn_route" {
+resource "aws_route" "ld6_vpn_route" {
   route_table_id         = var.backend_zone_route_table_id
-  destination_cidr_block = var.tertiary_remote_destination_cidr
-  gateway_id             = aws_vpn_gateway.vpn_gateway_v2.id
+  destination_cidr_block = var.ld6_remote_destination_cidr //[192.168.31.0/24, 192.168.3.0/24]
+  gateway_id             = aws_vpn_gateway.vpn_gateway.id
 }
 
-### Quarternary
-resource "aws_vpn_connection" "vpn_quarternary" {
+### HSM TSC Newbury
+resource "aws_vpn_connection" "vpn_tsc" {
   tags = {
-    "Name" = "${var.prefix}-pki-vpn-quarternary"
+    "Name" = "${var.prefix}-pki-vpn-tsc"
   }
 
-  vpn_gateway_id      = aws_vpn_gateway.vpn_gateway_v2.id
-  customer_gateway_id = var.cgw_hsm_quarternary_id
+  vpn_gateway_id      = aws_vpn_gateway.vpn_gateway.id
+  customer_gateway_id = var.cgw_hsm_tsc_id // 213.1.236.32 // Rename LD6 and TSC
   type                = "ipsec.1"
   static_routes_only  = true
 }
 
 resource "aws_vpn_connection_route" "entrust" {
-  destination_cidr_block = var.quarternary_remote_destination_cidr
-  vpn_connection_id      = aws_vpn_connection.vpn_quarternary.id
+  destination_cidr_block = var.tsc_remote_destination_cidr //[192.168.41.0/24, 192.168.13.0/24]
+  vpn_connection_id      = aws_vpn_connection.vpn_tsc.id
 }
 
-resource "aws_route" "quarternary_vpn_route" {
+resource "aws_route" "tsc_vpn_route" {
   route_table_id         = var.backend_zone_route_table_id
-  destination_cidr_block = var.quarternary_remote_destination_cidr
-  gateway_id             = aws_vpn_gateway.vpn_gateway_v2.id
+  destination_cidr_block = var.tsc_remote_destination_cidr //[192.168.41.0/24, 192.168.13.0/24]
+  gateway_id             = aws_vpn_gateway.vpn_gateway.id
 }

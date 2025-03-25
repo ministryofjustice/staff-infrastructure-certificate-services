@@ -64,12 +64,12 @@ jobs:
           TF_VAR_CGW_HSM_PRIMARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_primary_ip
           TF_VAR_CGW_HSM_SECONDARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_secondary_ip
           TF_VAR_MS_TEAMS_WEBHOOK_URL, staff-infrastructure-certificate-services/production/ms_teams_webhook_url
-          TF_VAR_CGW_HSM_TERTIARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_tertiary_ip
-          TF_VAR_CGW_HSM_QUARTERNARY_IP, staff-infrastructure-certificate-services/production/cgw_hsm_quarternary_ip
-          TF_VAR_TERTIARY_INTERNAL_CIDR, staff-infrastructure-certificate-services/production/tertiary_internal_cidr
-          TF_VAR_QUARTERNARY_INTERNAL_CIDR, staff-infrastructure-certificate-services/production/quarternary_internal_cidr
-          TF_VAR_TERTIARY_REMOTE_DESTINATION_CIDR, staff-infrastructure-certificate-services/production/tertiary_remote_destination_cidr
-          TF_VAR_QUARTERNARY_REMOTE_DESTINATION_CIDR, staff-infrastructure-certificate-services/production/quarternary_remote_destination_cidr
+          TF_VAR_CGW_HSM_LD6_IP, staff-infrastructure-certificate-services/production/cgw_hsm_ld6_ip
+          TF_VAR_CGW_HSM_TSC_IP, staff-infrastructure-certificate-services/production/cgw_hsm_tsc_ip
+          TF_VAR_LD6_INTERNAL_CIDR, staff-infrastructure-certificate-services/production/ld6_internal_cidr
+          TF_VAR_TSC_INTERNAL_CIDR, staff-infrastructure-certificate-services/production/tsc_internal_cidr
+          TF_VAR_LD6_REMOTE_DESTINATION_CIDR, staff-infrastructure-certificate-services/production/ld6_remote_destination_cidr
+          TF_VAR_TSC_REMOTE_DESTINATION_CIDR, staff-infrastructure-certificate-services/production/tsc_remote_destination_cidr
 
     # aws-secretsmanager-get-secrets will not assign to mixed case env var so this work around is necessary
     - name: Assign Uppercase secrets env vars to mixed case env vars
@@ -78,13 +78,13 @@ jobs:
         echo "TF_VAR_trusted_cidr=${TF_VAR_TRUSTED_CIDR}" >> $GITHUB_ENV
         echo "TF_VAR_mojo_prod_tgw_id=${TF_VAR_MOJO_PROD_TGW_ID}" >> $GITHUB_ENV
         echo "TF_VAR_seondary_internal_cidr=${TF_VAR_SEONDARY_INTERNAL_CIDR}" >> $GITHUB_ENV
-        echo "TF_VAR_tertiary_internal_cidr=${TF_VAR_TERTIARY_INTERNAL_CIDR}" >> $GITHUB_ENV
-        echo "TF_VAR_quarternary_internal_cidr=${TF_VAR_QUARTERNARY_INTERNAL_CIDR}" >> $GITHUB_ENV
+        echo "TF_VAR_ld6_internal_cidr=${TF_VAR_LD6_INTERNAL_CIDR}" >> $GITHUB_ENV
+        echo "TF_VAR_tsc_internal_cidr=${TF_VAR_TSC_INTERNAL_CIDR}" >> $GITHUB_ENV
         echo "TF_VAR_pcx_preproduction_pki_ost_cidr=${TF_VAR_PCX_PREPRODUCTION_PKI_OST_CIDR}" >> $GITHUB_ENV
         echo "TF_VAR_pcx_preproduction_pki_ost_id=${TF_VAR_PCX_PREPRODUCTION_PKI_OST_ID}" >> $GITHUB_ENV
         echo "TF_VAR_primary_remote_destination_cidr=${TF_VAR_PRIMARY_REMOTE_DESTINATION_CIDR}" >> $GITHUB_ENV
-        echo "TF_VAR_tertiary_remote_destination_cidr=${TF_VAR_TERTIARY_REMOTE_DESTINATION_CIDR}" >> $GITHUB_ENV
-        echo "TF_VAR_quarternary_remote_destination_cidr=${TF_VAR_QUARTERNARY_REMOTE_DESTINATION_CIDR}" >> $GITHUB_ENV
+        echo "TF_VAR_ld6_remote_destination_cidr=${TF_VAR_LD6_REMOTE_DESTINATION_CIDR}" >> $GITHUB_ENV
+        echo "TF_VAR_tsc_remote_destination_cidr=${TF_VAR_TSC_REMOTE_DESTINATION_CIDR}" >> $GITHUB_ENV
         echo "TF_VAR_alz_cidr_block=${TF_VAR_ALZ_CIDR_BLOCK}" >> $GITHUB_ENV
         echo "TF_VAR_pcx_production_pki_ost_id=${TF_VAR_PCX_PRODUCTION_PKI_OST_ID}" >> $GITHUB_ENV
         echo "TF_VAR_secondary_remote_destination_cidr=${TF_VAR_SECONDARY_REMOTE_DESTINATION_CIDR}" >> $GITHUB_ENV
@@ -94,8 +94,8 @@ jobs:
         echo "TF_VAR_assume_role=${TF_VAR_ASSUME_ROLE}" >> $GITHUB_ENV
         echo "TF_VAR_cgw_hsm_primary_ip=${TF_VAR_CGW_HSM_PRIMARY_IP}" >> $GITHUB_ENV
         echo "TF_VAR_cgw_hsm_secondary_ip=${TF_VAR_CGW_HSM_SECONDARY_IP}" >> $GITHUB_ENV
-        echo "TF_VAR_cgw_hsm_tertiary_ip=${TF_VAR_CGW_HSM_TERTIARY_IP}" >> $GITHUB_ENV
-        echo "TF_VAR_cgw_hsm_quarternary_ip=${TF_VAR_CGW_HSM_QUARTERNARY_IP}" >> $GITHUB_ENV
+        echo "TF_VAR_cgw_hsm_ld6_ip=${TF_VAR_CGW_HSM_LD6_IP}" >> $GITHUB_ENV
+        echo "TF_VAR_cgw_hsm_tsc_ip=${TF_VAR_CGW_HSM_TSC_IP}" >> $GITHUB_ENV
         echo "TF_VAR_ms_teams_webhook_url=${TF_VAR_MS_TEAMS_WEBHOOK_URL}" >> $GITHUB_ENV
 
     # Install the latest version of Terraform CLI

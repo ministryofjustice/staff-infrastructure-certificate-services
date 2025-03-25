@@ -6,10 +6,10 @@ variable "cgw_hsm_secondary_ip" {
   type = string
 }
 
-variable "cgw_hsm_tertiary_ip" {
+variable "cgw_hsm_ld6_ip" {
   type = string
 }
 
-variable "cgw_hsm_quarternary_ip" {
+variable "cgw_hsm_tsc_ip" {
   type = string
 }

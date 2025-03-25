@@ -74,6 +74,14 @@ variable "ip_hsm_secondary" {
   type = string
 }
 
+variable "ip_hsm_ld6" {
+  type = string
+}
+
+variable "ip_hsm_tsc" {
+  type = string
+}
+
 variable "ost_cidr_block" {
   type = string
 }

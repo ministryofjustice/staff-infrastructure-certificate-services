@@ -32,19 +32,19 @@ variable "seondary_internal_cidr" {
   type = string
 }
 
-variable "tertiary_remote_destination_cidr" {
+variable "ld6_remote_destination_cidr" {
   type = string
 }
 
-variable "tertiary_internal_cidr" {
+variable "ld6_internal_cidr" {
   type = string
 }
 
-variable "quarternary_remote_destination_cidr" {
+variable "tsc_remote_destination_cidr" {
   type = string
 }
 
-variable "quarternary_internal_cidr" {
+variable "tsc_internal_cidr" {
   type = string
 }
 
@@ -56,11 +56,11 @@ variable "cgw_hsm_secondary_ip" {
   type = string
 }
 
-variable "cgw_hsm_tertiary_ip" {
+variable "cgw_hsm_ld6_ip" {
   type = string
 }
 
-variable "cgw_hsm_quarternary_ip" {
+variable "cgw_hsm_tsc_ip" {
   type = string
 }
 
