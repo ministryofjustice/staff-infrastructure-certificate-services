@@ -65,7 +65,7 @@ resource "aws_vpn_connection" "vpn_ld6" {
   static_routes_only  = true
 }
 
-resource "aws_vpn_connection_route" "entrust" {
+resource "aws_vpn_connection_route" "entrust_ld6" {
   destination_cidr_block = var.ld6_remote_destination_cidr
   vpn_connection_id      = aws_vpn_connection.vpn_ld6.id
 }
@@ -88,7 +88,7 @@ resource "aws_vpn_connection" "vpn_tsc" {
   static_routes_only  = true
 }
 
-resource "aws_vpn_connection_route" "entrust" {
+resource "aws_vpn_connection_route" "entrust_tsc" {
   destination_cidr_block = var.tsc_remote_destination_cidr
   vpn_connection_id      = aws_vpn_connection.vpn_tsc.id
 }
