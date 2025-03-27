@@ -56,6 +56,8 @@ locals {
   # HSM Servers
   ip_hsm_primary   = "192.168.130.24/32"
   ip_hsm_secondary = "192.168.30.24/32"
+  ip_hsm_ld6       = "192.168.31.2/32"
+  ip_hsm_tsc       = "192.168.41.2/32"
 
   # RFC1918 Private Networks
   cidr_private_a = "10.0.0.0/8"

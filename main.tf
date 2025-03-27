@@ -39,6 +39,8 @@ module "cgw" {
 
   cgw_hsm_primary_ip   = var.cgw_hsm_primary_ip
   cgw_hsm_secondary_ip = var.cgw_hsm_secondary_ip
+  cgw_hsm_ld6_ip       = var.cgw_hsm_ld6_ip
+  cgw_hsm_tsc_ip       = var.cgw_hsm_tsc_ip
 
   providers = {
     aws = aws.env
@@ -96,8 +98,16 @@ module "baseline_pre_production" {
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
   seondary_internal_cidr            = var.seondary_internal_cidr
 
+  ld6_remote_destination_cidr = var.ld6_remote_destination_cidr
+  ld6_internal_cidr           = var.ld6_internal_cidr
+
+  tsc_remote_destination_cidr = var.tsc_remote_destination_cidr
+  tsc_internal_cidr           = var.tsc_internal_cidr
+
   cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
+  cgw_hsm_ld6_id       = module.cgw.cgw_hsm_ld6_id
+  cgw_hsm_tsc_id       = module.cgw.cgw_hsm_tsc_id
 
   pcx_preproduction_pki_ost_id   = var.pcx_preproduction_pki_ost_id
   pcx_preproduction_pki_ost_cidr = var.pcx_preproduction_pki_ost_cidr
@@ -131,8 +141,16 @@ module "baseline_production" {
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
   seondary_internal_cidr            = var.seondary_internal_cidr
 
+  ld6_remote_destination_cidr = var.ld6_remote_destination_cidr
+  ld6_internal_cidr           = var.ld6_internal_cidr
+
+  tsc_remote_destination_cidr = var.tsc_remote_destination_cidr
+  tsc_internal_cidr           = var.tsc_internal_cidr
+
   cgw_hsm_primary_id   = module.cgw.cgw_hsm_primary_id
   cgw_hsm_secondary_id = module.cgw.cgw_hsm_secondary_id
+  cgw_hsm_ld6_id       = module.cgw.cgw_hsm_ld6_id
+  cgw_hsm_tsc_id       = module.cgw.cgw_hsm_tsc_id
 
   pcx_production_pki_ost_id   = var.pcx_production_pki_ost_id
   pcx_production_pki_ost_cidr = var.pcx_production_pki_ost_cidr

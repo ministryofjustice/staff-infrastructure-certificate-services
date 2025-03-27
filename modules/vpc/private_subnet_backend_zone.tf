@@ -110,6 +110,26 @@ resource "aws_network_acl" "private_subnet_backend_zone_nacl" {
     to_port    = 0
   }
 
+  # Allow all inbound traffic from HSM LD6 London
+  ingress {
+    protocol   = -1
+    rule_no    = 205
+    action     = var.allow_subnet_traffic
+    cidr_block = var.ip_hsm_ld6
+    from_port  = 0
+    to_port    = 0
+  }
+
+  # Allow all inbound traffic from HSM TSC Newbury
+  ingress {
+    protocol   = -1
+    rule_no    = 206
+    action     = var.allow_subnet_traffic
+    cidr_block = var.ip_hsm_tsc
+    from_port  = 0
+    to_port    = 0
+  }
+
   # Allow all outbound traffic to the public subnet
   egress {
     protocol   = var.tcp_protocol

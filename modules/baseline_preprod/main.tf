@@ -27,6 +27,8 @@ module "pki_vpc" {
   allow_subnet_traffic                      = local.allow_subnet_traffic
   ip_hsm_primary                            = local.ip_hsm_primary
   ip_hsm_secondary                          = local.ip_hsm_secondary
+  ip_hsm_ld6                                = local.ip_hsm_ld6
+  ip_hsm_tsc                                = local.ip_hsm_tsc
   ost_peering_id                            = var.pcx_preproduction_pki_ost_id
   ost_cidr_block                            = var.pcx_preproduction_pki_ost_cidr
   mojo_prod_tgw_id                          = var.mojo_prod_tgw_id
@@ -59,8 +61,16 @@ module "vpn_pre-production" {
   secondary_remote_destination_cidr = var.secondary_remote_destination_cidr
   seondary_internal_cidr            = var.seondary_internal_cidr
 
+  ld6_remote_destination_cidr = var.ld6_remote_destination_cidr
+  ld6_internal_cidr           = var.ld6_internal_cidr
+
+  tsc_remote_destination_cidr = var.tsc_remote_destination_cidr
+  tsc_internal_cidr           = var.tsc_internal_cidr
+
   cgw_hsm_primary_id   = var.cgw_hsm_primary_id
   cgw_hsm_secondary_id = var.cgw_hsm_secondary_id
+  cgw_hsm_ld6_id       = var.cgw_hsm_ld6_id
+  cgw_hsm_tsc_id       = var.cgw_hsm_tsc_id
 
   prefix = "pre-production"
 }
@@ -74,3 +84,4 @@ module "tgw-attach" {
 
   prefix = var.prefix
 }
+
