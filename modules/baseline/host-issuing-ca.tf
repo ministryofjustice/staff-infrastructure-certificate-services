@@ -314,7 +314,22 @@ module "sg_issuing_ca" {
       description = "Allow issuing CA to HSM Secondary"
       cidr_blocks = local.ip_hsm_secondary
     },
-
+    # HSM LD6 London
+    {
+      from_port   = 1792
+      to_port     = 1792
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to HSM LD6 London"
+      cidr_blocks = local.ip_hsm_ld6
+    },
+    # HSM TSC Newbury
+    {
+      from_port   = 1792
+      to_port     = 1792
+      protocol    = local.tcp_protocol
+      description = "Allow issuing CA to HSM TSC Newbury"
+      cidr_blocks = local.ip_hsm_tsc
+    },
   ]
 
   tags = var.tags
