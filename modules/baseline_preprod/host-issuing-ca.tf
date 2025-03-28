@@ -377,13 +377,6 @@ resource "aws_ebs_volume" "issuing_CA_tertiary_ebs" {
       "device_name" : "/dev/sdi"
     })
   )
-  tags_all = merge(
-    var.tags, tomap({
-      "Name" : "${var.prefix}-issuing-ca-dev-sdi",
-      "Environment" : var.environment_description,
-      "device_name" : "/dev/sdi"
-    })
-  )
 }
 
 resource "aws_volume_attachment" "issuing_CA_tertiary_ebs_attach" {
