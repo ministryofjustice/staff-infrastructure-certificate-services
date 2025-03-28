@@ -65,14 +65,14 @@ resource "aws_vpn_connection" "vpn_ld6" {
   static_routes_only  = true
 
   tunnel1_phase1_encryption_algorithms = "AES256"
-  tunnel1_phase1_dh_group_numbers = "20 | 21 | 22 | 23 | 24"
-  tunnel1_phase1_integrity_algorithms = "SHA2-256 | SHA2-384 | SHA2-512"
-  tunnel1_ike_versions = "ikev2"
+  tunnel1_phase1_dh_group_numbers      = "20 | 21 | 22 | 23 | 24"
+  tunnel1_phase1_integrity_algorithms  = "SHA2-256 | SHA2-384 | SHA2-512"
+  tunnel1_ike_versions                 = "ikev2"
 
   tunnel2_phase1_encryption_algorithms = "AES256"
-  tunnel2_phase1_dh_group_numbers = "20 | 21 | 22 | 23 | 24"
-  tunnel2_phase1_integrity_algorithms = "SHA2-256 | SHA2-384 | SHA2-512"
-  tunnel2_ike_versions = "ikev2"
+  tunnel2_phase1_dh_group_numbers      = "20 | 21 | 22 | 23 | 24"
+  tunnel2_phase1_integrity_algorithms  = "SHA2-256 | SHA2-384 | SHA2-512"
+  tunnel2_ike_versions                 = "ikev2"
 }
 
 resource "aws_vpn_connection_route" "entrust_ld6" {
@@ -98,14 +98,14 @@ resource "aws_vpn_connection" "vpn_tsc" {
   static_routes_only  = true
 
   tunnel1_phase1_encryption_algorithms = "AES256"
-  tunnel1_phase1_dh_group_numbers = "20 | 21 | 22 | 23 | 24"
-  tunnel1_phase1_integrity_algorithms = "SHA2-256 | SHA2-384 | SHA2-512"
-  tunnel1_ike_versions = "ikev2"
+  tunnel1_phase1_dh_group_numbers      = "20 | 21 | 22 | 23 | 24"
+  tunnel1_phase1_integrity_algorithms  = "SHA2-256 | SHA2-384 | SHA2-512"
+  tunnel1_ike_versions                 = "ikev2"
 
   tunnel2_phase1_encryption_algorithms = "AES256"
-  tunnel2_phase1_dh_group_numbers = "20 | 21 | 22 | 23 | 24"
-  tunnel2_phase1_integrity_algorithms = "SHA2-256 | SHA2-384 | SHA2-512"
-  tunnel2_ike_versions = "ikev2"
+  tunnel2_phase1_dh_group_numbers      = "20 | 21 | 22 | 23 | 24"
+  tunnel2_phase1_integrity_algorithms  = "SHA2-256 | SHA2-384 | SHA2-512"
+  tunnel2_ike_versions                 = "ikev2"
 }
 
 resource "aws_vpn_connection_route" "entrust_tsc" {
