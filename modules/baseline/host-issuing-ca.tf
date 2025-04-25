@@ -400,7 +400,7 @@ resource "aws_volume_attachment" "issuing_CA_tertiary_ebs_attach" {
 
 resource "aws_ebs_volume" "issuing_CA_quarternary_ebs" {
   availability_zone = module.pki_vpc.private_subnet_backend_zone_az
-  size              = 80  
+  size              = 80
   type              = "gp3"
   iops              = 3000
   throughput        = 125
