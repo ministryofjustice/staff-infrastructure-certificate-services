@@ -295,7 +295,7 @@ module "ma_network_packets_in_status_check_ra_app_server" {
   comparison_operator = "GreaterThanOrEqualToThreshold"
   evaluation_periods  = 2
   datapoints_to_alarm = 2
-  threshold           = 3500
+  threshold           = 15000
   period              = 300 # 5 minutes
   unit                = "Count"
 
