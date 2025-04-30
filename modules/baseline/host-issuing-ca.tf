@@ -398,6 +398,28 @@ resource "aws_volume_attachment" "issuing_CA_tertiary_ebs_attach" {
   instance_id = module.ec2_issuing_ca.instance_id[0]
 }
 
+resource "aws_ebs_volume" "issuing_CA_quarternary_ebs" {
+  availability_zone = module.pki_vpc.private_subnet_backend_zone_az
+  size              = 80
+  type              = "gp3"
+  iops              = 3000
+  throughput        = 125
+
+  tags = merge(
+    var.tags, tomap({
+      "Name" : "${var.prefix}-issuing-ca-dev-sdj",
+      "Environment" : var.environment_description,
+      "device_name" : "/dev/sdj"
+    })
+  )
+}
+
+resource "aws_volume_attachment" "issuing_CA_quarternary_ebs_attach" {
+  device_name = "/dev/sdj"
+  volume_id   = aws_ebs_volume.issuing_CA_quarternary_ebs.id
+  instance_id = module.ec2_issuing_ca.instance_id[0]
+}
+
 module "ma_system_status_check_issuing_ca" {
   source = ".././ec2alarms"
 
